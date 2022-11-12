@@ -5,7 +5,14 @@ import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
+  // const [address, setAddress] = useState('');
+  // const [city, setCity] = useState('');
+  // const [state, setState] = useState('');
+  // const [zipCode, setZipCode] = useState('');
+  // const [country, setCountry] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -15,16 +22,36 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(email, password));
       if (data) {
         setErrors(data)
       }
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  // const updateFirstName = (e) => {
+  //   setFirstName(e.target.value);
+  // };
+
+  // const updateLastName = (e) => {
+  //   setLastName(e.target.value);
+  // };
+
+  // const updateAddress = (e) => {
+  //   setAddress(e.target.value);
+  // };
+
+  // const updateCity = (e) => {
+  //   setCity(e.target.value);
+  // };
+
+  // const updateState = (e) => {
+  //   setState(e.target.value);
+  // };
+
+  // const updateCountry = (e) => {
+  //   setCountry(e.target.value);
+  // };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -48,15 +75,6 @@ const SignUpForm = () => {
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
       </div>
       <div>
         <label>Email</label>
