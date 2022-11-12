@@ -1,5 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .listings import seed_listings, undo_listings
 
 
 from app.models.db import db, environment, SCHEMA
@@ -20,9 +21,11 @@ def seed():
         # undo_users()
          # Before seeding, truncate all tables prefixed with schema name
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.listings RESTART IDENTITY CASCADE;")
         # Add a truncate command here for every table that will be seeded.
         db.session.commit()
     seed_users()
+    seed_listings()
     # Add other seed functions here
 
 
@@ -30,4 +33,5 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_listings()
     # Add other undo functions here
