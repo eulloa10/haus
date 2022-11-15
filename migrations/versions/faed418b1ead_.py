@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: faed418b1ead
-Revises: 
+Revises:
 Create Date: 2022-11-12 18:22:07.053018
 
 """
@@ -44,13 +44,13 @@ def upgrade():
     sa.Column('country', sa.String(length=2), nullable=False),
     sa.Column('lat', sa.Numeric(), nullable=False),
     sa.Column('lng', sa.Numeric(), nullable=False),
-    sa.Column('description', sa.String(length=255), nullable=False),
+    sa.Column('description', sa.String(), nullable=False),
     sa.Column('type', sa.String(length=20), nullable=False),
     sa.Column('beds', sa.Integer(), nullable=False),
     sa.Column('baths', sa.Integer(), nullable=False),
     sa.Column('sqft', sa.Integer(), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('preview_image', sa.String(length=255), nullable=False),
+    sa.Column('preview_image', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),

@@ -23,7 +23,7 @@ class Listing(db.Model):
     baths = db.Column(db.Integer, nullable=False)
     sqft = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    preview_image = db.Column(db.String(255), nullable=False)
+    preview_image = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
