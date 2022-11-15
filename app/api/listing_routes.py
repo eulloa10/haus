@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request, Response
 from flask_login import login_required, current_user
-from app.models import Listing, Offer, Favorite, db
-from app.forms import ListingForm, OfferForm, FavoriteForm
+from app.models import Listing, Offer, Favorite, Tour, db
+from app.forms import ListingForm, OfferForm, FavoriteForm, TourForm
 import json
+import datetime
 
 
 listing_routes = Blueprint('listings', __name__)
@@ -81,6 +82,37 @@ def add_favorite(listing_id):
             return favorite.to_dict()
     else:
       return Response(json.dumps({"Error": "Cannot favorite this listing. Listing is either your own or has already been favorited."}), status=403)
+
+
+@listing_routes.route('/<int:listing_id>/tours', methods=['POST'])
+@login_required
+def create_tour(listing_id):
+    form = TourForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    # TODO:
+    '''
+    1. get all tours for current listing
+    2. make sure selected time doesn't overlap
+    3. make sure selected time is in future
+    4. make sure selected time is within certain range
+    '''
+
+    listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+
+    if not listing:
+        if form.validate_on_submit():
+            tour = Tour(
+            user_id = current_user.id,
+            listing_id = listing_id,
+            tour_start_date=form.data['tour_start_date'],
+            tour_end_date=form.data['tour_end_date']
+            )
+            db.session.add(tour)
+            db.session.commit()
+            return tour.to_dict()
+    else:
+      return Response(json.dumps({"Error": "Cannot schedule tour for own property."}), status=403)
 
 @me_listing_routes.route('/listings')
 @login_required

@@ -13,6 +13,8 @@ from .api.favorite_routes import favorite_routes
 from .api.favorite_routes import me_favorite_routes
 from .api.offer_routes import me_offer_routes
 from .api.offer_routes import offer_routes
+from .api.tour_routes import me_tour_routes
+from .api.tour_routes import tour_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -40,6 +42,8 @@ app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
 app.register_blueprint(me_favorite_routes, url_prefix='/api/me')
 app.register_blueprint(me_offer_routes, url_prefix='/api/me')
 app.register_blueprint(offer_routes, url_prefix='/api/offers')
+app.register_blueprint(me_tour_routes, url_prefix='/api/me')
+app.register_blueprint(tour_routes, url_prefix='/api/tours')
 db.init_app(app)
 Migrate(app, db)
 
