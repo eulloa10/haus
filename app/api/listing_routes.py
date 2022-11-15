@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Response
 from flask_login import login_required, current_user
-from app.models import Listing, Offer, db
-from app.forms import ListingForm, OfferForm
+from app.models import Listing, Offer, Favorite, db
+from app.forms import ListingForm, OfferForm, FavoriteForm
+import json
 
 
 listing_routes = Blueprint('listings', __name__)
@@ -59,6 +60,27 @@ def create_an_offer(listing_id):
         else:
             return {'Error:': 'Cannot submit offer on owned listing'}
 
+@listing_routes.route('/<int:listing_id>/favorites', methods=['POST'])
+@login_required
+def add_favorite(listing_id):
+    form = FavoriteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+
+    favorite = Favorite.query.filter(Favorite.listing_id == listing_id).filter(Favorite.user_id == current_user.id).all()
+
+    if not listing and not favorite:
+        if form.validate_on_submit():
+            favorite = Favorite(
+            user_id = current_user.id,
+            listing_id = listing_id,
+            )
+            db.session.add(favorite)
+            db.session.commit()
+            return favorite.to_dict()
+    else:
+      return Response(json.dumps({"Error": "Cannot favorite this listing. Listing is either your own or has already been favorited."}), status=403)
 
 @me_listing_routes.route('/listings')
 @login_required

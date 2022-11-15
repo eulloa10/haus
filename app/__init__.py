@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.listing_routes import listing_routes
 from .api.listing_routes import me_listing_routes
+from .api.favorite_routes import favorite_routes
 from .api.favorite_routes import me_favorite_routes
 from .api.offer_routes import me_offer_routes
 from .api.offer_routes import offer_routes
@@ -35,6 +36,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(listing_routes, url_prefix='/api/listings')
 app.register_blueprint(me_listing_routes, url_prefix='/api/me')
+app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
 app.register_blueprint(me_favorite_routes, url_prefix='/api/me')
 app.register_blueprint(me_offer_routes, url_prefix='/api/me')
 app.register_blueprint(offer_routes, url_prefix='/api/offers')
