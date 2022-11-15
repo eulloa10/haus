@@ -17,7 +17,7 @@ class Listing(db.Model):
     country = db.Column(db.String(2), nullable=False)
     lat = db.Column(db.Numeric, nullable=False)
     lng = db.Column(db.Numeric, nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String, nullable=False)
     type = db.Column(db.String(20), nullable=False)
     beds = db.Column(db.Integer, nullable=False)
     baths = db.Column(db.Integer, nullable=False)
