@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Listing, db
-from app.forms import ListingForm
+from app.models import Listing, Offer, db
+from app.forms import ListingForm, OfferForm
 
 
 listing_routes = Blueprint('listings', __name__)
@@ -38,6 +38,26 @@ def create_a_listing():
         db.session.add(listing)
         db.session.commit()
         return listing.to_dict()
+
+
+@listing_routes.route('/<int:listing_id>/offers', methods=['POST'])
+@login_required
+def create_an_offer(listing_id):
+    form = OfferForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    listing = Listing.query.get(listing_id)
+    if form.validate_on_submit():
+        if listing.owner_id != current_user.id:
+            offer = Offer(
+                user_id=current_user.id,
+                listing_id=listing_id,
+                offer_amount=form.data['offer_amount'],
+            )
+            db.session.add(offer)
+            db.session.commit()
+            return offer.to_dict()
+        else:
+            return {'Error:': 'Cannot submit offer on owned listing'}
 
 
 @me_listing_routes.route('/listings')

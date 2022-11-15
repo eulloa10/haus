@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Offer
 
 class OfferForm(FlaskForm):
-    user_id = IntegerField('owner_id', validators=[DataRequired()])
-    listing_id = IntegerField('listing_id', validators=[DataRequired()])
+    user_id = IntegerField('owner_id')
+    listing_id = IntegerField('listing_id')
     offer_amount = IntegerField('offer_amount', validators=[DataRequired()])

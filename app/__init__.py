@@ -10,6 +10,8 @@ from .api.auth_routes import auth_routes
 from .api.listing_routes import listing_routes
 from .api.listing_routes import me_listing_routes
 from .api.favorite_routes import me_favorite_routes
+from .api.offer_routes import me_offer_routes
+from .api.offer_routes import offer_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -34,6 +36,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(listing_routes, url_prefix='/api/listings')
 app.register_blueprint(me_listing_routes, url_prefix='/api/me')
 app.register_blueprint(me_favorite_routes, url_prefix='/api/me')
+app.register_blueprint(me_offer_routes, url_prefix='/api/me')
+app.register_blueprint(offer_routes, url_prefix='/api/offers')
 db.init_app(app)
 Migrate(app, db)
 
