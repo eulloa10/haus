@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Listing
 
 class ListingForm(FlaskForm):
-    owner_id = IntegerField('owner_id', validators=[DataRequired()])
+    owner_id = IntegerField('owner_id')
     address = StringField('address', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
