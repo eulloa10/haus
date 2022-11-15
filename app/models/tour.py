@@ -16,6 +16,8 @@ class Tour(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     tour_participant = db.relationship("User", back_populates="tours")
+    tour_listing = db.relationship("Listing", back_populates="tours")
+
 
     def to_dict(self):
         return {

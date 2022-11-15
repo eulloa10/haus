@@ -22,9 +22,10 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
-    listings = db.relationship("Listing", back_populates="owner")
-    tours = db.relationship("Tour", back_populates="tour_participant")
-    favorites = db.relationship("Favorite", back_populates="favorite_owner")
+    listings = db.relationship("Listing", back_populates="owner", cascade="all, delete-orphan")
+    tours = db.relationship("Tour", back_populates="tour_participant", cascade="all, delete-orphan")
+    favorites = db.relationship("Favorite", back_populates="favorite_owner", cascade="all, delete-orphan")
+    images = db.relationship("Image", back_populates='img_owner', cascade="all, delete-orphan")
 
     @property
     def password(self):

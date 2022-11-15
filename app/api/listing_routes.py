@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify, request, Response
 from flask_login import login_required, current_user
-from app.models import Listing, Offer, Favorite, Tour, db
-from app.forms import ListingForm, OfferForm, FavoriteForm, TourForm
+from app.models import Listing, Offer, Favorite, Tour, Image, db
+from app.forms import ListingForm, OfferForm, FavoriteForm, TourForm, ImageForm
 import json
-import datetime
 
 
 listing_routes = Blueprint('listings', __name__)
@@ -113,6 +112,28 @@ def create_tour(listing_id):
             return tour.to_dict()
     else:
       return Response(json.dumps({"Error": "Cannot schedule tour for own property."}), status=403)
+
+
+@listing_routes.route('/<int:listing_id>/images', methods=['POST'])
+@login_required
+def add_image(listing_id):
+    form = ImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+
+    if listing:
+        if form.validate_on_submit():
+            image = Image(
+            listing_id = listing_id,
+            user_id = current_user.id,
+            img_url = form.data['img_url'],
+            )
+            db.session.add(image)
+            db.session.commit()
+            return image.to_dict()
+    else:
+      return Response(json.dumps({"Error": "Must own listing to add image."}), status=403)
 
 @me_listing_routes.route('/listings')
 @login_required

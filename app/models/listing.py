@@ -28,8 +28,9 @@ class Listing(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     owner = db.relationship("User", back_populates="listings")
-    offers = db.relationship("Offer", back_populates="offer_owner")
-    images = db.relationship("Image", back_populates="listing")
+    offers = db.relationship("Offer", back_populates="offer_owner", cascade="all, delete-orphan")
+    images = db.relationship("Image", back_populates="listing", cascade="all, delete-orphan")
+    tours = db.relationship("Tour", back_populates="tour_listing", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

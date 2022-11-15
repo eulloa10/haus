@@ -15,6 +15,8 @@ from .api.offer_routes import me_offer_routes
 from .api.offer_routes import offer_routes
 from .api.tour_routes import me_tour_routes
 from .api.tour_routes import tour_routes
+from .api.image_routes import me_image_routes
+from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -44,6 +46,8 @@ app.register_blueprint(me_offer_routes, url_prefix='/api/me')
 app.register_blueprint(offer_routes, url_prefix='/api/offers')
 app.register_blueprint(me_tour_routes, url_prefix='/api/me')
 app.register_blueprint(tour_routes, url_prefix='/api/tours')
+app.register_blueprint(me_image_routes, url_prefix='/api/me')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 
