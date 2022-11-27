@@ -1,0 +1,14 @@
+.splash-nav, .splash-nav:link {
+  list-style: none;
+  text-decoration: none;
+}
+
+.splash-nav-all {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 20px;
+}
+
+/* .home-link {
+
+} */

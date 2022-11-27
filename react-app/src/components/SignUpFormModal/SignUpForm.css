@@ -1,0 +1,46 @@
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 70vh;
+  width: 30vw;
+}
+
+.email-signup, .password-signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 24vw;
+}
+
+.email-signup-label, .password-signup-label {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.email-signup-input, .password-signup-input {
+  height: 5vh;
+  font-size: 1em;
+  border: 0.5px solid gray;
+  border-radius: 3px;
+  background-color: rgb(241, 240, 240);
+  margin-bottom: 1em;
+}
+
+.sign-in-category {
+  color: gray;
+  border-bottom: 0.5px gray solid;
+  width: 25vw;
+}
+
+.signup-btn {
+  height: 5vh;
+  background-color: #1277e1;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  border-radius: 3px;
+  margin-top: 1vw;
+}
