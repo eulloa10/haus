@@ -12,7 +12,7 @@ const SplashBody = () => {
   // const [ showLoginModal, setShowLoginModal] = useState(false)
 
   return (
-    <div>
+    <div className="splash-body">
       <div className="search-container">
         <img className="splash-home-front" src={ZillowHome} alt="house"/>
       </div>

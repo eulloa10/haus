@@ -1,19 +1,30 @@
 
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { NavLink, useHistory, Link } from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton';
 import './NavBar.css';
 import LoginFormModal from '../../LoginFormModal';
 import SignUpFormModal from '../../SignUpFormModal';
-import HouseMeLogo from '../../../assets/zillow-logo.svg'
+import User from '../../User';
+import * as sessionActions from '../../../store/session';
+import HouseMeLogo from '../../../assets/zillow-logo.svg';
+import ProfileDefaultIcon from '../../../assets/profile-default-icon.svg'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [showSessionOptions, setShowSessionOptions] = useState(false);
 
-  // const [ showLoginModal, setShowLoginModal] = useState(false)
+  const demoLogin = async () => {
+    await dispatch(sessionActions.login("demo@aa.io", "password"));
+    history.push("/");
+  };
 
-  console.log("------------USER------------", user);
+  const sessionOptionsHandler = () => {
+    setShowSessionOptions(!showSessionOptions);
+  }
 
   return (
     <nav>
@@ -28,26 +39,53 @@ const NavBar = () => {
             </li>
         </ul>
         <ul className="splash-nav-auth-links">
-          <li className="splash-nav">
-            <LoginFormModal />
-          </li>
-          <li className="splash-nav">
-            <SignUpFormModal />
-          </li>
-          <li className="splash-nav">
-            <NavLink to='/me' exact={true} activeClassName='active'>
-              Demo
-            </NavLink>
-          </li>
-          {/* <li className="splash-nav">
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              Users
-            </NavLink>
-          </li> */}
-          { user && (<li className="splash-nav">
-            <LogoutButton />
-            </li>)
+          {!user && (
+            <>
+              <li className="splash-nav">
+              <LoginFormModal />
+              </li>
+              <li className="splash-nav">
+                <SignUpFormModal />
+              </li>
+              <li className="splash-nav">
+                <NavLink to='/' exact={true} activeClassName='active' onClick={demoLogin}>
+                  Demo
+                </NavLink>
+              </li>
+            </>
+          )}
+          { user && (
+            <img className="prof-icon" src={ProfileDefaultIcon} alt="prof-icon" onClick={sessionOptionsHandler}/>
+            )
           }
+          {user && showSessionOptions && (
+              <ul className="session-options">
+                <li>
+                  <Link className="session-link">
+                    My Listings
+                  </Link>
+                </li>
+                <li>
+                  <Link className="session-link">
+                  My Offers
+                  </Link>
+                </li>
+                <li>
+                  <Link className="session-link">
+                    My Tours
+                  </Link>
+                </li>
+                <li>
+                  <Link className="session-link session-fav-link">
+                    My Favorites
+                  </Link>
+                </li>
+                <li className='session-logout-btn'>
+                  <LogoutButton />
+                </li>
+              </ul>
+
+          )}
         </ul>
       </ul>
     </nav>
