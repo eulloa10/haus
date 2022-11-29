@@ -68,10 +68,19 @@
   border-radius: 4px;
 }
 
+.session-items {
+  width: 100%;
+  border-radius: 4px;
+}
+
 .session-link {
   width: 100%;
   text-decoration: none;
   color: black;
+}
+
+.session-items:hover {
+  background-color: rgb(174, 237, 255);
 }
 
 .session-logout-btn {

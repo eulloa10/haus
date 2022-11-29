@@ -19,7 +19,7 @@
   font-size: 20px;
 }
 
-.buy-home-card, .schedule-tour-card, .place-offer-card {
+.buy-home-card, .schedule-tour-card, .place-sell-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,11 +31,11 @@
   width: 28vw;
 }
 
-.home-card-desc, .tour-card-desc, .offer-card-desc {
+.home-card-desc, .tour-card-desc, .sell-card-desc {
   margin: 10%;
 }
 
-.browse-homes-card-btn, .tour-card-btn, .offer-card-btn {
+.browse-homes-card-btn, .tour-card-btn, .sell-card-btn {
   height: 5vh;
   background-color: white;
   color: #1277e1;
@@ -46,7 +46,7 @@
   margin-top: 1vw;
 }
 
-.browse-homes-card-btn:hover, .tour-card-btn:hover, .offer-card-btn:hover {
+.browse-homes-card-btn:hover, .tour-card-btn:hover, .sell-card-btn:hover {
   background-color: #1277e1;
   color: white;
 }

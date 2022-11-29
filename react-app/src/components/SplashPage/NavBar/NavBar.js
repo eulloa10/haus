@@ -30,6 +30,16 @@ const NavBar = () => {
     <nav>
       <ul className='splash-nav-all'>
         <ul className="splash-nav-other-links">
+          <li className="splash-nav">
+            <NavLink to='/me' exact={true} activeClassName='active'>
+              Buy
+            </NavLink>
+          </li>
+          <li className="splash-nav sell-link">
+            <NavLink to='/me' exact={true} activeClassName='active'>
+              Sell
+            </NavLink>
+          </li>
         </ul>
         <ul className="splash-nav-home-link">
           <li className="splash-nav home-link">
@@ -60,31 +70,30 @@ const NavBar = () => {
           }
           {user && showSessionOptions && (
               <ul className="session-options">
-                <li>
+                <li className="session-items">
                   <Link className="session-link">
                     My Listings
                   </Link>
                 </li>
-                <li>
+                <li className="session-items">
                   <Link className="session-link">
                   My Offers
                   </Link>
                 </li>
-                <li>
+                <li className="session-items">
                   <Link className="session-link">
                     My Tours
                   </Link>
                 </li>
-                <li>
+                <li className="session-items">
                   <Link className="session-link session-fav-link">
                     My Favorites
                   </Link>
                 </li>
-                <li className='session-logout-btn'>
+                <li className='session-logout-btn session-items'>
                   <LogoutButton />
                 </li>
               </ul>
-
           )}
         </ul>
       </ul>

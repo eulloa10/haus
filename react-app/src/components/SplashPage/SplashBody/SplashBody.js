@@ -9,8 +9,6 @@ import ZillowHome from '../../../assets/zillow-front-2.jpeg'
 const SplashBody = () => {
   const user = useSelector(state => state.session.user);
 
-  // const [ showLoginModal, setShowLoginModal] = useState(false)
-
   return (
     <div className="splash-body">
       <div className="search-container">
@@ -23,11 +21,11 @@ const SplashBody = () => {
           <button className="browse-homes-card-btn">Browse homes</button>
         </div>
         <div className="schedule-tour-card">
-          <h4 className="card-header">Make an offer</h4>
-          <p className="offer-card-desc">Snag the home of your dreams before it's gone. Making an offer only takes a few minutes.</p>
-          <button className="offer-card-btn">Make an offer</button>
+          <h4 className="card-header">Sell a home</h4>
+          <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
+          <button className="sell-card-btn">Sell a home</button>
         </div>
-        <div className="place-offer-card">
+        <div className="place-sell-card">
           <h4 className="card-header">Tour a home</h4>
           <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
           <button className="tour-card-btn">Schedule a tour</button>
