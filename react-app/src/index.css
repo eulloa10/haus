@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
-html {
-  margin: none;
-  padding: none;
+html, body {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
   font-family: 'Open Sans', sans-serif;
 }

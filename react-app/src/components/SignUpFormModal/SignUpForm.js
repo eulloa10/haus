@@ -41,44 +41,44 @@ const SignUpForm = () => {
     <div className='sign-in-container'>
       <h2>Welcome to HouseMe</h2>
       <h4 className='sign-in-category'>New Account</h4>
-      <form class='login-form' onSubmit={onSignUp}>
+      <form class='signup-form' onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div className='email-login'>
-          <label className='email-login-label'>Email</label>
+        <div className='email-signup'>
+          <label className='email-signup-label'>Email</label>
           <input
             type='text'
             name='email'
             onChange={updateEmail}
             value={email}
-            className='email-login-input'
+            className='email-signup-input'
           ></input>
         </div>
-        <div className='password-login'>
-          <label className='password-login-label'>Password</label>
+        <div className='password-signup'>
+          <label className='password-signup-label'>Password</label>
           <input
             type='password'
             name='password'
             onChange={updatePassword}
             value={password}
-            className='password-login-input'
+            className='password-signup-input'
           ></input>
         </div>
-        <div className='password-login'>
-          <label className='password-login-label'>Repeat Password</label>
+        <div className='password-signup'>
+          <label className='password-signup-label'>Repeat Password</label>
           <input
             type='password'
             name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
-            className='password-login-input'
+            className='password-signup-input'
           ></input>
         </div>
-        <button className='login-btn' type='submit'>Sign Up</button>
+        <button className='signup-btn' type='submit'>Sign Up</button>
       </form>
     </div>
   );

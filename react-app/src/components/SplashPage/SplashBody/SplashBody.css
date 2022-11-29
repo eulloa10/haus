@@ -1,0 +1,47 @@
+.splash-home-front {
+  width: 100%;
+  height: 55vh;
+}
+
+.splash-cards {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5vw;
+  width: 100%;
+}
+
+.card-header {
+  font-size: 20px;
+}
+
+.buy-home-card, .schedule-tour-card, .place-offer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px rgb(243, 243, 243) solid;
+  box-shadow: 2px 3px 1px 1.5px lightgray;
+  border-radius: 4px;
+  height: 60vh;
+  width: 28vw;
+}
+
+.home-card-desc, .tour-card-desc, .offer-card-desc {
+  margin: 10%;
+}
+
+.browse-homes-card-btn, .tour-card-btn, .offer-card-btn {
+  height: 5vh;
+  background-color: white;
+  color: #1277e1;
+  font-weight: bold;
+  font-size: 1em;
+  border: 1px solid #1277e1;
+  border-radius: 3px;
+  margin-top: 1vw;
+}
+
+.browse-homes-card-btn:hover, .tour-card-btn:hover, .offer-card-btn:hover {
+  background-color: #1277e1;
+  color: white;
+}
