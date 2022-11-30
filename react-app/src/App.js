@@ -12,6 +12,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
 import Listing from './components/Listing';
+import ListingBrowser from './components/ListingBrowser';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,24 +33,24 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route path='/' exact={true} >
+          {/* <h1>My Home Page</h1> */}
+          <SplashBody />
+        </Route>
+        {/* <Route path='/login' exact={true}>
           <LoginFormModal />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpFormModal />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/me/listings' exact={true} >
-          <Listing />
-        </ProtectedRoute>
-        <Route path='/' exact={true} >
-          {/* <h1>My Home Page</h1> */}
-          <SplashBody />
+        <Route path='/listings' exact={true} >
+          <ListingBrowser />
         </Route>
       </Switch>
     </BrowserRouter>

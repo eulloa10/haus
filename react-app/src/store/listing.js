@@ -1,14 +1,14 @@
 // constants
-const GET_USER_LISTINGS = 'listing/GET_USER_LISTINGS';
+const GET_ALL_LISTINGS = 'listing/GET_ALL_LISTINGS';
 const GET_LISTING = 'listing/GET_LISTING';
 const ADD_LISTING = 'listing/ADD_LISTING';
 const DELETE_LISTING = 'listing/DELETE_LISTING'
 const EDIT_LISTING = 'listing/EDIT_LISTING'
 
-const getUserListings = (user_listings) => ({
-  type: GET_USER_LISTINGS,
-  user_listings
-});
+const getAllListings = (listings) => ({
+  type: GET_ALL_LISTINGS,
+  listings
+})
 
 const getListing = (listing) => ({
   type: GET_LISTING,
@@ -30,19 +30,16 @@ const editListing = (listing) => ({
   listing
 })
 
-const initialState = {
-  userListings: null,
-  listings: null
-};
+const initialState = {};
 
 
-
-export const getUserOwnedListings = () => async (dispatch) => {
-  const res = await fetch('/api/me/listings');
+export const loadAllListings = () => async (dispatch) => {
+  const res = await fetch('/api/listings');
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(getUserListings(data.user_listings))
+    console.log("______DATA_____", data)
+    dispatch(getAllListings(data.listings))
   } else {
     throw res;
   }
@@ -51,9 +48,9 @@ export const getUserOwnedListings = () => async (dispatch) => {
 const listingReducer = (state = initialState, action) => {
   const newState = {...state}
   switch (action.type) {
-    case GET_USER_LISTINGS:
-      action.user_listings.forEach((listing) => {
-        newState.userListings = listing;
+    case GET_ALL_LISTINGS:
+      action.listings.forEach((listing) => {
+        newState[listing.id] = listing;
       });
       return newState;
     default:

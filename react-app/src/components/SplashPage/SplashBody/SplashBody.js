@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 // import LogoutButton from '../../auth/LogoutButton';
 import './SplashBody.css';
 import ZillowHome from '../../../assets/zillow-front-2.jpeg'
@@ -18,7 +18,9 @@ const SplashBody = () => {
         <div className="buy-home-card">
           <h4 className="card-header">Buy a home</h4>
           <p className="home-card-desc">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
-          <button className="browse-homes-card-btn">Browse homes</button>
+          <Link to="/listings">
+            <button className="browse-homes-card-btn">Browse homes</button>
+          </Link>
         </div>
         <div className="schedule-tour-card">
           <h4 className="card-header">Sell a home</h4>
