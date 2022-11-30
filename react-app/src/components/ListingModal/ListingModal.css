@@ -1,0 +1,51 @@
+.listing-modal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 85vw;
+  height: 100vh;
+}
+
+.modal-listing-img-container {
+  grid-column: span 2;
+  grid-auto-rows: auto;
+}
+
+.modal-listing-img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 75%;
+}
+
+.listing-info-container {
+  object-fit: cover;
+  width: 100%;
+  max-height: 50%;
+}
+
+.listing-options {
+  display: flex;
+  justify-content: flex-end;
+  height: 6vh;
+  border-bottom: 1px #e6e6e6 solid;
+}
+
+.listing-option-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
+  text-decoration: none;
+  border: none;
+  gap: 10%;
+  color: 	#1277e1;
+  font-size: 1em;
+}
+
+.listing-options-img {
+  height: 50%;
+  width: 50%;
+}
+
+.delete-listing {
+  margin-right: 3%;
+}

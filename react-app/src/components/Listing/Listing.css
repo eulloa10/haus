@@ -1,6 +1,15 @@
+.listing-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .listing-img {
-  height: 30vh;
-  width: 30vw;
+  height: 25vh;
+  width: 25vw;
+  border-radius: 4px;
 }
 
 .single-listing {
@@ -11,10 +20,13 @@
 }
 
 .listing-details-list {
+  font-size: 12px;
   list-style: none;
   display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   column-gap: 1%;
+  width: 100%;
 }
 
 .listing-address-list {
