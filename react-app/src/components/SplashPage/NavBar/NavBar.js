@@ -31,7 +31,7 @@ const NavBar = () => {
       <ul className='splash-nav-all'>
         <ul className="splash-nav-other-links">
           <li className="splash-nav">
-            <NavLink to='/me' exact={true} activeClassName='active'>
+            <NavLink to='/listings' exact={true} activeClassName='active'>
               Buy
             </NavLink>
           </li>

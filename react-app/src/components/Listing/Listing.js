@@ -14,15 +14,14 @@ const Listing = ({listing}) => {
   return (
     <>
       <>
-        <Link onClick={() => setShowModal(true)}>
-          <div className="single-listing">
+        <Link className="listing-card"onClick={() => setShowModal(true)}>
           <div className="listing-img-container">
             <img className="listing-img" src={listing.preview_image} alt='home'/>
           </div>
-          <div className="listing-price">
-            ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </div>
           <div className="listing-details-container">
+            <div className="listing-price">
+              ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </div>
             <ul className="listing-details-list">
               <li>
                 {listing.beds} bds |
@@ -37,24 +36,23 @@ const Listing = ({listing}) => {
                 - {listing.type} for sale
               </li>
             </ul>
+            <div className="listing-address-container">
+              <ul className="listing-address-list">
+                  <li>
+                    {listing.address}
+                  </li>
+                  <li>
+                    {listing.city},
+                  </li>
+                  <li>
+                    {listing.state}
+                  </li>
+                  <li>
+                    {listing.zip_code}
+                  </li>
+                </ul>
+            </div>
           </div>
-          <div className="listing-address-container">
-            <ul className="listing-address-list">
-                <li>
-                  {listing.address}
-                </li>
-                <li>
-                  {listing.city},
-                </li>
-                <li>
-                  {listing.state}
-                </li>
-                <li>
-                  {listing.zip_code}
-                </li>
-              </ul>
-          </div>
-        </div>
         </Link>
       </>
       {showModal && (

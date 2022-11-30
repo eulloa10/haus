@@ -1,37 +1,22 @@
-.listing-details-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
+.listing-img-container {
+  width: 25vw;
+  height: 20vh;
 }
 
 .listing-img {
-  height: 25vh;
   width: 25vw;
-  border-radius: 4px;
+  height: 25vh;
 }
 
-.single-listing {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
+.listing-details-container {
+  width: 25vw;
+  height: 10vh;
 }
 
-.listing-details-list {
-  font-size: 12px;
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  column-gap: 1%;
-  width: 100%;
-}
-
-.listing-address-list {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  column-gap: 1%;
+.listing-card {
+  display: grid;
+  border: pink 1px solid;
+  border-radius:4px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-rows: minmax(100px, auto);
 }

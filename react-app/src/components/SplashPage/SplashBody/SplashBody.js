@@ -15,23 +15,25 @@ const SplashBody = () => {
         <img className="splash-home-front" src={ZillowHome} alt="house"/>
       </div>
       <div className="splash-cards">
-        <div className="buy-home-card">
-          <h4 className="card-header">Buy a home</h4>
-          <p className="home-card-desc">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
-          <Link to="/listings">
-            <button className="browse-homes-card-btn">Browse homes</button>
-          </Link>
-        </div>
-        <div className="schedule-tour-card">
-          <h4 className="card-header">Sell a home</h4>
-          <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
-          <button className="sell-card-btn">Sell a home</button>
-        </div>
-        <div className="place-sell-card">
-          <h4 className="card-header">Tour a home</h4>
-          <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
-          <button className="tour-card-btn">Schedule a tour</button>
-        </div>
+        <Link to="/listings">
+          <div className="buy-home-card">
+            <h4 className="card-header">Buy a home</h4>
+            <p className="home-card-desc">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
+              <button className="browse-homes-card-btn">Browse homes</button>
+          </div>
+        </Link>
+          <div className="place-sell-card">
+            <h4 className="card-header">Sell a home</h4>
+            <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
+            <button className="sell-card-btn">Sell a home</button>
+          </div>
+        <Link to="/listings">
+          <div className="schedule-tour-card">
+            <h4 className="card-header">Tour a home</h4>
+            <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
+            <button className="tour-card-btn">Find a home to tour</button>
+          </div>
+        </Link>
       </div>
     </div>
   );
