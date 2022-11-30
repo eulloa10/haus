@@ -1,0 +1,25 @@
+.listing-img {
+  height: 30vh;
+  width: 30vw;
+}
+
+.single-listing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.listing-details-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  column-gap: 1%;
+}
+
+.listing-address-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  column-gap: 1%;
+}

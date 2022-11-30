@@ -11,6 +11,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
+import Listing from './components/Listing';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +43,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/me/listings' exact={true} >
+          <Listing />
         </ProtectedRoute>
         <Route path='/' exact={true} >
           {/* <h1>My Home Page</h1> */}
