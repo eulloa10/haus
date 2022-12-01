@@ -13,6 +13,7 @@ import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
 import Listing from './components/Listing';
 import ListingBrowser from './components/ListingBrowser';
+import CreateListingForm from './components/CreateListingForm/CreateListingForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,10 +38,10 @@ function App() {
           {/* <h1>My Home Page</h1> */}
           <SplashBody />
         </Route>
-        {/* <Route path='/login' exact={true}>
-          <LoginFormModal />
+        <Route path='/login' exact={true}>
+          <LoginFormModal showModal={true}/>
         </Route>
-        <Route path='/sign-up' exact={true}>
+        {/* <Route path='/sign-up' exact={true}>
           <SignUpFormModal />
         </Route> */}
         <ProtectedRoute path='/users' exact={true} >
@@ -52,6 +53,9 @@ function App() {
         <Route path='/listings' exact={true} >
           <ListingBrowser />
         </Route>
+        <ProtectedRoute path='/me/listings' exact={true} >
+          <CreateListingForm />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

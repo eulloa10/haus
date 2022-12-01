@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import { Link }  from 'react-router-dom';
 
-function LoginFormModal() {
+  function LoginFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (

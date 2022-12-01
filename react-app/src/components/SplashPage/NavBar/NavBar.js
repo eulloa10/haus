@@ -8,14 +8,15 @@ import LoginFormModal from '../../LoginFormModal';
 import SignUpFormModal from '../../SignUpFormModal';
 import User from '../../User';
 import * as sessionActions from '../../../store/session';
-import HouseMeLogo from '../../../assets/zillow-logo.svg';
-import ProfileDefaultIcon from '../../../assets/profile-default-icon.svg'
+import HouseLetter from '../../../assets/house_letter.png';
+import ProfileDefaultIcon from '../../../assets/profile-default-icon.svg';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
   const [showSessionOptions, setShowSessionOptions] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const demoLogin = async () => {
     await dispatch(sessionActions.login("demo@aa.io", "password"));
@@ -36,7 +37,7 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className="splash-nav sell-link">
-            <NavLink to='/me' exact={true} activeClassName='active'>
+            <NavLink to='/me/listings' exact={true} activeClassName='active'>
               Sell
             </NavLink>
           </li>
@@ -44,7 +45,7 @@ const NavBar = () => {
         <ul className="splash-nav-home-link">
           <li className="splash-nav home-link">
               <NavLink to='/' exact={true} activeClassName='active'>
-                <img src={HouseMeLogo} alt="logo"/>
+                <img className="house-letter-logo" src={HouseLetter} alt="logo"/>
               </NavLink>
             </li>
         </ul>
@@ -52,7 +53,7 @@ const NavBar = () => {
           {!user && (
             <>
               <li className="splash-nav">
-              <LoginFormModal />
+                <LoginFormModal/>
               </li>
               <li className="splash-nav">
                 <SignUpFormModal />

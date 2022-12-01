@@ -23,17 +23,8 @@ const EditListingModal = ({listing}) => {
   const [sqft, setSqft] = useState(listing.sqft);
   const [price, setPrice] = useState(listing.price);
   const [previewImage, setPreviewImage] = useState(listing.preview_image);
-
-  console.log("LISTING", address)
-
   const user = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(true);
-
-  // useEffect(() => {
-  //   if (user && (user.id === listing.owner_id)) {
-  //     setIsOwned(true);
-  //   }
-  // });
 
   const editListingHandler = async (e) => {
     e.preventDefault();

@@ -2,6 +2,10 @@
   list-style: none;
 }
 
+.house-letter-logo {
+  height: 7vh;
+
+}
 /* .splash-nav-all {
   display: flex;
   justify-content: flex-end;
