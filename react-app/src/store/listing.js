@@ -38,11 +38,36 @@ export const loadAllListings = () => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log("______DATA_____", data)
     dispatch(getAllListings(data.listings))
   } else {
     throw res;
   }
+}
+
+export const editUserListing = (listingId, listingData) => async (dispatch) => {
+  const res = await fetch(`/api/listings/${listingId}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json"},
+    body: JSON.stringify(listingData)
+  })
+
+  if (res.ok) {
+		const updatedListing = await res.json();
+		dispatch(editListing(updatedListing));
+	}
+  return res;
+}
+
+export const deleteUserListing = (listingId) => async (dispatch) => {
+  const res = await fetch(`/api/listings/${listingId}`, {
+    method: 'DELETE'
+  })
+
+  if (res.ok) {
+		dispatch(deleteListing(listingId));
+	}
+
+  return res;
 }
 
 const listingReducer = (state = initialState, action) => {
@@ -52,6 +77,12 @@ const listingReducer = (state = initialState, action) => {
       action.listings.forEach((listing) => {
         newState[listing.id] = listing;
       });
+      return newState;
+    case EDIT_LISTING:
+      newState[ action.listing.id] = action.listing;
+      return newState;
+    case DELETE_LISTING:
+      delete newState[action.listingId];
       return newState;
     default:
       return state;

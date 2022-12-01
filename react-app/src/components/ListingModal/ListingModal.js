@@ -5,6 +5,9 @@ import './ListingModal.css';
 import HeartLogo from '../../assets/Heart.svg';
 import DeleteLogo from '../../assets/Hide.svg';
 import EditLogo from '../../assets/edit.png';
+import { Modal } from '../../context/Modal';
+import EditListingModal from '../EditListingModal';
+import * as listingActions from '../../store/listing';
 
 const ListingModal = ({listing}) => {
   const dispatch = useDispatch();
@@ -14,16 +17,16 @@ const ListingModal = ({listing}) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (user.id === listing.owner_id) {
+    if (user && (user.id === listing.owner_id)) {
       setIsOwned(true);
     }
   });
 
-  // editListingHandler = () => {
-
-  // }
-
-
+  const deleteHandler = (e) => {
+    e.preventDefault();
+    dispatch(listingActions.deleteUserListing(listing.id));
+    <Redirect to="/listings"/>
+  }
 
   return (
     <div className="listing-modal">
@@ -32,18 +35,20 @@ const ListingModal = ({listing}) => {
       </div>
       <div className="listing-info-container">
         <div className="listing-options">
-          <button className='listing-option-btn'>
-            <img className="listing-options-img" src={HeartLogo} alt="favorite"/>
-            Save
-          </button>
+          { !isOwned &&
+            (<button className='listing-option-btn'>
+              <img className="listing-options-img" src={HeartLogo} alt="favorite"/>
+              Save
+            </button>)
+          }
           {
             isOwned && (
               <>
-              <button className="edit-listing listing-option-btn" >
+              <button className="edit-listing listing-option-btn" onClick={() => setShowModal(true)}>
                 <img className="listing-options-img" src={EditLogo} alt="edit"/>
                 Edit
               </button>
-              <button className="delete-listing listing-option-btn" >
+              <button className="delete-listing listing-option-btn" onClick={deleteHandler}>
                 <img className="listing-options-img" src={DeleteLogo} alt="delete"/>
                 Delete
               </button>
@@ -51,41 +56,59 @@ const ListingModal = ({listing}) => {
             )
           }
         </div>
-        <div className="listing-price">
-          ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        <div className="listing-specs">
+          <span className="listing-modal-price">
+            ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </span>
+          <span className="modal-spec">
+            {listing.beds}
+          </span>
+          <span>
+            bd
+          </span>
+          <span className="modal-divider">
+            |
+          </span>
+          <span className="modal-spec">
+            {listing.baths}
+          </span>
+          <span>
+            ba
+          </span>
+          <span className="modal-divider">
+            |
+          </span>
+          <span className="modal-spec">
+            {listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </span>
+          <span>
+            sqft
+          </span>
         </div>
-        <ul className="listing-details-list">
-          <li>
-            {listing.beds} bds |
-          </li>
-          <li>
-            {listing.baths} ba |
-          </li>
-          <li>
-            {listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} sqft
-          </li>
-          <li>
-            - {listing.type} for sale
-          </li>
-        </ul>
-        <div className="listing-address-container">
-          <ul className="listing-address-list">
-            <li>
-              {listing.address}
+          <ul className="modal-address-list">
+            <li className="modal-address">
+              {listing.address},
             </li>
-            <li>
+            <li className="modal-address">
               {listing.city},
             </li>
-            <li>
+            <li className="modal-address">
               {listing.state}
             </li>
             <li>
               {listing.zip_code}
             </li>
           </ul>
-          <div>{listing.description}</div>
+          <h3 className="modal-address-description-header">Overview</h3>
+          <div className="modal-address-description">
+            {listing.description}
+          </div>
         </div>
-      </div>
+        {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <EditListingModal listing={listing}/>
+        </Modal>
+      )}
     </div>
   );
 };

@@ -14,14 +14,14 @@ const Listing = ({listing}) => {
   return (
     <>
       <>
-        <Link className="listing-card"onClick={() => setShowModal(true)}>
+        <Link className="listing-card" onClick={() => setShowModal(true)}>
           <div className="listing-img-container">
             <img className="listing-img" src={listing.preview_image} alt='home'/>
           </div>
           <div className="listing-details-container">
-            <div className="listing-price">
+            <h3 className="listing-price">
               ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </div>
+            </h3>
             <ul className="listing-details-list">
               <li>
                 {listing.beds} bds |

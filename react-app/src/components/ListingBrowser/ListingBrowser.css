@@ -4,7 +4,7 @@
   grid-template-columns: repeat(2, 1fr);
   /* grid-column-gap: 1em; */
   margin-top: 12vh;
-  border: 2px purple solid;
+  /* border: 2px purple solid; */
 }
 
 .listing-box-container {
@@ -17,6 +17,8 @@
 }
 
 .listing {
-  border: black 1px solid;
+  /* border: black 1px solid; */
+  box-shadow: 2px 2px 2px 1px #e6e6e6;
   border-radius:4px;
+  border: 1px #e6e6e6 solid;
 }
