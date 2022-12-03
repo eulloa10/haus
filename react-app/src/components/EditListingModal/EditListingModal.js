@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useRouteMatch, useHistory } from 'react-router-dom';
 import './EditListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import * as listingActions from '../../store/listing';
@@ -25,6 +25,8 @@ const EditListingModal = ({listing}) => {
   const [previewImage, setPreviewImage] = useState(listing.preview_image);
   const user = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(true);
+  const match = useRouteMatch();
+  const history = useHistory();
 
   const editListingHandler = async (e) => {
     e.preventDefault();
@@ -53,7 +55,9 @@ const EditListingModal = ({listing}) => {
 
     // if (res) history.push(`/user/spots`)
     if (res) {
+      history.goBack();
       setShowModal(false);
+      // history.push(`${match.url}/${listing.id}`)
     }
   }
 

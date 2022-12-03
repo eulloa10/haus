@@ -22,11 +22,13 @@ const SplashBody = () => {
               <button className="browse-homes-card-btn">Browse homes</button>
           </div>
         </Link>
+        <Link to="/me/listings">
           <div className="place-sell-card">
             <h4 className="card-header">Sell a home</h4>
             <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
             <button className="sell-card-btn">Sell a home</button>
           </div>
+        </Link>
         <Link to="/listings">
           <div className="schedule-tour-card">
             <h4 className="card-header">Tour a home</h4>

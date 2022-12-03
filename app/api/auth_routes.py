@@ -4,6 +4,8 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
+import os
+
 auth_routes = Blueprint('auth', __name__)
 
 
@@ -26,6 +28,14 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
+
+@auth_routes.route('/maps')
+def getMapKey():
+    """
+    Returns Google Maps Api Key
+    """
+    return {"map_api_key": os.environ.get('MAPS_API_KEY')}
+    # return {'errors': ['Unauthorized']}
 
 
 @auth_routes.route('/login', methods=['POST'])

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, NavLink, useRouteMatch, useHistory } from 'react-router-dom';
 import './ListingModal.css';
 import HeartLogo from '../../assets/Heart.svg';
 import DeleteLogo from '../../assets/Hide.svg';
@@ -15,6 +15,9 @@ const ListingModal = ({listing}) => {
   const [isOwned, setIsOwned] = useState(false);
   const user = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
+  const match = useRouteMatch();
+  const history = useHistory();
+
 
   useEffect(() => {
     if (user && (user.id === listing.owner_id)) {
@@ -27,6 +30,12 @@ const ListingModal = ({listing}) => {
     dispatch(listingActions.deleteUserListing(listing.id));
     <Redirect to="/listings"/>
   }
+
+  const closeModal = () => {
+    setShowModal(false);
+    // history.push(`${match.url}/${listing.id}`);
+  }
+
 
   return (
     <div className="listing-modal">
@@ -44,17 +53,17 @@ const ListingModal = ({listing}) => {
           {
             isOwned && (
               <>
-              <button className="edit-listing listing-option-btn" onClick={() => setShowModal(true)}>
-                <img className="listing-options-img" src={EditLogo} alt="edit"/>
-                Edit
-              </button>
+              <NavLink to={`/listings/${listing.id}/edit`} onClick={() => setShowModal(true)} className="edit-listing listing-option-btn">
+                  <img className="listing-options-img" src={EditLogo} alt="edit"/>
+                  <span>Edit</span>
+              </NavLink>
               <button className="delete-listing listing-option-btn" onClick={deleteHandler}>
                 <img className="listing-options-img" src={DeleteLogo} alt="delete"/>
                 Delete
               </button>
               </>
             )
-          }
+        }
         </div>
         <div className="listing-specs">
           <span className="listing-modal-price">
@@ -105,7 +114,7 @@ const ListingModal = ({listing}) => {
           </div>
         </div>
         {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClose={closeModal}>
           <EditListingModal listing={listing}/>
         </Modal>
       )}

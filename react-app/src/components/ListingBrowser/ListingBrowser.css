@@ -7,6 +7,15 @@
   /* border: 2px purple solid; */
 }
 
+.map-container {
+  position: fixed;
+  display: grid;
+  grid-column-start: 1;
+  height: 100vh;
+  width: 48vw;
+  width: auto;
+}
+
 .listing-box-container {
   display: grid;
   grid-column-start: 2;
@@ -14,6 +23,7 @@
   grid-auto-rows: minmax(270px, auto);
   grid-auto-columns: minmax(100px, auto);
   grid-gap: 0.5em;
+  width: 50vw;
 }
 
 .listing {

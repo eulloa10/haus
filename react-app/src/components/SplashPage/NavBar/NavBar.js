@@ -72,7 +72,7 @@ const NavBar = () => {
           {user && showSessionOptions && (
               <ul className="session-options">
                 <li className="session-items">
-                  <Link className="session-link">
+                  <Link to="/me/listings" className="session-link">
                     My Listings
                   </Link>
                 </li>

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import LoginForm from './components/auth/LoginForm';
 import LoginFormModal from './components/LoginFormModal';
-import SignUpFormModal from './components/SignUpFormModal';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/SplashPage/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
-import Listing from './components/Listing';
 import ListingBrowser from './components/ListingBrowser';
-import CreateListingForm from './components/CreateListingForm/CreateListingForm';
+import UserListingOptions from './components/UserListingOptions/UserListingOptions';
+import Map from './components/Map';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+
+require('dotenv').config()
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,11 +51,26 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/listings' exact={true} >
+        <Route path='/listings' exact={true}>
+          {/* <Map /> */}
+          <ListingBrowser />
+        </Route>
+        {/* <Route path='/map' exact={true}>
+            <Map />
+        </Route> */}
+        <Route path='/listings/:listingId' exact={true}>
+          <ListingBrowser />
+        </Route>
+        <Route path='/listings/:listingId/edit' exact={true}>
           <ListingBrowser />
         </Route>
         <ProtectedRoute path='/me/listings' exact={true} >
-          <CreateListingForm />
+          <ListingBrowser />
+          <UserListingOptions />
+        </ProtectedRoute>
+        <ProtectedRoute path='/me/listings/:listingId' exact={true} >
+          <ListingBrowser />
+          <UserListingOptions />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
