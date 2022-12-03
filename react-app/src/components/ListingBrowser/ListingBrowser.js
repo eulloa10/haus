@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import * as listingActions from '../../store/listing';
 import Listing from '../Listing/Listing';
 import Map from '../Map';
@@ -21,8 +21,10 @@ const ListingBrowser = () => {
   for (let key in listings) {
     if (user && listings[key].owner_id === user.id) {
       userListings.push(listings[key]);
+    } else {
+      allListings.push(listings[key]);
     }
-    allListings.push(listings[key]);
+
   }
 
   useEffect(() => {
@@ -40,12 +42,14 @@ const ListingBrowser = () => {
 
       {
         loaded && location.pathname && listings && userListingsOnly ? (
-
               <div className='listing-container'>
                 <div className="map-container">
                   <Map listing={selectedListing}/>
                 </div>
-              <div className='listing-box-container'>
+              <div className='listing-box-container-user'>
+                <div className="add-listing">
+                  Add new listing
+                </div>
                 {
                   userListings.map(listing => (
                     <div className="listing">

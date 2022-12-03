@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link, useRouteMatch, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import {  useDispatch } from 'react-redux'
+import {  useHistory } from 'react-router-dom';
 import './EditListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import * as listingActions from '../../store/listing';
@@ -8,7 +8,6 @@ import * as listingActions from '../../store/listing';
 const EditListingModal = ({listing}) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
-  const [isOwned, setIsOwned] = useState(false);
   const [address, setAddress] = useState(listing.address);
   const [city, setCity] = useState(listing.city);
   const [state, setState] = useState(listing.state);
@@ -23,9 +22,7 @@ const EditListingModal = ({listing}) => {
   const [sqft, setSqft] = useState(listing.sqft);
   const [price, setPrice] = useState(listing.price);
   const [previewImage, setPreviewImage] = useState(listing.preview_image);
-  const user = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(true);
-  const match = useRouteMatch();
   const history = useHistory();
 
   const editListingHandler = async (e) => {
@@ -53,7 +50,7 @@ const EditListingModal = ({listing}) => {
         // if (data.errors) setErrors({...data.errors});
       });
 
-    // if (res) history.push(`/user/spots`)
+
     if (res) {
       history.goBack();
       setShowModal(false);

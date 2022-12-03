@@ -20,7 +20,6 @@ const NavBar = () => {
 
   const demoLogin = async () => {
     await dispatch(sessionActions.login("demo@aa.io", "password"));
-    history.push("/");
   };
 
   const sessionOptionsHandler = () => {
@@ -58,10 +57,8 @@ const NavBar = () => {
               <li className="splash-nav">
                 <SignUpFormModal />
               </li>
-              <li className="splash-nav">
-                <NavLink to='/' exact={true} activeClassName='active' onClick={demoLogin}>
+              <li className="splash-nav" onClick={demoLogin}>
                   Demo
-                </NavLink>
               </li>
             </>
           )}

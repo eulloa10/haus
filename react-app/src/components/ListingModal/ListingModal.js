@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link, NavLink, useRouteMatch, useHistory } from 'react-router-dom';
+import { Redirect, Link, NavLink, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import './ListingModal.css';
 import HeartLogo from '../../assets/Heart.svg';
 import DeleteLogo from '../../assets/Hide.svg';
@@ -13,17 +13,21 @@ const ListingModal = ({listing}) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [isOwned, setIsOwned] = useState(false);
+  const [userListingsOnly, setUserListingsOnly] = useState(false);
   const user = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
-  const match = useRouteMatch();
-  const history = useHistory();
+  const location = useLocation();
 
 
   useEffect(() => {
     if (user && (user.id === listing.owner_id)) {
       setIsOwned(true);
     }
-  });
+
+    if (location.pathname.includes('me')) {
+      setUserListingsOnly(true);
+    }
+  }, [listing.owner_id, location.pathname, user]);
 
   const deleteHandler = (e) => {
     e.preventDefault();
@@ -53,7 +57,7 @@ const ListingModal = ({listing}) => {
           {
             isOwned && (
               <>
-              <NavLink to={`/listings/${listing.id}/edit`} onClick={() => setShowModal(true)} className="edit-listing listing-option-btn">
+              <NavLink to={userListingsOnly ? `/me/listings/${listing.id}/edit`: `/listings/${listing.id}/edit`} onClick={() => setShowModal(true)} className="edit-listing listing-option-btn">
                   <img className="listing-options-img" src={EditLogo} alt="edit"/>
                   <span>Edit</span>
               </NavLink>

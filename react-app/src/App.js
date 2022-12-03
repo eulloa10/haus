@@ -10,11 +10,6 @@ import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
 import ListingBrowser from './components/ListingBrowser';
 import UserListingOptions from './components/UserListingOptions/UserListingOptions';
-import Map from './components/Map';
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-
-require('dotenv').config()
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -71,6 +66,9 @@ function App() {
         <ProtectedRoute path='/me/listings/:listingId' exact={true} >
           <ListingBrowser />
           <UserListingOptions />
+        </ProtectedRoute>
+        <ProtectedRoute path='/me/listings/:listingId/edit' exact={true} >
+          <ListingBrowser />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
