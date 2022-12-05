@@ -70,6 +70,9 @@ function App() {
         <ProtectedRoute path='/me/listings/:listingId/edit' exact={true} >
           <ListingBrowser />
         </ProtectedRoute>
+        <ProtectedRoute path='/me/listings/create' exact={true}>
+          <ListingBrowser />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

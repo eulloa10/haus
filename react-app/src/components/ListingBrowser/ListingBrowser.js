@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import * as listingActions from '../../store/listing';
 import Listing from '../Listing/Listing';
 import Map from '../Map';
+import { Modal } from '../../context/Modal';
+import EditListingModal from '../EditListingModal';
+import CreateListingModal from '../CreateListingModal'
 import './ListingBrowser.css';
 
 const ListingBrowser = () => {
@@ -12,6 +15,7 @@ const ListingBrowser = () => {
   const [loaded, setLoaded] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
   const [selectedListing, setSelectedListing] = useState();
+  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
   const user = useSelector(state => state.session.user);
   const listings = useSelector(state => state.listings);
@@ -24,8 +28,15 @@ const ListingBrowser = () => {
     } else {
       allListings.push(listings[key]);
     }
-
   }
+
+  const openModal = () =>  {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     dispatch(listingActions.loadAllListings())
@@ -41,15 +52,15 @@ const ListingBrowser = () => {
     <>
 
       {
-        loaded && location.pathname && listings && userListingsOnly ? (
+        loaded && location.pathname && listings && userListingsOnly ? (<>
               <div className='listing-container'>
                 <div className="map-container">
                   <Map listing={selectedListing}/>
                 </div>
               <div className='listing-box-container-user'>
-                <div className="add-listing">
+                <NavLink to="/me/listings/create" className="add-listing" onClick={openModal}>
                   Add new listing
-                </div>
+                </NavLink>
                 {
                   userListings.map(listing => (
                     <div className="listing">
@@ -62,6 +73,11 @@ const ListingBrowser = () => {
                 }
               </div>
               </div>
+              {showModal && (
+                <Modal onClose={closeModal}>
+                  <CreateListingModal />
+                </Modal>)}
+                </>
         ) : (
                 <div className='listing-container'>
                 <div className="map-container">
