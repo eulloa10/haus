@@ -1,0 +1,10 @@
+.scheduler-tabler {
+  border: 1px solid black;
+  margin-bottom: 20px;
+  padding-right: 1%;
+  padding-left: 5%;
+}
+
+.scheduler-row, .scheduler-cell {
+  border: 1px solid black;
+}

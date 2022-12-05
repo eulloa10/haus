@@ -8,6 +8,7 @@ import EditLogo from '../../assets/edit.png';
 import { Modal } from '../../context/Modal';
 import EditListingModal from '../EditListingModal';
 import * as listingActions from '../../store/listing';
+import Scheduler from '../Scheduler';
 
 const ListingModal = ({listing}) => {
   const dispatch = useDispatch();
@@ -116,6 +117,14 @@ const ListingModal = ({listing}) => {
           <div className="modal-address-description">
             {listing.description}
           </div>
+          { !isOwned &&
+            (<>
+             <h3>Open House Scheduler</h3>
+             <div>
+               <Scheduler />
+             </div>
+            </>)
+          }
         </div>
         {showModal && (
         <Modal onClose={closeModal}>

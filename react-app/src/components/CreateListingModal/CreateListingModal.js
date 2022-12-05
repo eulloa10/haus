@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {  useDispatch } from 'react-redux'
 import {  useHistory } from 'react-router-dom';
 import './CreateListingModal.css';
@@ -25,6 +25,7 @@ const CreateListingModal = () => {
   const [previewImage, setPreviewImage] = useState();
   const [showModal, setShowModal] = useState(true);
   const history = useHistory();
+  const [value, setValue] = useState(true);
 
   const addListingHandler = async (e) => {
     e.preventDefault();
@@ -53,7 +54,8 @@ const CreateListingModal = () => {
 
 
     if (res) {
-      setShowModal(false);
+      // setShowModal(false);
+      setValue(false);
       history.goBack();
       history.push('/me/listings');
     }
@@ -116,9 +118,7 @@ const CreateListingModal = () => {
   }
 
   return (
-    <>
-    {showModal &&
-    (<div className='edit-listing-container'>
+    <div className='edit-listing-container'>
       <h3>Enter listing information</h3>
       <form className='edit-form' onSubmit={addListingHandler}>
         <div>
@@ -282,8 +282,7 @@ const CreateListingModal = () => {
         </div>
         <button className='submit-edit-btn' type='submit'>Submit Changes</button>
       </form>
-    </div>)}
-    </>
+    </div>
 )};
 
 export default CreateListingModal;

@@ -31,7 +31,10 @@ const Listing = ({listing}) => {
     if (location.pathname.includes('me')) {
       setUserListingsOnly(true);
     }
+    // console.log("SHOWMODAL1", showModal)
   }, [location.pathname]);
+
+  // console.log("SHOWMODAL2", showModal)
 
 
   return (
@@ -81,8 +84,7 @@ const Listing = ({listing}) => {
         </NavLink>
       </>
       {showModal && (
-        <Modal onClose={closeModal}>
-          <ListingModal listing={listing} />
+        <Modal onClose={closeModal} children={<ListingModal listing={listing}/>}>
         </Modal>
       )}
     </>

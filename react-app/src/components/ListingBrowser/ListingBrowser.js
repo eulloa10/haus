@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import * as listingActions from '../../store/listing';
 import Listing from '../Listing/Listing';
 import Map from '../Map';
@@ -19,8 +19,10 @@ const ListingBrowser = () => {
   const location = useLocation();
   const user = useSelector(state => state.session.user);
   const listings = useSelector(state => state.listings);
+  const history = useHistory();
   const allListings = [];
   const userListings = [];
+
 
   for (let key in listings) {
     if (user && listings[key].owner_id === user.id) {
@@ -36,21 +38,23 @@ const ListingBrowser = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    history.goBack();
   };
 
   useEffect(() => {
     dispatch(listingActions.loadAllListings())
 
     if (location.pathname.includes('me')) {
+      if (showModal === false) {
+        history.push('/me/listings');
+      }
       setUserListingsOnly(true);
       setLoaded(true);
     }
-
   }, [dispatch, location.pathname, userListingsOnly]);
 
   return (
     <>
-
       {
         loaded && location.pathname && listings && userListingsOnly ? (<>
               <div className='listing-container'>
@@ -74,8 +78,7 @@ const ListingBrowser = () => {
               </div>
               </div>
               {showModal && (
-                <Modal onClose={closeModal}>
-                  <CreateListingModal />
+                <Modal onClose={closeModal} children={ <CreateListingModal />}>
                 </Modal>)}
                 </>
         ) : (

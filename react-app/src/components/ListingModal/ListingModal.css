@@ -36,8 +36,10 @@
 .listing-info-container {
   object-fit: cover;
   width: 35vw;
-  max-height: 100vh;
+  /* max-height: 100vh; */
+  height: 100vh;
   border-left: 1px #e6e6e6 solid;
+  overflow-y: auto;
 }
 
 .listing-options {
