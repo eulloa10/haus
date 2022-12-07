@@ -45,7 +45,8 @@
 
 .add-listing {
   position: absolute;
-  right: 5vw;
+  top: 3vh;
+  right: 15vw;
   background: #1277e1;
   border-radius: 4px;
   color: white;

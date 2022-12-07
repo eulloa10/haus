@@ -3,11 +3,17 @@ import thunk from 'redux-thunk';
 import session from './session';
 import listingReducer from './listing';
 import userListingReducer from './userListing';
+import tourReducer from './tour';
+import tourListingReducer from './tour_listing';
+import userTourReducer from './userTours';
 
 const rootReducer = combineReducers({
   session,
   listings: listingReducer,
-  userListings: userListingReducer
+  userListings: userListingReducer,
+  tours: tourReducer,
+  userTours: userTourReducer,
+  tourListings: tourListingReducer,
 });
 
 

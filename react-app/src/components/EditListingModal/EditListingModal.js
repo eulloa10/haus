@@ -136,6 +136,7 @@ const EditListingModal = ({listing}) => {
             value={address}
             onChange={updateAddress}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -147,6 +148,7 @@ const EditListingModal = ({listing}) => {
             value={city}
             onChange={updateCity}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -158,6 +160,7 @@ const EditListingModal = ({listing}) => {
             value={state}
             onChange={updateState}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -169,6 +172,7 @@ const EditListingModal = ({listing}) => {
             value={zipCode}
             onChange={updateZipCode}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -180,6 +184,7 @@ const EditListingModal = ({listing}) => {
             value={country}
             onChange={updateCountry}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -191,6 +196,7 @@ const EditListingModal = ({listing}) => {
             value={lat}
             onChange={updateLat}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -202,6 +208,7 @@ const EditListingModal = ({listing}) => {
             value={lng}
             onChange={updateLng}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -213,6 +220,7 @@ const EditListingModal = ({listing}) => {
             value={type}
             onChange={updateType}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -224,6 +232,7 @@ const EditListingModal = ({listing}) => {
             value={beds}
             onChange={updateBeds}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -235,6 +244,7 @@ const EditListingModal = ({listing}) => {
             value={baths}
             onChange={updateBaths}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -246,6 +256,7 @@ const EditListingModal = ({listing}) => {
             value={sqft}
             onChange={updateSqft}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -257,6 +268,7 @@ const EditListingModal = ({listing}) => {
             value={price}
             onChange={updatePrice}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -268,6 +280,7 @@ const EditListingModal = ({listing}) => {
             value={previewImage}
             onChange={updatePreviewImage}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -279,6 +292,7 @@ const EditListingModal = ({listing}) => {
             value={description}
             onChange={updateDescription}
             className='description-edit-input'
+            required
           />
         </div>
         <button className='submit-edit-btn' type='submit'>Submit Changes</button>

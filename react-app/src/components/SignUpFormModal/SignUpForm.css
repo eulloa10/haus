@@ -43,4 +43,11 @@
   border: none;
   border-radius: 3px;
   margin-top: 1vw;
+  width: 100%;
+}
+
+.signup-error-detail {
+  color: red;
+  font-weight: bold;
+  font-size: 0.75em;
 }

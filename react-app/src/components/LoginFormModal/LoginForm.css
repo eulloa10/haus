@@ -45,10 +45,8 @@
   margin-top: 1vw;
 }
 
-/* .email-login-label {
-  margin: 30px;
-} */
-
-/* .login-form {
-
-} */
+.login-error-detail {
+  color:red;
+  font-weight: bold;
+  font-size: 0.75em;
+}

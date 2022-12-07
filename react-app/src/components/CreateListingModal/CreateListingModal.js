@@ -54,7 +54,7 @@ const CreateListingModal = () => {
 
 
     if (res) {
-      // setShowModal(false);
+      setShowModal(false);
       setValue(false);
       history.goBack();
       history.push('/me/listings');
@@ -135,6 +135,7 @@ const CreateListingModal = () => {
             value={address}
             onChange={updateAddress}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -146,6 +147,7 @@ const CreateListingModal = () => {
             value={city}
             onChange={updateCity}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -157,6 +159,7 @@ const CreateListingModal = () => {
             value={state}
             onChange={updateState}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -168,6 +171,7 @@ const CreateListingModal = () => {
             value={zipCode}
             onChange={updateZipCode}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -179,6 +183,7 @@ const CreateListingModal = () => {
             value={country}
             onChange={updateCountry}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -190,6 +195,7 @@ const CreateListingModal = () => {
             value={lat}
             onChange={updateLat}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -201,6 +207,7 @@ const CreateListingModal = () => {
             value={lng}
             onChange={updateLng}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -212,6 +219,7 @@ const CreateListingModal = () => {
             value={type}
             onChange={updateType}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -223,6 +231,7 @@ const CreateListingModal = () => {
             value={beds}
             onChange={updateBeds}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -234,6 +243,7 @@ const CreateListingModal = () => {
             value={baths}
             onChange={updateBaths}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -245,6 +255,7 @@ const CreateListingModal = () => {
             value={sqft}
             onChange={updateSqft}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -256,6 +267,7 @@ const CreateListingModal = () => {
             value={price}
             onChange={updatePrice}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -267,6 +279,7 @@ const CreateListingModal = () => {
             value={previewImage}
             onChange={updatePreviewImage}
             className='edit-listing-input'
+            required
           />
         </div>
         <div className='field-container'>
@@ -278,6 +291,7 @@ const CreateListingModal = () => {
             value={description}
             onChange={updateDescription}
             className='description-edit-input'
+            required
           />
         </div>
         <button className='submit-edit-btn' type='submit'>Submit Changes</button>

@@ -35,12 +35,12 @@ const LoginForm = () => {
 
   return (
     <div className='sign-in-container'>
-      <h2>Welcome to HouseMe</h2>
+      <h2>Welcome to Haus</h2>
       <h4 className='sign-in-category'>Sign in</h4>
       <form className='login-form' onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className="login-error-detail" key={ind}>{error}</div>
           ))}
         </div>
         <div className='email-login'>
@@ -52,6 +52,7 @@ const LoginForm = () => {
             value={email}
             onChange={updateEmail}
             className='email-login-input'
+            required={true}
           />
         </div>
         <div className='password-login'>
@@ -63,6 +64,7 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
             className='password-login-input'
+            required={true}
           />
           <button className='login-btn' type='submit'>Sign in</button>
         </div>

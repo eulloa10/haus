@@ -8,10 +8,10 @@ class Tour(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    listing_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('listings.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    listing_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('listings.id')))
     tour_start_date = db.Column(db.DateTime, nullable = False)
-    tour_end_date =  db.Column(db.DateTime, nullable = False)
+    tour_time_slot = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
@@ -25,7 +25,12 @@ class Tour(db.Model):
             'user_id': self.user_id,
             'listing_id': self.listing_id,
             'tour_start_date': self.tour_start_date,
-            'tour_end_date': self.tour_end_date,
+            'tour_time_slot': self.tour_time_slot,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
         }
+
+    # def listing_data(self):
+    #     return {
+    #         'tour_listing': self.tour_listing
+    #     }

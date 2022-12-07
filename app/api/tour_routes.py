@@ -13,11 +13,18 @@ def get_all_tours():
     tours = Tour.query.all()
     return {'tours': [tour.to_dict() for tour in tours]}
 
+
 @me_tour_routes.route('/tours')
 @login_required
 def get_all_user_tours():
     tours = Tour.query.filter(Tour.user_id == current_user.id)
     return {'user_tours': [tour.to_dict() for tour in tours]}
+
+@me_tour_routes.route('/tours/data')
+@login_required
+def get_user_tour_listings():
+  tours = Tour.query.filter(Tour.user_id == current_user.id)
+  return {'tourListings': [tour.listing_data() for tour in tours]}
 
 
 @tour_routes.route('/<int:tour_id>')
@@ -30,6 +37,23 @@ def get_a_user_tour(tour_id):
   else:
     return Response(json.dumps({'Error': 'Tour not found'}), status=404)
 
+# @tour_routes.route('/', methods=['POST'])
+# @login_required
+# def create_a_tour(tour):
+#   print("--------------------ENTEREDTOURSROUTE")
+#   form = TourForm()
+#   form['csrf_token'].data = request.cookies['csrf_token']
+#   if form.validate_on_submit():
+#     print("----------------------TOURVALIDATEDENTERED")
+#     tour = Tour(
+#         user_id=current_user.id,
+#         listing_id=form.data['listing_id'],
+#         tour_start_date=form.data['tour_start_date'],
+#         tour_time_slot=form.data['tour_time_slot']
+#     )
+#     db.session.add(tour)
+#     db.session.commit()
+#     return tour.to_dict()
 
 @tour_routes.route('/<int:tour_id>', methods=['PUT'])
 @login_required

@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
 import ListingBrowser from './components/ListingBrowser';
 import UserListingOptions from './components/UserListingOptions/UserListingOptions';
+import TourBrowser from './components/TourBrowser';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,12 +48,8 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/listings' exact={true}>
-          {/* <Map /> */}
           <ListingBrowser />
         </Route>
-        {/* <Route path='/map' exact={true}>
-            <Map />
-        </Route> */}
         <Route path='/listings/:listingId' exact={true}>
           <ListingBrowser />
         </Route>
@@ -72,6 +69,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/me/listings/create' exact={true}>
           <ListingBrowser />
+        </ProtectedRoute>
+        <ProtectedRoute path='/me/tours' exact={true}>
+          <TourBrowser />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

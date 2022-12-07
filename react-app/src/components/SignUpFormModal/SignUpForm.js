@@ -20,6 +20,9 @@ const SignUpForm = () => {
         setErrors(data)
       }
     }
+    if (password !== repeatPassword) {
+      setErrors(["Passwords must match"])
+    }
   };
 
   const updateEmail = (e) => {
@@ -40,12 +43,12 @@ const SignUpForm = () => {
 
   return (
     <div className='sign-in-container'>
-      <h2>Welcome to HouseMe</h2>
+      <h2>Welcome to Haus</h2>
       <h4 className='sign-in-category'>New Account</h4>
       <form class='signup-form' onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className="signup-error-detail" key={ind}>{error}</div>
           ))}
         </div>
         <div className='email-signup'>
@@ -56,6 +59,7 @@ const SignUpForm = () => {
             onChange={updateEmail}
             value={email}
             className='email-signup-input'
+            required={true}
           ></input>
         </div>
         <div className='password-signup'>
@@ -66,6 +70,7 @@ const SignUpForm = () => {
             onChange={updatePassword}
             value={password}
             className='password-signup-input'
+            required={true}
           ></input>
         </div>
         <div className='password-signup'>

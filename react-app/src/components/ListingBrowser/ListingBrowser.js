@@ -67,10 +67,9 @@ const ListingBrowser = () => {
                 </NavLink>
                 {
                   userListings.map(listing => (
-                    <div className="listing">
+                    <div className="listing" key={listing.id}>
                       <Listing
                         listing={listing}
-                        key={listing.id}
                       />
                     </div>
                   ))
@@ -78,7 +77,7 @@ const ListingBrowser = () => {
               </div>
               </div>
               {showModal && (
-                <Modal onClose={closeModal} children={ <CreateListingModal />}>
+                <Modal onClose={closeModal} children={<CreateListingModal />}>
                 </Modal>)}
                 </>
         ) : (
@@ -89,10 +88,9 @@ const ListingBrowser = () => {
                 <div className='listing-box-container'>
                   {
                     allListings.map(listing => (
-                      <div className="listing">
+                      <div className="listing" key={listing.id}>
                         <Listing
                           listing={listing}
-                          key={listing.id}
                         />
                       </div>
                     ))
@@ -101,7 +99,6 @@ const ListingBrowser = () => {
               </div>
         )
       }
-
     </>
   );
 };

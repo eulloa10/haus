@@ -3,10 +3,10 @@ from __future__ import with_statement
 import logging
 from logging.config import fileConfig
 
+from flask import current_app
+
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-
-from flask import current_app
 
 from alembic import context
 
@@ -93,7 +93,7 @@ def run_migrations_online():
                 context.execute(f"SET search_path TO {SCHEMA}")
             context.run_migrations()
 
-
+# keep logic at bottom of file to run migration functions
 if context.is_offline_mode():
     run_migrations_offline()
 else:

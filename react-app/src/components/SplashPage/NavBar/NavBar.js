@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, useHistory, Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton';
 import './NavBar.css';
 import LoginFormModal from '../../LoginFormModal';
 import SignUpFormModal from '../../SignUpFormModal';
-import User from '../../User';
+import LoginForm from '../../LoginFormModal/LoginForm';
 import * as sessionActions from '../../../store/session';
 import HouseLetter from '../../../assets/house_letter.png';
 import ProfileDefaultIcon from '../../../assets/profile-default-icon.svg';
@@ -14,9 +14,8 @@ import ProfileDefaultIcon from '../../../assets/profile-default-icon.svg';
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
   const [showSessionOptions, setShowSessionOptions] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+
 
   const demoLogin = async () => {
     await dispatch(sessionActions.login("demo@aa.io", "password"));
@@ -35,11 +34,21 @@ const NavBar = () => {
               Buy
             </NavLink>
           </li>
-          <li className="splash-nav sell-link">
+          {user ? (
+             <li className="splash-nav sell-link">
+             <NavLink to='/me/listings' exact={true} activeClassName='active'>
+               Sell
+             </NavLink>
+           </li>
+          ) : (
+            <li className="splash-nav sell-link">
             <NavLink to='/me/listings' exact={true} activeClassName='active'>
               Sell
             </NavLink>
-          </li>
+            </li>
+          )
+          }
+
         </ul>
         <ul className="splash-nav-home-link">
           <li className="splash-nav home-link">
@@ -63,7 +72,7 @@ const NavBar = () => {
             </>
           )}
           { user && (
-            <img className="prof-icon" src={ProfileDefaultIcon} alt="prof-icon" onClick={sessionOptionsHandler}/>
+            <img className="prof-icon" src={ProfileDefaultIcon} alt="prof-icon" onClick={sessionOptionsHandler} />
             )
           }
           {user && showSessionOptions && (
@@ -74,21 +83,11 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li className="session-items">
-                  <Link className="session-link">
-                  My Offers
-                  </Link>
-                </li>
-                <li className="session-items">
-                  <Link className="session-link">
+                  <NavLink to="/me/tours" className="session-link">
                     My Tours
-                  </Link>
+                  </NavLink>
                 </li>
-                <li className="session-items">
-                  <Link className="session-link session-fav-link">
-                    My Favorites
-                  </Link>
-                </li>
-                <li className='session-logout-btn session-items'>
+                <li className='session-logout-btn'>
                   <LogoutButton />
                 </li>
               </ul>
