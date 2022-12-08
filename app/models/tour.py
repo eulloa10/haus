@@ -28,6 +28,7 @@ class Tour(db.Model):
             'tour_time_slot': self.tour_time_slot,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'tour_listing': self.tour_listing.to_dict()
         }
 
     # def listing_data(self):

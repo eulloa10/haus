@@ -10,6 +10,7 @@ import EditListingModal from '../EditListingModal';
 import * as listingActions from '../../store/listing';
 import * as userTourActions from '../../store/userTours'
 import Scheduler from '../Scheduler';
+import CreateListingModal from '../CreateListingModal';
 
 const ListingModal = ({listing}) => {
   const dispatch = useDispatch();
@@ -42,7 +43,8 @@ const ListingModal = ({listing}) => {
   const deleteHandler = (e) => {
     e.preventDefault();
     dispatch(listingActions.deleteUserListing(listing.id));
-    <Redirect to="/listings"/>
+    // <Redirect to="/me/listings"/>
+    history.goBack();
   }
 
   const closeModal = () => {
@@ -58,19 +60,16 @@ const ListingModal = ({listing}) => {
       </div>
       <div className="listing-info-container">
         <div className="listing-options">
-          {/* { !isOwned &&
-            (<button className='listing-option-btn'>
-              <img className="listing-options-img" src={HeartLogo} alt="favorite"/>
-              Save
-            </button>)
-          } */}
           {
             isOwned && (
               <>
-              <NavLink to={userListingsOnly ? `/me/listings/${listing.id}/edit`: `/listings/${listing.id}/edit`} onClick={() => setShowModal(true)} className="edit-listing listing-option-btn">
+              {/* <NavLink to={userListingsOnly ? `/me/listings/${listing.id}/edit`: `/listings/${listing.id}/edit`} onClick={() => setShowModal(true)} className="edit-listing listing-option-btn">
                   <img className="listing-options-img" src={EditLogo} alt="edit"/>
                   <span>Edit</span>
-              </NavLink>
+              </NavLink> */}
+              <div className="edit-listing listing-option-btn">
+                <EditListingModal listing={listing}/>
+              </div>
               <button className="delete-listing listing-option-btn" onClick={deleteHandler}>
                 <img className="listing-options-img" src={DeleteLogo} alt="delete"/>
                 Delete
@@ -137,7 +136,7 @@ const ListingModal = ({listing}) => {
         </div>
         {showModal && (
         <Modal onClose={closeModal}>
-          <EditListingModal listing={listing}/>
+          <EditListingModal onClose={closeModal} listing={listing}/>
         </Modal>
       )}
     </div>

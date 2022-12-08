@@ -49,3 +49,16 @@
   position: absolute;
   left: 40%;
 }
+
+.add-listing {
+  display: flex;
+  justify-content: center;
+  /* position: absolute; */
+  /* top: 3vh;
+  right: 15vw; */
+  background: #1277e1;
+  border-radius: 4px;
+  color: white;
+  font-size: 1em;
+  padding: 0.5em;
+}

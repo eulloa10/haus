@@ -58,11 +58,11 @@ function App() {
         </Route>
         <ProtectedRoute path='/me/listings' exact={true} >
           <ListingBrowser />
-          <UserListingOptions />
+          {/* <UserListingOptions /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/me/listings/:listingId' exact={true} >
           <ListingBrowser />
-          <UserListingOptions />
+          {/* <UserListingOptions /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/me/listings/:listingId/edit' exact={true} >
           <ListingBrowser />

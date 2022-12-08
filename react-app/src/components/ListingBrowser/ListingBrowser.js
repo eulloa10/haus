@@ -15,7 +15,7 @@ const ListingBrowser = () => {
   const [loaded, setLoaded] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
   const [selectedListing, setSelectedListing] = useState();
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const location = useLocation();
   const user = useSelector(state => state.session.user);
   const listings = useSelector(state => state.listings);
@@ -32,26 +32,24 @@ const ListingBrowser = () => {
     }
   }
 
-  const openModal = () =>  {
-    setShowModal(true);
-  };
+  // const openModal = () =>  {
+  //   setShowModal(true);
+  // };
 
-  const closeModal = () => {
-    setShowModal(false);
-    history.goBack();
-  };
+  // const closeModal = () => {
+  //   setShowModal(false);
+  //   history.goBack();
+  // };
 
   useEffect(() => {
     dispatch(listingActions.loadAllListings())
 
-    if (location.pathname.includes('me')) {
-      if (showModal === false) {
-        history.push('/me/listings');
-      }
+    if (location.pathname.includes('/me/listings')) {
       setUserListingsOnly(true);
       setLoaded(true);
     }
-  }, [dispatch, location.pathname, userListingsOnly]);
+
+  }, [dispatch, location.pathname, userListingsOnly, history]);
 
   return (
     <>
@@ -62,9 +60,9 @@ const ListingBrowser = () => {
                   <Map listing={selectedListing}/>
                 </div>
               <div className='listing-box-container-user'>
-                <NavLink to="/me/listings/create" className="add-listing" onClick={openModal}>
-                  Add new listing
-                </NavLink>
+                <div>
+                  <CreateListingModal />
+                </div>
                 {
                   userListings.map(listing => (
                     <div className="listing" key={listing.id}>
@@ -76,10 +74,7 @@ const ListingBrowser = () => {
                 }
               </div>
               </div>
-              {showModal && (
-                <Modal onClose={closeModal} children={<CreateListingModal />}>
-                </Modal>)}
-                </>
+              </>
         ) : (
                 <div className='listing-container'>
                 <div className="map-container">

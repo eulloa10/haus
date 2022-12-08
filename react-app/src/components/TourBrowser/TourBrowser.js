@@ -15,30 +15,17 @@ const TourBrowser = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const tours = useSelector(state => state.tours);
-  const listings = useSelector(state => state.listings);
-  const tourListingIds = [];
-  const tour_listing_data = [];
   const userTours = [];
 
   for (let key in tours) {
     if (user && tours[key].user_id === user.id) {
       userTours.push(tours[key]);
-      tourListingIds.push(tours[key].listing_id);
     }
   }
 
-
-  for (let key in listings) {
-    if (tourListingIds.includes(Number(key))) {
-      tour_listing_data.push({[key]: listings[key]});
-    }
-  }
-
-  console.log("LISTINGS", listings)
   console.log("TOURS", tours);
   console.log("USERTOURS", userTours);
-  console.log("TOURLISTINGIDS", tourListingIds);
-  console.log("TOURLISTINGS", tour_listing_data);
+
 
   useEffect(() => {
     dispatch(tourActions.loadAllTours());
@@ -56,10 +43,19 @@ const TourBrowser = () => {
               <li className="tour" key={tour.id}>
                 <ul>
                   <li>
-                    Tour ID: {tour.id}
+                    <img src={tour.tour_listing.preview_image} alt="listing"/>
                   </li>
                   <li>
-                    Listing ID: {tour.listing_id}
+                    {tour.tour_listing.address}
+                  </li>
+                  <li>
+                    {tour.tour_listing.city}
+                  </li>
+                  <li>
+                    {tour.tour_listing.state}
+                  </li>
+                  <li>
+                    {tour.tour_listing.zip_code}
                   </li>
                   <li>
                     Tour Date: {tour.tour_start_date}

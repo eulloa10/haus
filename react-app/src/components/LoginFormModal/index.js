@@ -10,9 +10,11 @@ import { Link }  from 'react-router-dom';
     <>
       <Link onClick={() => setShowModal(true)}>Sign In</Link>
       {showModal && (
+        <>
         <Modal onClose={() => setShowModal(false)}>
           <LoginForm />
         </Modal>
+    </>
       )}
     </>
   );

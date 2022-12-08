@@ -6,7 +6,7 @@ import Listing from '../Listing/Listing';
 import LoginFormModal from '../LoginFormModal';
 import './CreateListingForm.css';
 
-const CreateListingForm = () => {
+const CreateListingFormTest = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -29,4 +29,4 @@ const CreateListingForm = () => {
   );
 };
 
-export default CreateListingForm;
+export default CreateListingFormTest;

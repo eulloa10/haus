@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import {  useDispatch } from 'react-redux'
-import {  useHistory } from 'react-router-dom';
+import {  Redirect, useHistory } from 'react-router-dom';
 import './CreateListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import ListingBrowser from '../ListingBrowser';
 import * as listingActions from '../../store/listing';
 
-const CreateListingModal = () => {
+
+const CreateListingForm = ({onClose}) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [address, setAddress] = useState();
@@ -23,9 +24,9 @@ const CreateListingModal = () => {
   const [sqft, setSqft] = useState();
   const [price, setPrice] = useState();
   const [previewImage, setPreviewImage] = useState();
-  const [showModal, setShowModal] = useState(true);
+  // const [value, setValue] = useState(showModal);
   const history = useHistory();
-  const [value, setValue] = useState(true);
+
 
   const addListingHandler = async (e) => {
     e.preventDefault();
@@ -47,17 +48,17 @@ const CreateListingModal = () => {
     };
 
     const res = await dispatch(listingActions.addUserListing(newListingData))
-      .catch(async (res) => {
+      .then(() => {onClose()}).catch(async (res) => {
         const data = await res.json();
         // if (data.errors) setErrors({...data.errors});
       });
 
-
     if (res) {
-      setShowModal(false);
-      setValue(false);
-      history.goBack();
-      history.push('/me/listings');
+      // setShowModal(false);
+      // setValue(false);
+      // history.goBack();
+      // history.push('/me/listings');
+
     }
   }
 
@@ -299,4 +300,4 @@ const CreateListingModal = () => {
     </div>
 )};
 
-export default CreateListingModal;
+export default CreateListingForm;
