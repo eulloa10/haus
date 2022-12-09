@@ -74,6 +74,10 @@ function App() {
           {/* <TourBrowser /> */}
           <ListingBrowser />
         </ProtectedRoute>
+        <ProtectedRoute path='/me/tours/:listingId' exact={true}>
+          {/* <TourBrowser /> */}
+          <ListingBrowser />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

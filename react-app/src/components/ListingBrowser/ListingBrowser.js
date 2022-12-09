@@ -80,9 +80,6 @@ const ListingBrowser = () => {
             <Map listing={selectedListing}/>
           </div>
         <div className='listing-box-container-user'>
-          <div>
-            <CreateListingModal />
-          </div>
           {
             tourListings.map(listing => (
               <div className="listing" key={listing.id}>
