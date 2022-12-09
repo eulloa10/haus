@@ -63,7 +63,7 @@ def update_tour(tour_id):
     tour = Tour.query.get(tour_id)
     if tour.user_id == current_user.id:
         tour.tour_start_date = form.data['tour_start_date']
-        tour.tour_end_date = form.data['tour_end_date']
+        tour.tour_time_slot = form.data['tour_time_slot']
         db.session.commit()
         return tour.to_dict()
     else:

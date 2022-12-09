@@ -71,7 +71,8 @@ function App() {
           <ListingBrowser />
         </ProtectedRoute>
         <ProtectedRoute path='/me/tours' exact={true}>
-          <TourBrowser />
+          {/* <TourBrowser /> */}
+          <ListingBrowser />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

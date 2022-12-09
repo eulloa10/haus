@@ -8,7 +8,8 @@ import EditLogo from '../../assets/edit.png';
 import { Modal } from '../../context/Modal';
 import EditListingModal from '../EditListingModal';
 import * as listingActions from '../../store/listing';
-import * as userTourActions from '../../store/userTours'
+import * as userTourActions from '../../store/userTours';
+import * as tourActions from '../../store/tour';
 import Scheduler from '../Scheduler';
 import CreateListingModal from '../CreateListingModal';
 
@@ -18,9 +19,11 @@ const ListingModal = ({listing}) => {
   const [errors, setErrors] = useState([]);
   const [isOwned, setIsOwned] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
+  const [hasTour, setHasTour] = useState(false);
   const user = useSelector(state => state.session.user);
   const userTours = useSelector(state => state.userTours);
   const [showModal, setShowModal] = useState(false);
+  const [tourInfo, setTourInfo] = useState(null);
   const location = useLocation();
 
 
@@ -29,22 +32,42 @@ const ListingModal = ({listing}) => {
       setIsOwned(true);
     }
 
-    if (location.pathname.includes('me')) {
+    if (location.pathname.includes('/me/listings')) {
       setUserListingsOnly(true);
+    }
+
+
+    for (let key in userTours) {
+      if (userTours[key].listing_id === listing.id) {
+        setTourInfo(userTours[key]);
+        setHasTour(true);
+        break;
+      }
     }
 
     dispatch(userTourActions.loadAllTours());
 
-
-  }, [dispatch, listing.owner_id, location.pathname, user, history]);
+  }, [dispatch, listing, location, user, hasTour, tourInfo]);
 
   console.log("USERTOURS", userTours);
+  console.log("TOURINFO", tourInfo);
 
-  const deleteHandler = (e) => {
+  const deleteHandler = async (e) => {
     e.preventDefault();
-    dispatch(listingActions.deleteUserListing(listing.id));
+    const res = await dispatch(listingActions.deleteUserListing(listing.id));
     // <Redirect to="/me/listings"/>
     history.goBack();
+  }
+
+
+
+  const cancelTourHandler = async (e) => {
+    e.preventDefault();
+    const res = await dispatch(tourActions.deleteUsertour(tourInfo.id))
+
+    if (res) {
+      history.push(`/listings/${listing.id}`);
+    }
   }
 
   const closeModal = () => {
@@ -63,10 +86,6 @@ const ListingModal = ({listing}) => {
           {
             isOwned && (
               <>
-              {/* <NavLink to={userListingsOnly ? `/me/listings/${listing.id}/edit`: `/listings/${listing.id}/edit`} onClick={() => setShowModal(true)} className="edit-listing listing-option-btn">
-                  <img className="listing-options-img" src={EditLogo} alt="edit"/>
-                  <span>Edit</span>
-              </NavLink> */}
               <div className="edit-listing listing-option-btn">
                 <EditListingModal listing={listing}/>
               </div>
@@ -127,10 +146,30 @@ const ListingModal = ({listing}) => {
           </div>
           { !isOwned && user &&
             (<>
+            {!hasTour && (
+            <>
              <h3>Schedule a tour</h3>
              <div>
-               <Scheduler listing={listing}/>
+               <Scheduler listing={listing} tourInfo={tourInfo} setHasTour={() => setHasTour(!hasTour)}/>
              </div>
+            </>
+            )}
+            {hasTour && (
+              <>
+              <h3 className="modal-address-description-header">Tour Scheduled</h3>
+              <ul className="tour-summary">
+                <li className="scheduled-tour-detail">
+                  <span>{tourInfo.tour_start_date}</span>
+                  <span>@</span>
+                  <span> {tourInfo.tour_time_slot}</span>
+                </li>
+              </ul>
+              <div className="schedule-options modal-address-description-header">
+                <button onClick={() => setHasTour(!hasTour)}>Reschedule</button>
+                <button onClick={cancelTourHandler}>Cancel tour</button>
+              </div>
+              </>
+            )}
             </>)
           }
         </div>

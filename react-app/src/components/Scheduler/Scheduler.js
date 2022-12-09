@@ -5,15 +5,23 @@ import './Scheduler.css';
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
 import * as tourActions from '../../store/tour';
+import * as userTourActions from '../../store/userTours';
 
 
-const Scheduler = ({listing}) => {
+
+const Scheduler = ({ listing, tourInfo }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
-  const [tourDate, setTourDate] = useState();
-  const [tourTime, setTourTime] = useState();
-  const [futureDate, setFutureDate] = useState(false);
+  const [tourDate, setTourDate] = useState('');
+  const [tourTime, setTourTime] = useState("9am");
+  const [isReschedule, setIsReschedule] = useState(tourInfo);
+  const [loaded, setLoaded] = useState(false);
+
+
+  useEffect (() => {
+  }, [])
 
   console.log("TOURDATEOUT", tourDate)
   console.log("TOURTIMEOUT", tourTime);
@@ -39,19 +47,18 @@ const Scheduler = ({listing}) => {
     };
 
     const res = await dispatch(tourActions.addUsertour(listing.id, tourData))
-      .catch(async (res) => {
-        const data = await res.json();
-        console.log("DATA ERRORS", data.errors)
-        // if (data.errors) setErrors({...data.errors});
-      });
 
+  }
 
-    if (res) {
-      console.log("RES RECEIVED")
-      // history.goBack();
-      // setShowModal(false);
-      // history.push(`${match.url}/${listing.id}`)
-    }
+  const rescheduleTourHandler = async (e) => {
+    e.preventDefault();
+
+    let updatedTourData = {
+      tour_start_date: tourDate,
+      tour_time_slot: tourTime
+    };
+
+    const res = await dispatch(tourActions.editUsertour(tourInfo.id, updatedTourData))
   }
 
   return (
@@ -66,13 +73,12 @@ const Scheduler = ({listing}) => {
             onChange={(e) => setTourDate(e.target.value)}
             min={minDateString}
             required
-            // placeholder={<Calendar onChange={onChange} value={tourDate} minDate={minCalOption} maxDate={maxCalOption}/>}
           />
         </div>
         {tourDate && (<>
           <h4>Select a time</h4>
           <span>
-            <select id="time" name="time" required onChange={(e) => setTourTime(e.target.value)}>
+            <select id="time" name="time" required onChange={(e) => setTourTime(e.target.value)} defaultValue="9am">
               <option>9am</option>
               <option>10am</option>
               <option>11am</option>
@@ -88,7 +94,7 @@ const Scheduler = ({listing}) => {
         </>
         )}
         { tourDate && tourTime &&
-            (<button type="submit" onClick={bookAppointmentHandler}>Schedule</button>)
+            (<button type="submit" onClick={isReschedule ? rescheduleTourHandler : bookAppointmentHandler}>Schedule</button>)
         }
       </form>
     </>

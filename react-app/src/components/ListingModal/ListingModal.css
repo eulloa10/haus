@@ -97,3 +97,13 @@
 .listing-specs {
   width: 35vw;
 }
+
+.tour-summary {
+  list-style: none;
+}
+
+.scheduled-tour-detail {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: bolder;
+}
