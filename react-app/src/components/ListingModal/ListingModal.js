@@ -36,7 +36,6 @@ const ListingModal = ({listing}) => {
       setUserListingsOnly(true);
     }
 
-
     for (let key in userTours) {
       if (userTours[key].listing_id === listing.id) {
         setTourInfo(userTours[key]);
@@ -58,8 +57,6 @@ const ListingModal = ({listing}) => {
     // <Redirect to="/me/listings"/>
     history.goBack();
   }
-
-
 
   const cancelTourHandler = async (e) => {
     e.preventDefault();
@@ -150,7 +147,7 @@ const ListingModal = ({listing}) => {
             <>
              <h3>Schedule a tour</h3>
              <div>
-               <Scheduler listing={listing} tourInfo={tourInfo} setHasTour={() => setHasTour(!hasTour)}/>
+               <Scheduler listing={listing} tourInfo={tourInfo}/>
              </div>
             </>
             )}
