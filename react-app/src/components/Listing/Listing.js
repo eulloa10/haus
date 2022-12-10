@@ -96,7 +96,7 @@ const Listing = ({listing}) => {
       <>
       {
         tourView && (
-          <NavLink to={`/listings/${listing.id}`} onClick={openModal}>
+          <NavLink to={`/me/tours/listings/${listing.id}`} onClick={openModal}>
             {listingCard}
           </NavLink>
         )
@@ -120,7 +120,7 @@ const Listing = ({listing}) => {
         </NavLink> */}
       </>
       {showModal && (
-        <Modal onClose={closeModal} children={<ListingModal listing={listing}/>}>
+        <Modal onClose={closeModal} children= {<ListingModal listing={listing}/>}>
         </Modal>
       )}
     </>

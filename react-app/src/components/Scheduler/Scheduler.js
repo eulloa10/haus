@@ -9,18 +9,19 @@ import * as userTourActions from '../../store/userTours';
 
 
 
-const Scheduler = ({ listing, tourInfo }) => {
+const Scheduler = ({ listing, tourInfo, tourChanged, reschedule }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const [tourDate, setTourDate] = useState('');
   const [tourTime, setTourTime] = useState("9am");
-  const [isReschedule, setIsReschedule] = useState(tourInfo);
+  const [isReschedule, setIsReschedule] = useState(reschedule);
   const [loaded, setLoaded] = useState(false);
 
 
   useEffect (() => {
+
   }, [])
 
   console.log("TOURDATEOUT", tourDate)
@@ -59,6 +60,8 @@ const Scheduler = ({ listing, tourInfo }) => {
     };
 
     const res = await dispatch(tourActions.editUsertour(tourInfo.id, updatedTourData))
+
+
   }
 
   return (

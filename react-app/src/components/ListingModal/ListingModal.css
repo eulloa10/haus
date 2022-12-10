@@ -107,3 +107,7 @@
   justify-content: flex-start;
   font-weight: bolder;
 }
+
+.schedule-form {
+  padding-left: 5%;
+}

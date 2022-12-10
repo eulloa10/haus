@@ -32,7 +32,6 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/' exact={true} >
-          {/* <h1>My Home Page</h1> */}
           <SplashBody />
         </Route>
         <Route path='/login' exact={true}>
@@ -58,11 +57,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/me/listings' exact={true} >
           <ListingBrowser />
-          {/* <UserListingOptions /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/me/listings/:listingId' exact={true} >
           <ListingBrowser />
-          {/* <UserListingOptions /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/me/listings/:listingId/edit' exact={true} >
           <ListingBrowser />
@@ -71,11 +68,9 @@ function App() {
           <ListingBrowser />
         </ProtectedRoute>
         <ProtectedRoute path='/me/tours' exact={true}>
-          {/* <TourBrowser /> */}
           <ListingBrowser />
         </ProtectedRoute>
-        <ProtectedRoute path='/me/tours/:listingId' exact={true}>
-          {/* <TourBrowser /> */}
+        <ProtectedRoute path='/me/tours/listings/:listingId' exact={true}>
           <ListingBrowser />
         </ProtectedRoute>
       </Switch>

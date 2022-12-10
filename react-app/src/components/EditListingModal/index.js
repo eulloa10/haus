@@ -15,10 +15,6 @@ function EditListingModal({listing}) {
   const [showModal, setShowModal] = useState(false);
   const listings = useSelector(state => state.listings);
 
-  // useEffect(() => {
-  //   closeModal();
-
-  // }, [listings]);
 
   useEffect(() => {
     return () => {
