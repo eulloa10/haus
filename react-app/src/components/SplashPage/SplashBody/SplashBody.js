@@ -5,12 +5,15 @@ import { NavLink, Link } from 'react-router-dom';
 // import LogoutButton from '../../auth/LogoutButton';
 import LoginFormModal from '../../LoginFormModal';
 import './SplashBody.css';
-import ZillowHome from '../../../assets/zillow-front-2.jpeg'
+import ZillowHome from '../../../assets/zillow-front-2.jpeg';
+import Github from '../../../assets/github.svg';
+import LinkedIn from '../../../assets/linkedin.svg';
 
 const SplashBody = () => {
   const user = useSelector(state => state.session.user);
 
   return (
+    <>
     <div className="splash-body">
       <div className="search-container">
         <img className="splash-home-front" src={ZillowHome} alt="house"/>
@@ -57,7 +60,19 @@ const SplashBody = () => {
         }
       </div>
     </div>
+    <div className="about-me-footer">
+      <div className="about-me-links">
+        <a href="https://github.com/eulloa10/houseme-project">
+          <img className="footer-icon github-link" src={Github} alt="github icon"/>
+        </a>
+        <a href="https://www.linkedin.com/in/edgarulloa/">
+          <img className="footer-icon linkedin-link" src={LinkedIn} alt="linkedin icon"/>
+        </a>
+      </div>
+   </div>
+   </>
   );
+
 }
 
 export default SplashBody;

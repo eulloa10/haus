@@ -57,3 +57,27 @@
 .schedule-tour-card, .place-sell-card {
   cursor: pointer;
 }
+
+.about-me-footer {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgb(233, 233, 233)
+}
+
+.about-me-links {
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.footer-icon {
+  height: 2em;
+  width: 2em;
+}
+
+.linked-link {
+  margin-left: 1em;
+}
+
+.github-link {
+  margin-right: 1em;
+}
