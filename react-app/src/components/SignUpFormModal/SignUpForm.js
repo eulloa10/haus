@@ -54,7 +54,7 @@ const SignUpForm = () => {
         <div className='email-signup'>
           <label className='email-signup-label'>Email</label>
           <input
-            type='text'
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}

@@ -105,8 +105,9 @@ const ListingModal = ({listing}) => {
 
   const deleteHandler = async (e) => {
     e.preventDefault();
-    const res = await dispatch(listingActions.deleteUserListing(listing.id)).then(() => dispatch(userTourActions.loadAllTours()));
-    // <Redirect to="/me/listings"/>
+    const res = await dispatch(listingActions.deleteUserListing(listing.id));
+
+    history.push('/me/listings')
 
   }
 

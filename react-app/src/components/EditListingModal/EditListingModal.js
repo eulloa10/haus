@@ -8,25 +8,34 @@ import * as listingActions from '../../store/listing';
 const EditListingForm = ({listing, onClose}) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
-  const [address, setAddress] = useState(listing.address);
-  const [city, setCity] = useState(listing.city);
-  const [state, setState] = useState(listing.state);
+  let [address, setAddress] = useState(listing.address);
+  let [city, setCity] = useState(listing.city);
+  let [state, setState] = useState(listing.state);
   const [zipCode, setZipCode] = useState(listing.zip_code);
-  const [country, setCountry] = useState(listing.country);
+  let [country, setCountry] = useState(listing.country);
   const [lat, setLat] = useState(listing.lat);
   const [lng, setLng] = useState(listing.lng);
-  const [description, setDescription] = useState(listing.description);
-  const [type, setType] = useState(listing.type);
+  let [description, setDescription] = useState(listing.description);
+  let [type, setType] = useState(listing.type);
   const [beds, setBeds] = useState(listing.beds);
   const [baths, setBaths] = useState(listing.baths);
   const [sqft, setSqft] = useState(listing.sqft);
   const [price, setPrice] = useState(listing.price);
-  const [previewImage, setPreviewImage] = useState(listing.preview_image);
+  let [previewImage, setPreviewImage] = useState(listing.preview_image);
   const [showModal, setShowModal] = useState(true);
   const history = useHistory();
 
   const editListingHandler = async (e) => {
+    address = address.trim();
+    city = city.trim();
+    state = state.trim();
+    country = country.trim();
+    description = description.trim();
+    type = type.trim();
+    previewImage = previewImage.trim();
+
     e.preventDefault();
+
     const updatedListingData = {
       address,
       city,
@@ -136,6 +145,9 @@ const EditListingForm = ({listing, onClose}) => {
             value={address}
             onChange={updateAddress}
             className='edit-listing-input'
+            pattern="^(?!\s*$).+"
+            title="Address must be provided"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -147,6 +159,9 @@ const EditListingForm = ({listing, onClose}) => {
             value={city}
             onChange={updateCity}
             className='edit-listing-input'
+            pattern="^(?!\s*$).+"
+            title="City must be provided"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -158,6 +173,11 @@ const EditListingForm = ({listing, onClose}) => {
             value={state}
             onChange={updateState}
             className='edit-listing-input'
+            pattern="^(?!\s*$).+"
+            title="Two letter state abbreviation must be provided"
+            maxLength="2"
+            minLength="2"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -169,6 +189,9 @@ const EditListingForm = ({listing, onClose}) => {
             value={zipCode}
             onChange={updateZipCode}
             className='edit-listing-input'
+            min="0"
+            max="99999"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -180,6 +203,11 @@ const EditListingForm = ({listing, onClose}) => {
             value={country}
             onChange={updateCountry}
             className='edit-listing-input'
+            pattern="^(?!\s*$).+"
+            title="Two letter country code must be provided"
+            maxLength="2"
+            minLength="2"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -191,6 +219,10 @@ const EditListingForm = ({listing, onClose}) => {
             value={lat}
             onChange={updateLat}
             className='edit-listing-input'
+            min="-89.9999"
+            max="89.9999"
+            step=".0001"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -202,6 +234,7 @@ const EditListingForm = ({listing, onClose}) => {
             value={lng}
             onChange={updateLng}
             className='edit-listing-input'
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -213,6 +246,9 @@ const EditListingForm = ({listing, onClose}) => {
             value={type}
             onChange={updateType}
             className='edit-listing-input'
+            required={true}
+            pattern="^(?!\s*$).+"
+            title="Listing type must be provided"
           />
         </div>
         <div className='field-container'>
@@ -224,6 +260,8 @@ const EditListingForm = ({listing, onClose}) => {
             value={beds}
             onChange={updateBeds}
             className='edit-listing-input'
+            min="0"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -235,6 +273,8 @@ const EditListingForm = ({listing, onClose}) => {
             value={baths}
             onChange={updateBaths}
             className='edit-listing-input'
+            min="0"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -246,6 +286,8 @@ const EditListingForm = ({listing, onClose}) => {
             value={sqft}
             onChange={updateSqft}
             className='edit-listing-input'
+            min="0"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -257,6 +299,8 @@ const EditListingForm = ({listing, onClose}) => {
             value={price}
             onChange={updatePrice}
             className='edit-listing-input'
+            min="0"
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -268,6 +312,7 @@ const EditListingForm = ({listing, onClose}) => {
             value={previewImage}
             onChange={updatePreviewImage}
             className='edit-listing-input'
+            required={true}
           />
         </div>
         <div className='field-container'>
@@ -279,6 +324,9 @@ const EditListingForm = ({listing, onClose}) => {
             value={description}
             onChange={updateDescription}
             className='description-edit-input'
+            required={true}
+            pattern="^(?!\s*$).+"
+            title="Description must be provided"
           />
         </div>
         <button className='submit-edit-btn' type='submit'>Submit Changes</button>
