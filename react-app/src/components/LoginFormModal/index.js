@@ -1,37 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
-import { Link }  from 'react-router-dom';
+import { Link, NavLink }  from 'react-router-dom';
 
-  function LoginFormModal({sellRedirect}) {
+  function LoginFormModal({sellNavRedirect, sellCardRedirect, tourCardRedirect, }) {
   const [showModal, setShowModal] = useState(false);
-  console.log("SELLREDIRECT", sellRedirect)
+  // console.log("SELLREDIRECT", sellNavRedirect)
+  // console.log("SELLBUTTONREDIRECT", sellCardRedirect)
+  // console.log("TOURBUTTONREDIRECT", tourCardRedirect)
+
+
+
+  const sellHomeNavOption =
+  (<NavLink to='/me/listings' activeClassName='active' onClick={() => setShowModal(true)} className="nav-bar-link">
+    Sell
+  </NavLink>)
+
+  const sellHomeCardOption =
+  (<div onClick={() => setShowModal(true)}>
+    <div className="place-sell-card">
+      <h4 className="card-header">Sell a home</h4>
+      <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
+      <button className="sell-card-btn">Sell a home</button>
+    </div>
+  </div>)
+
+  const tourHomeCardOption =
+  (<div onClick={() => setShowModal(true)}>
+    <div className="schedule-tour-card">
+      <h4 className="card-header">Tour a home</h4>
+      <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
+      <button className="tour-card-btn">Find a home to tour</button>
+    </div>
+  </div>)
+
 
   return (
     <>
-      { sellRedirect ? (
+      { sellNavRedirect ? (
+         <>
+         {sellHomeNavOption}
+         </>
+      ) : ( sellCardRedirect ? (
         <>
-         <Link to='/me/listings' exact={true} activeClassName='active' onClick={() => setShowModal(true)}>
-              Sell
-        </Link>
-        {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-        </Modal>
-        )}
+        {sellHomeCardOption}
         </>
       ) : (
-        <>
-        <Link onClick={() => setShowModal(true)}>Sign In</Link>
-        {showModal && (
-        <>
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-        </Modal>
-        </>
+        tourCardRedirect ?  (
+          <>
+          {tourHomeCardOption}
+          </>
+        ) : (
+          (<Link onClick={() => setShowModal(true)} className="nav-bar-link">Sign In</Link>)
+        )
+      )
       )}
-      </>
-      )}
+      {showModal && (
+      <Modal onClose={() => setShowModal(false)}>
+        <LoginForm />
+      </Modal>
+    )}
     </>
   );
 }

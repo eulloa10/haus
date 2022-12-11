@@ -34,13 +34,13 @@ const NavBar = () => {
       <ul className='splash-nav-all'>
         <ul className="splash-nav-other-links">
           <li className="splash-nav">
-            <NavLink to='/listings' exact={true} activeClassName='active'>
+            <NavLink to='/listings' exact={true} activeClassName='active' className="nav-bar-link">
               Buy
             </NavLink>
           </li>
           {user ? (
              <li className="splash-nav sell-link">
-             <NavLink to='/me/listings' exact={true} activeClassName='active'>
+             <NavLink to='/me/listings' exact={true} activeClassName='active' className="nav-bar-link">
                Sell
              </NavLink>
            </li>
@@ -49,7 +49,7 @@ const NavBar = () => {
             {/* <NavLink to='/listings' exact={true} activeClassName='active' onClick={() => setShowModal(true)}>
               Sell
             </NavLink> */}
-            <LoginFormModal sellRedirect={true}/>
+            <LoginFormModal sellNavRedirect={true}/>
             </li>
           )
           }
@@ -71,7 +71,7 @@ const NavBar = () => {
               <li className="splash-nav">
                 <SignUpFormModal />
               </li>
-              <li className="splash-nav" onClick={demoLogin}>
+              <li className="splash-nav nav-bar-link demo-option" onClick={demoLogin}>
                   Demo
               </li>
             </>

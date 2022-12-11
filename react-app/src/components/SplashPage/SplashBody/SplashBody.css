@@ -52,3 +52,8 @@
   background-color: #1277e1;
   color: white;
 }
+
+
+.schedule-tour-card, .place-sell-card {
+  cursor: pointer;
+}

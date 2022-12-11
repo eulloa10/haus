@@ -103,3 +103,16 @@
 .session-logout-btn:hover {
   background-color:rgb(174, 237, 255);
 }
+
+.nav-bar-link:hover {
+  color: #1277e1;
+  font-weight:900;
+}
+
+.nav-bar-link {
+  font-size: 1em;
+}
+
+.demo-option {
+  cursor: pointer;
+}
