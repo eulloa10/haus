@@ -10,11 +10,14 @@ import LoginForm from '../../LoginFormModal/LoginForm';
 import * as sessionActions from '../../../store/session';
 import HouseLetter from '../../../assets/house_letter.png';
 import ProfileDefaultIcon from '../../../assets/profile-default-icon.svg';
+import { Modal } from '../../../context/Modal';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [showSessionOptions, setShowSessionOptions] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [sellRedirect, setSellRedirect] = useState(true);
 
 
   const demoLogin = async () => {
@@ -26,6 +29,7 @@ const NavBar = () => {
   }
 
   return (
+    <>
     <nav>
       <ul className='splash-nav-all'>
         <ul className="splash-nav-other-links">
@@ -42,9 +46,10 @@ const NavBar = () => {
            </li>
           ) : (
             <li className="splash-nav sell-link">
-            <NavLink to='/me/listings' exact={true} activeClassName='active'>
+            {/* <NavLink to='/listings' exact={true} activeClassName='active' onClick={() => setShowModal(true)}>
               Sell
-            </NavLink>
+            </NavLink> */}
+            <LoginFormModal sellRedirect={true}/>
             </li>
           )
           }
@@ -95,6 +100,11 @@ const NavBar = () => {
         </ul>
       </ul>
     </nav>
+    {showModal && (
+        <Modal onClose={() => setShowModal(false)} children= {<LoginFormModal sellRedirect={sellRedirect}/>}>
+        </Modal>
+      )}
+    </>
   );
 }
 
