@@ -57,6 +57,7 @@ Book a tour for any home you are interested in purchasing
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 - [Postgres](https://www.postgresql.org/)
 - [SQLAlchemy](https://www.sqlalchemy.org/)
+- [React Google Maps](https://www.npmjs.com/package/@react-google-maps/api)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
