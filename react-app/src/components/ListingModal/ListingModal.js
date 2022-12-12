@@ -115,13 +115,15 @@ const ListingModal = ({listing}) => {
       value={tourDate}
       onChange={(e) => setTourDate(e.target.value)}
       min={minDateString}
+      className="calendar"
       required
     />
   </div>
+  <div className="time-submit">
   {tourDate && (<>
     <h4>Select a time</h4>
     <span>
-      <select id="time" name="time" required onChange={(e) => setTourTime(e.target.value)} defaultValue="9am">
+      <select id="time" name="time" required onChange={(e) => setTourTime(e.target.value)} defaultValue="9am" className="time-selector">
         <option>9am</option>
         <option>10am</option>
         <option>11am</option>
@@ -137,8 +139,9 @@ const ListingModal = ({listing}) => {
   </>
   )}
   { tourDate && tourTime &&
-      (<button type="submit" onClick={hasTour && reschedule ? rescheduleTourHandler : bookAppointmentHandler}>Schedule</button>)
+      (<button className="tour-submit-btn" type="submit" onClick={hasTour && reschedule ? rescheduleTourHandler : bookAppointmentHandler}>Schedule</button>)
   }
+  </div>
 </form>
 
 
@@ -214,7 +217,7 @@ const ListingModal = ({listing}) => {
             (<>
             {!hasTour && (
             <>
-             <h3 className="schedule-form">Schedule a tour</h3>
+             <h3 className="schedule-heading">Schedule a tour</h3>
              {scheduleForm}
             </>
             )}
@@ -224,25 +227,25 @@ const ListingModal = ({listing}) => {
               <ul className="tour-summary">
                 <li className="scheduled-tour-detail">
                   { Object.values(tourInfo).length > 0 &&
-                  <>
+                  <div className="scheduled-tour-info">
                     <span>{Object.values(tourInfo)[0].tour_start_date}</span>
                     <span>@</span>
                     <span> {Object.values(tourInfo)[0].tour_time_slot}</span>
-                  </>
+                  </div>
                   }
                 </li>
               </ul>
               <div className="schedule-options modal-address-description-header">
-                <button onClick={rescheduleButtonHandler}>Reschedule</button>
-                <button onClick={cancelTourHandler}>Cancel tour</button>
+                <button className="reschedule-tour-btn" onClick={rescheduleButtonHandler}>Reschedule</button>
+                <button className="cancel-tour-btn" onClick={cancelTourHandler}>Cancel tour</button>
               </div>
               </>
             )}
             {hasTour && reschedule && (
-              <>
-                <h3 className="schedule-form">Reschedule your tour:</h3>
+              <div className="schedule-form">
+                <h3>Reschedule your tour:</h3>
                 {scheduleForm}
-              </>
+              </div>
             )}
             </>)
           }
