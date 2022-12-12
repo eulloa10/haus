@@ -37,19 +37,24 @@
 
 [![Harmonious-Voices](/screenshots/haus_splash.png "Hause")](https://house-me.onrender.com)
 
-Haus is a Zillow inspired website with frontend and backend support for home listings and open house tour features. Favorites, offers and other features are still in development.
+Haus is a Zillow inspired website with frontend and backend support for home listings and tour scheduling. Favorites, offers and other features are still in development.
 
 #### Listings
 
-Browse homes across the United States. This feature leverages the Google Maps API.
+Browse homes for sale across the United States or list a home for sale
 
 ![Listings](/screenshots/haus_listings.png)
 
+List a home for sale and easily manage your listing
+
+![Owned Listings](/screenshots/haus_owned_listing.png)
+
 #### Tours
 
-Book a tour for any home you are interested in purchasing
+Book a tour for any home you are interested in purchasing and manage your tour
 
 ![Tours](/screenshots/haus_tours.png)
+![Tour Options](/screenshots/haus_tour_management.png)
 
 ### Built With
 
@@ -81,12 +86,14 @@ Book a tour for any home you are interested in purchasing
    pipenv install -r requirements.txt
    ```
 
-3. Create a **.env** file based on the example with proper settings for your
+3. Sign up for a [Google Developer API key](https://developers.google.com/maps/documentation/javascript/get-api-key) if you don't have one already. This will be necessary for the Google Maps feature to work.
+
+4. Create a **.env** file based on the example with proper settings for your
    development environment
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+5. Make sure the SQLite3 database connection URL is in the **.env** file
 
-5. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
    ```bash
    pipenv shell
