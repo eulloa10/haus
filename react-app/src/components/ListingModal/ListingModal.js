@@ -34,6 +34,11 @@ const ListingModal = ({listing}) => {
   let minMonth = minCalOption.getMonth() + 1;
   let minYear = minCalOption.getFullYear();
   let minDateString = `${minYear}-${minMonth}-${minDate}`
+  console.log("USERTOURS", userTours);
+
+  useEffect(() => {
+    dispatch(userTourActions.loadAllTours());
+ }, [dispatch])
 
   useEffect(() => {
     if (user && (user.id === listing.owner_id)) {

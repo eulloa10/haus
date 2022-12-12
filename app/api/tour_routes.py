@@ -17,6 +17,7 @@ def get_all_tours():
 @me_tour_routes.route('/tours')
 @login_required
 def get_all_user_tours():
+    print("--------CURRENTUSERID------", type(current_user.id))
     tours = Tour.query.filter(Tour.user_id == current_user.id)
     return {'user_tours': [tour.to_dict() for tour in tours]}
 

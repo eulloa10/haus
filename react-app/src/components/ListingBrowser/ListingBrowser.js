@@ -39,7 +39,7 @@ const ListingBrowser = () => {
   }
 
   useEffect(() => {
-    dispatch(listingActions.loadAllListings())
+    dispatch(listingActions.loadAllListings());
     dispatch(userTourActions.loadAllTours());
 
     if (location.pathname.includes('/me/listings')) {

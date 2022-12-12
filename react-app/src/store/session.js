@@ -1,3 +1,5 @@
+import { resetUserTours } from "./userTours";
+
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -66,6 +68,7 @@ export const logout = () => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeUser());
+    dispatch(resetUserTours());
   }
 };
 

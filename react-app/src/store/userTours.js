@@ -1,6 +1,7 @@
 const GET_USER_TOURS = 'userTours/GET_USER_TOUR';
 const DELETE_USER_TOUR = 'userTours/DELETE_USER_TOUR';
-const EDIT_USER_TOUR = 'userTours/EDIT_USER_TOUR'
+const EDIT_USER_TOUR = 'userTours/EDIT_USER_TOUR';
+const RESET_USER_TOURS = 'userTours/RESET_USER_TOURS';
 
 const getUserTours = (tours) => ({
   type: GET_USER_TOURS,
@@ -15,6 +16,10 @@ const editUserTour = (tour) => ({
 const deleteUserTours = (tourId) => ({
   type: DELETE_USER_TOUR,
   tourId
+})
+
+export const resetUserTours = () => ({
+  type: RESET_USER_TOURS
 })
 
 export const editSingleUserTour = (tourId, tourData) => async (dispatch) => {
@@ -45,7 +50,6 @@ export const deleteUserTour = (tourId) => async (dispatch) => {
 
 export const loadAllTours = () => async (dispatch) => {
   const res = await fetch('/api/me/tours');
-
   if (res.ok) {
     const data = await res.json();
     dispatch(getUserTours(data.user_tours))
@@ -70,6 +74,8 @@ const userTourReducer = (state = initialState, action) => {
     case DELETE_USER_TOUR:
       delete newState[action.tourId];
       return newState;
+    case RESET_USER_TOURS:
+      return initialState
     default:
       return state;
   }
