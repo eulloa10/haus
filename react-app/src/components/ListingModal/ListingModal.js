@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, NavLink, useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import './ListingModal.css';
-// import HeartLogo from '../../assets/Heart.svg';
 import DeleteLogo from '../../assets/Hide.svg';
-import EditLogo from '../../assets/edit.png';
 import { Modal } from '../../context/Modal';
 import EditListingModal from '../EditListingModal';
 import * as listingActions from '../../store/listing';
 import * as userTourActions from '../../store/userTours';
 import * as tourActions from '../../store/tour';
-import Scheduler from '../Scheduler';
-import CreateListingModal from '../CreateListingModal';
+
 
 const ListingModal = ({listing}) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [errors, setErrors] = useState([]);
   const [isOwned, setIsOwned] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
   const [hasTour, setHasTour] = useState(false);
@@ -25,12 +21,9 @@ const ListingModal = ({listing}) => {
   const [showModal, setShowModal] = useState(false);
   const [tourInfo, setTourInfo] = useState({});
   const [reschedule, setReschedule] = useState();
-  const [tourChanged, setTourChanged] = useState();
   const [tourDate, setTourDate] = useState('');
   const [tourTime, setTourTime] = useState("9am");
-  const [refreshModal, setRefreshModal] = useState('false');
   const location = useLocation();
-  const tour = [];
 
   let minCalOption = new Date();
   minCalOption.setDate(minCalOption.getDate() + 1);
@@ -51,29 +44,18 @@ const ListingModal = ({listing}) => {
       setUserListingsOnly(true);
     }
 
-    // Loop through all user's tours
     for (let key in userTours) {
-      // Check if there is a tour for this listing in all user tours
       if (userTours[key].listing_id === listing.id) {
         setTourInfo({[key]: userTours[key]});
         setHasTour(true);
         break;
       }
     }
-
-    // dispatch(userTourActions.loadAllTours());
-
   }, [listing, location, user, userTours]);
 
   useEffect(() => {
      dispatch(userTourActions.loadAllTours());
   }, [dispatch])
-
-
-  console.log("USERTOURS", userTours);
-  console.log("TOURINFO", tourInfo);
-  console.log("RESCHEDULE", reschedule)
-  console.log("HASTOUR", hasTour)
 
   const bookAppointmentHandler = async (e) => {
     e.preventDefault();
@@ -84,10 +66,6 @@ const ListingModal = ({listing}) => {
     };
 
     const res = await dispatch(tourActions.addUsertour(listing.id, tourData)).then(() => dispatch(userTourActions.loadAllTours()));
-
-    // setTourChanged(true)
-    // setRefreshModal(true);
-
   }
 
   const rescheduleTourHandler = async (e) => {
@@ -99,8 +77,6 @@ const ListingModal = ({listing}) => {
     };
 
     const res = await dispatch(userTourActions.editSingleUserTour(Object.values(tourInfo)[0].id, updatedTourData)).then(() => dispatch(userTourActions.loadAllTours())).then(() => setReschedule(false));
-
-    // history.goBack();
   }
 
   const deleteHandler = async (e) => {
@@ -114,16 +90,6 @@ const ListingModal = ({listing}) => {
   const cancelTourHandler = async (e) => {
     e.preventDefault();
     const res = await dispatch(userTourActions.deleteUserTour(Object.values(tourInfo)[0].id)).then(() => dispatch(userTourActions.loadAllTours())).then(() => setHasTour(false)).then(() => setTourInfo({}));
-
-    // () => setTourInfo(previousTourInfo => {
-    //   const newTourInfo = {...previousTourInfo};
-    //   delete newTourInfo[tourInfo.id]
-    //   return newTourInfo;
-    // })
-
-    // if (res) {
-    //   history.push(`/listings`);
-    // }
   }
 
   const rescheduleButtonHandler = (e) => {
@@ -133,7 +99,6 @@ const ListingModal = ({listing}) => {
 
   const closeModal = () => {
     setShowModal(false);
-    // history.push(`${match.url}/${listing.id}`);
   }
 
   const scheduleForm =

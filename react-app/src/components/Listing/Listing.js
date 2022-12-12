@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link, useHistory, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
+import { useHistory, NavLink, useLocation } from 'react-router-dom';
 import './Listing.css';
 import { Modal } from '../../context/Modal';
 import ListingModal from '../ListingModal/ListingModal';
 
 const Listing = ({listing}) => {
-  const dispatch = useDispatch();
-  const [errors, setErrors] = useState([]);
-  const user = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
   const [tourView, setTourView] = useState(false);
   const [regularView, setRegularView] = useState(false);
   const history = useHistory();
-  const match = useRouteMatch();
   const location = useLocation();
 
   const openModal = () => {
     setShowModal(true);
-    // console.log("MATCHOPEN", match);
   }
 
   const closeModal = () => {
     setShowModal(false);
-    // console.log("MATCHCLOSE", match);
     history.goBack();
-
   }
 
   useEffect(() => {
@@ -115,9 +107,6 @@ const Listing = ({listing}) => {
           </NavLink>
         )
       }
-        {/* <NavLink to={ userListingsOnly ? `/me/listings/${listing.id}` : `/listings/${listing.id}`} onClick={openModal}>
-
-        </NavLink> */}
       </>
       {showModal && (
         <Modal onClose={closeModal} children= {<ListingModal listing={listing}/>}>

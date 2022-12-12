@@ -38,7 +38,6 @@ export const loadAllTours = () => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log("OGTOUR", data.tours)
     dispatch(getAlltours(data.tours))
   } else {
     throw res;
@@ -46,7 +45,6 @@ export const loadAllTours = () => async (dispatch) => {
 }
 
 export const addUsertour = (listingId, tourData) => async (dispatch) => {
-
   const res = await fetch(`/api/listings/${listingId}/tours/`, {
     method: 'POST',
     headers: { "Content-Type": "application/json"},

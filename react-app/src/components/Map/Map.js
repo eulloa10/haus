@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
@@ -10,8 +10,6 @@ const Map = () => {
   for (let key in listings) {
     listingLocations.push([listings[key].lat, listings[key].lng]);
   }
-
-  console.log("LISTINGSMAP", listingLocations);
 
   const [mapKey, setMapKey] = useState();
 

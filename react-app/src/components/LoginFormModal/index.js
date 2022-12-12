@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import { Link, NavLink }  from 'react-router-dom';
 
   function LoginFormModal({sellNavRedirect, sellCardRedirect, tourCardRedirect, }) {
   const [showModal, setShowModal] = useState(false);
-  // console.log("SELLREDIRECT", sellNavRedirect)
-  // console.log("SELLBUTTONREDIRECT", sellCardRedirect)
-  // console.log("TOURBUTTONREDIRECT", tourCardRedirect)
-
-
 
   const sellHomeNavOption =
   (<NavLink to='/me/listings' activeClassName='active' onClick={() => setShowModal(true)} className="nav-bar-link">

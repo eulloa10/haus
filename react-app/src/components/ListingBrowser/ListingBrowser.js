@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import * as listingActions from '../../store/listing';
 import Listing from '../Listing/Listing';
 import Map from '../Map';
-import { Modal } from '../../context/Modal';
-import EditListingModal from '../EditListingModal';
 import CreateListingModal from '../CreateListingModal'
 import './ListingBrowser.css';
 import * as userTourActions from '../../store/userTours';
@@ -13,7 +11,6 @@ import * as userTourActions from '../../store/userTours';
 
 const ListingBrowser = () => {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
   const [selectedListing, setSelectedListing] = useState();
@@ -36,17 +33,10 @@ const ListingBrowser = () => {
       allListings.push(listings[key]);
     }
   }
-  console.log("USERLISTINGS", userListings)
-  console.log("USERTOURS", userTours)
 
   for (let key in userTours) {
     tourListings.push(userTours[key].tour_listing)
   }
-
-  console.log("TOURLISTINGS", tourListings);
-  console.log("TOURVIEW", tourView);
-  console.log("REGULARVIEW", regularView);
-  console.log("USERLISTINGSONLY", userListingsOnly);
 
   useEffect(() => {
     dispatch(listingActions.loadAllListings())

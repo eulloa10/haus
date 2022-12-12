@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux'
-import { NavLink, Link } from 'react-router-dom';
-// import LogoutButton from '../../auth/LogoutButton';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import LoginFormModal from '../../LoginFormModal';
 import './SplashBody.css';
 import ZillowHome from '../../../assets/zillow-front-2.jpeg';
@@ -72,7 +71,6 @@ const SplashBody = () => {
    </div>
    </>
   );
-
 }
 
 export default SplashBody;

@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link, useHistory, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 import './Scheduler.css';
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
 import * as tourActions from '../../store/tour';
-import * as userTourActions from '../../store/userTours';
-
 
 
 const Scheduler = ({ listing, tourInfo, tourChanged, reschedule }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [errors, setErrors] = useState([]);
-  const user = useSelector(state => state.session.user);
   const [tourDate, setTourDate] = useState('');
   const [tourTime, setTourTime] = useState("9am");
   const [isReschedule, setIsReschedule] = useState(reschedule);
-  const [loaded, setLoaded] = useState(false);
 
 
   useEffect (() => {
 
   }, [])
-
-  console.log("TOURDATEOUT", tourDate)
-  console.log("TOURTIMEOUT", tourTime);
 
   let minCalOption = new Date();
   minCalOption.setDate(minCalOption.getDate() + 1);
@@ -37,8 +27,6 @@ const Scheduler = ({ listing, tourInfo, tourChanged, reschedule }) => {
   let minYear = minCalOption.getFullYear();
   let minDateString = `${minYear}-${minMonth}-${minDate}`
 
-  console.log("MINDATESTRING", minDateString);
-
   const bookAppointmentHandler = async (e) => {
     e.preventDefault();
 
@@ -48,7 +36,6 @@ const Scheduler = ({ listing, tourInfo, tourChanged, reschedule }) => {
     };
 
     const res = await dispatch(tourActions.addUsertour(listing.id, tourData))
-
   }
 
   const rescheduleTourHandler = async (e) => {
@@ -60,8 +47,6 @@ const Scheduler = ({ listing, tourInfo, tourChanged, reschedule }) => {
     };
 
     const res = await dispatch(tourActions.editUsertour(tourInfo.id, updatedTourData))
-
-
   }
 
   return (

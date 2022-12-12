@@ -1,27 +1,91 @@
-# Flask React Project
+<a name="readme-top"></a>
 
-This is the starter for the Flask React project.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-## Getting started
-1. Clone this repository (only this branch)
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+[![Harmonious-Voices](/screenshots/haus_splash.png "Hause")](https://house-me.onrender.com)
+
+Haus is a Zillow inspired website with frontend and backend support for home listings and open house tour features. Favorites, offers and other features are still in development.
+
+#### Listings
+
+Browse homes across the United States. This feature leverages the Google Maps API.
+
+![Listings](/screenshots/haus_listings.png)
+
+#### Tours
+
+Book a tour for any home you are interested in purchasing
+
+![Tours](/screenshots/haus_tours.png)
+
+### Built With
+
+- [React](https://reactjs.org/)
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+- [Postgres](https://www.postgresql.org/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Installation
+
+### Backend
+
+1. Clone this repository
+
+   ```bash
+   git clone https://github.com/eulloa10/houseme-project
+   ```
 
 2. Install dependencies
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+   ```bash
+   pipenv install -r requirements.txt
+   ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
 
 4. Make sure the SQLite3 database connection URL is in the **.env** file
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+5. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
    ```bash
    pipenv shell
@@ -39,106 +103,38 @@ This is the starter for the Flask React project.
    flask run
    ```
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### Frontend
 
+1. Navigate to the react-app folder and npm install
 
-## Deployment through Render.com
+   ```bash
+   cd react-app
+   npm install
+   ```
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+2. Start the React app
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+   ```bash
+   npm start
+   ```
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+<!-- CONTACT -->
 
-### Part A: Configure the Start and Build Commands
+## Contact
 
-Start by giving your application a name.
+- [Edgar Ulloa](https://github.com/eulloa10)
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+<!-- ACKNOWLEDGMENTS -->
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+## Additional Resources
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+- [Flask-SQLAlchemy Quick Reference](https://hackmd.io/@jpshafto/H1VbmP3yO#Query-Format)
+- [AWS S3 Reference](https://hackmd.io/@jpshafto/SyWY45KGu)
+- [React Google Maps](https://www.npmjs.com/package/@react-google-maps/api)
+- [Google Maps Platform](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

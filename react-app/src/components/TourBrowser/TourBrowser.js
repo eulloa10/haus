@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link, useHistory, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
 import './TourBrowser.css';
 import 'react-calendar/dist/Calendar.css';
-import Calendar from 'react-calendar';
 import * as tourActions from '../../store/tour';
 import * as listingActions from '../../store/listing';
-import * as tourListingActions from '../../store/tour_listing';
-import ListingBrowser from '../ListingBrowser';
 
 
 const TourBrowser = () => {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const tours = useSelector(state => state.tours);
   const userTours = [];
@@ -22,10 +17,6 @@ const TourBrowser = () => {
       userTours.push(tours[key]);
     }
   }
-
-  console.log("TOURS", tours);
-  console.log("USERTOURS", userTours);
-
 
   useEffect(() => {
     dispatch(tourActions.loadAllTours());
