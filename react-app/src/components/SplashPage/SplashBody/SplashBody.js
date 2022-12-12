@@ -7,6 +7,10 @@ import './SplashBody.css';
 import ZillowHome from '../../../assets/zillow-front-2.jpeg';
 import Github from '../../../assets/github.svg';
 import LinkedIn from '../../../assets/linkedin.svg';
+import BuyHome from '../../../assets/haus_buy_home.png';
+import SellHome from '../../../assets/haus_sell_home.png';
+import TourHome from '../../../assets/haus_tour_home.png';
+
 
 const SplashBody = () => {
   const user = useSelector(state => state.session.user);
@@ -23,6 +27,7 @@ const SplashBody = () => {
             <>
             <Link to="/listings">
               <div className="buy-home-card">
+                <img className="splash-card-img" src={BuyHome} alt="buy"/>
                 <h4 className="card-header">Buy a home</h4>
                 <p className="home-card-desc">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
                   <button className="browse-homes-card-btn">Browse homes</button>
@@ -30,6 +35,7 @@ const SplashBody = () => {
             </Link>
             <Link to="/me/listings">
               <div className="place-sell-card">
+                <img className="splash-card-img" src={SellHome} alt="sell"/>
                 <h4 className="card-header">Sell a home</h4>
                 <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
                 <button className="sell-card-btn">Sell a home</button>
@@ -37,6 +43,7 @@ const SplashBody = () => {
             </Link>
             <Link to="/listings">
               <div className="schedule-tour-card">
+              <img className="splash-card-img" src={TourHome} alt="tour"/>
                 <h4 className="card-header">Tour a home</h4>
                 <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
                 <button className="tour-card-btn">Find a home to tour</button>
@@ -47,6 +54,7 @@ const SplashBody = () => {
               <>
                 <Link to="/listings">
                   <div className="buy-home-card">
+                    <img className="splash-card-img" src={BuyHome} alt="buy"/>
                     <h4 className="card-header">Buy a home</h4>
                     <p className="home-card-desc">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
                       <button className="browse-homes-card-btn">Browse homes</button>

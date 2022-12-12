@@ -29,8 +29,9 @@
   border: 1px rgb(243, 243, 243) solid;
   box-shadow: 2px 3px 1px 1.5px lightgray;
   border-radius: 4px;
-  height: 60vh;
+  height: 70vh;
   width: 28vw;
+
 }
 
 .home-card-desc, .tour-card-desc, .sell-card-desc {
@@ -80,4 +81,11 @@
 
 .github-link {
   margin-right: 1em;
+}
+
+.splash-card-img {
+  height: 25vh;
+  width: 20vw;
+  margin: 0;
+  padding: 0;
 }

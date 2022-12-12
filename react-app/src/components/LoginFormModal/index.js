@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import { Link, NavLink }  from 'react-router-dom';
+import SellHome from '../../assets/haus_sell_home.png';
+import TourHome from '../../assets/haus_tour_home.png';
 
   function LoginFormModal({sellNavRedirect, sellCardRedirect, tourCardRedirect, }) {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +16,7 @@ import { Link, NavLink }  from 'react-router-dom';
   const sellHomeCardOption =
   (<div onClick={() => setShowModal(true)}>
     <div className="place-sell-card">
+      <img className="splash-card-img" src={SellHome} alt="sell"/>
       <h4 className="card-header">Sell a home</h4>
       <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
       <button className="sell-card-btn">Sell a home</button>
@@ -23,6 +26,7 @@ import { Link, NavLink }  from 'react-router-dom';
   const tourHomeCardOption =
   (<div onClick={() => setShowModal(true)}>
     <div className="schedule-tour-card">
+      <img className="splash-card-img" src={TourHome} alt="tour"/>
       <h4 className="card-header">Tour a home</h4>
       <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
       <button className="tour-card-btn">Find a home to tour</button>
