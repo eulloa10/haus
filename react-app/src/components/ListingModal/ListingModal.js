@@ -89,7 +89,7 @@ const ListingModal = ({listing}) => {
 
   const cancelTourHandler = async (e) => {
     e.preventDefault();
-    const res = await dispatch(userTourActions.deleteUserTour(Object.values(tourInfo)[0].id)).then(() => dispatch(userTourActions.loadAllTours())).then(() => setHasTour(false)).then(() => setTourInfo({}));
+    const res = await dispatch(userTourActions.deleteUserTour(Object.values(tourInfo)[0].id)).then(() => dispatch(userTourActions.loadAllTours())).then(() => setHasTour(false)).then(() => setTourInfo({})).then(() => setTourDate(''));
   }
 
   const rescheduleButtonHandler = (e) => {
