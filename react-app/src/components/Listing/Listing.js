@@ -51,31 +51,31 @@ const Listing = ({listing}) => {
       ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
     </h3>
     <ul className="listing-details-list">
-      <li>
+      <li className="listing-detail">
         {listing.beds} bds |
       </li>
-      <li>
+      <li className="listing-detail">
         {listing.baths} ba |
       </li>
-      <li>
+      <li className="listing-detail">
         {listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} sqft
       </li>
-      <li>
+      <li className="listing-detail">
         - {listing.type} for sale
       </li>
     </ul>
     <div className="listing-address-container">
       <ul className="listing-address-list">
-          <li>
-            {listing.address}
+          <li className="listing-address-detail">
+            {listing.address},
           </li>
-          <li>
+          <li className="listing-address-detail">
             {listing.city},
           </li>
-          <li>
+          <li className="listing-address-detail">
             {listing.state}
           </li>
-          <li>
+          <li className="listing-address-detail">
             {listing.zip_code}
           </li>
         </ul>
