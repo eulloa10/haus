@@ -41,7 +41,7 @@ Haus is a Zillow inspired website with frontend and backend support for home lis
 
 #### Listings
 
-Browse homes for sale across the United States or list a home for sale
+Browse homes for sale across the United States
 
 ![Listings](/screenshots/haus_listings.png)
 
