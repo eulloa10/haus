@@ -26,7 +26,6 @@ const tourListingReducer = (state = initialState, action) => {
         newState[tour.id] = tour;
       });
       return newState;
-
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 // constants
-const GET_USER_LISTINGS = 'user_listing/GET_USER_LISTINGS';
+const GET_USER_LISTINGS = 'userListing/GET_USER_LISTINGS';
+const RESET_USER_LISTINGS = 'userListing/RESET_USER_LISTINGS';
 
 const getUserListings = (userListings) => ({
   type: GET_USER_LISTINGS,
@@ -17,6 +18,10 @@ export const getUserOwnedListings = () => async (dispatch) => {
   }
 }
 
+export const resetUserListings = () => ({
+  type: RESET_USER_LISTINGS
+})
+
 const initialState = {};
 
 const userListingReducer = (state = initialState, action) => {
@@ -27,6 +32,8 @@ const userListingReducer = (state = initialState, action) => {
         newState[listing.id] = listing;
       });
       return newState;
+    case RESET_USER_LISTINGS:
+      return initialState
     default:
       return state;
   }

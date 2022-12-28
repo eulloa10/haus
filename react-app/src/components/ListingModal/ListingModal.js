@@ -5,35 +5,19 @@ import './ListingModal.css';
 import DeleteLogo from '../../assets/Hide.svg';
 import { Modal } from '../../context/Modal';
 import EditListingModal from '../EditListingModal';
+import Scheduler from '../Scheduler/Scheduler';
 import * as listingActions from '../../store/listing';
 import * as userTourActions from '../../store/userTours';
-import * as tourActions from '../../store/tour';
 
 
-const ListingModal = ({listing}) => {
+const ListingModal = ({ listing }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [isOwned, setIsOwned] = useState(false);
-  const [userListingsOnly, setUserListingsOnly] = useState(false);
-  const [hasTour, setHasTour] = useState(false);
   const user = useSelector(state => state.session.user);
-  const userTours = useSelector(state => state.userTours);
+  const userTours = Object.values(useSelector(state => state.userTours));
   const [showModal, setShowModal] = useState(false);
-  const [tourInfo, setTourInfo] = useState({});
-  const [reschedule, setReschedule] = useState();
-  const [tourDate, setTourDate] = useState('');
-  const [tourTime, setTourTime] = useState("9am");
   const location = useLocation();
-
-  let minCalOption = new Date();
-  minCalOption.setDate(minCalOption.getDate() + 1);
-  let maxCalOption = new Date();
-  maxCalOption.setDate(maxCalOption.getDate() + 30);
-
-  let minDate = minCalOption.getDate();
-  let minMonth = minCalOption.getMonth() + 1;
-  let minYear = minCalOption.getFullYear();
-  let minDateString = `${minYear}-${minMonth}-${minDate}`
 
   useEffect(() => {
     dispatch(userTourActions.loadAllTours());
@@ -43,45 +27,11 @@ const ListingModal = ({listing}) => {
     if (user && (user.id === listing.owner_id)) {
       setIsOwned(true);
     }
-
-    if (location.pathname.includes('/me/listings')) {
-      setUserListingsOnly(true);
-    }
-
-    for (let key in userTours) {
-      if (userTours[key].listing_id === listing.id) {
-        setTourInfo({[key]: userTours[key]});
-        setHasTour(true);
-        break;
-      }
-    }
-  }, [listing, location, user, userTours]);
+  }, [listing, location, user]);
 
   useEffect(() => {
      dispatch(userTourActions.loadAllTours());
   }, [dispatch])
-
-  const bookAppointmentHandler = async (e) => {
-    e.preventDefault();
-
-    const tourData = {
-      tour_start_date: tourDate,
-      tour_time_slot: tourTime
-    };
-
-    const res = await dispatch(tourActions.addUsertour(listing.id, tourData)).then(() => dispatch(userTourActions.loadAllTours()));
-  }
-
-  const rescheduleTourHandler = async (e) => {
-    e.preventDefault();
-
-    let updatedTourData = {
-      tour_start_date: tourDate,
-      tour_time_slot: tourTime
-    };
-
-    const res = await dispatch(userTourActions.editSingleUserTour(Object.values(tourInfo)[0].id, updatedTourData)).then(() => dispatch(userTourActions.loadAllTours())).then(() => setReschedule(false));
-  }
 
   const deleteHandler = async (e) => {
     e.preventDefault();
@@ -91,59 +41,9 @@ const ListingModal = ({listing}) => {
 
   }
 
-  const cancelTourHandler = async (e) => {
-    e.preventDefault();
-    const res = await dispatch(userTourActions.deleteUserTour(Object.values(tourInfo)[0].id)).then(() => dispatch(userTourActions.loadAllTours())).then(() => setHasTour(false)).then(() => setTourInfo({})).then(() => setTourDate(''));
-  }
-
-  const rescheduleButtonHandler = (e) => {
-    e.preventDefault();
-    setReschedule(true);
-  }
-
   const closeModal = () => {
     setShowModal(false);
   }
-
-  const scheduleForm =
-  <form className="schedule-form">
-  <div>
-    <h4>Select a date</h4>
-    <input
-      name="tourDate"
-      type="date"
-      value={tourDate}
-      onChange={(e) => setTourDate(e.target.value)}
-      min={minDateString}
-      className="calendar"
-      required
-    />
-  </div>
-  <div className="time-submit">
-  {tourDate && (<>
-    <h4>Select a time</h4>
-    <span>
-      <select id="time" name="time" required onChange={(e) => setTourTime(e.target.value)} defaultValue="9am" className="time-selector">
-        <option>9am</option>
-        <option>10am</option>
-        <option>11am</option>
-        <option>12pm</option>
-        <option>1pm</option>
-        <option>2pm</option>
-        <option>3pm</option>
-        <option>4pm</option>
-        <option>5pm</option>
-        <option>6pm</option>
-      </select>
-    </span>
-  </>
-  )}
-  { tourDate && tourTime &&
-      (<button className="tour-submit-btn" type="submit" onClick={hasTour && reschedule ? rescheduleTourHandler : bookAppointmentHandler}>Schedule</button>)
-  }
-  </div>
-</form>
-
 
   return (
     <div className="listing-modal">
@@ -213,42 +113,7 @@ const ListingModal = ({listing}) => {
           <div className="modal-address-description">
             {listing.description}
           </div>
-          { !isOwned && user &&
-            (<>
-            {!hasTour && (
-            <>
-             <h3 className="schedule-heading">Schedule a tour</h3>
-             {scheduleForm}
-            </>
-            )}
-            {hasTour && !reschedule && (
-              <>
-              <h3 className="modal-address-description-header">Tour Scheduled</h3>
-              <ul className="tour-summary">
-                <li className="scheduled-tour-detail">
-                  { Object.values(tourInfo).length > 0 &&
-                  <div className="scheduled-tour-info">
-                    <span>{Object.values(tourInfo)[0].tour_start_date}</span>
-                    <span>@</span>
-                    <span> {Object.values(tourInfo)[0].tour_time_slot}</span>
-                  </div>
-                  }
-                </li>
-              </ul>
-              <div className="schedule-options modal-address-description-header">
-                <button className="reschedule-tour-btn" onClick={rescheduleButtonHandler}>Reschedule</button>
-                <button className="cancel-tour-btn" onClick={cancelTourHandler}>Cancel tour</button>
-              </div>
-              </>
-            )}
-            {hasTour && reschedule && (
-              <div className="schedule-form">
-                <h3>Reschedule your tour:</h3>
-                {scheduleForm}
-              </div>
-            )}
-            </>)
-          }
+        <Scheduler listing={listing} userTours={userTours} isOwned={isOwned} user={user}/>
         </div>
         {showModal && (
         <Modal onClose={closeModal}>
