@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import './ListingModal.css';
 import DeleteLogo from '../../assets/Hide.svg';
 import { Modal } from '../../context/Modal';
 import EditListingModal from '../EditListingModal';
 import Scheduler from '../Scheduler/Scheduler';
+import Favorites from '../Favorites';
 import * as listingActions from '../../store/listing';
 import * as userTourActions from '../../store/userTours';
 
@@ -29,9 +30,9 @@ const ListingModal = ({ listing }) => {
     }
   }, [listing, location, user]);
 
-  useEffect(() => {
-     dispatch(userTourActions.loadAllTours());
-  }, [dispatch])
+  // useEffect(() => {
+  //    dispatch(userTourActions.loadAllTours());
+  // }, [dispatch])
 
   const deleteHandler = async (e) => {
     e.preventDefault();
@@ -64,6 +65,13 @@ const ListingModal = ({ listing }) => {
               </button>
               </>
             )
+        }
+        {
+          user && !isOwned && (
+            <div className="fav-listing-option">
+              <Favorites listing={listing} user={user}/>
+            </div>
+          )
         }
         </div>
         <div className="listing-specs">

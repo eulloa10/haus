@@ -14,7 +14,6 @@ const Scheduler = ({ listing, userTours, isOwned, user }) => {
   const [currentTourInfo, setCurrentTourInfo] = useState(null);
   const [reschedule, setReschedule] = useState(false);
 
-  // console.log("USERTOURS", userTours);
 
   useEffect(() => {
     for (let key in userTours) {

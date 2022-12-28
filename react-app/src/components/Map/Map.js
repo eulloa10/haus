@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-
 const Map = () => {
   const listings = useSelector(state => state.listings);
   const listingLocations = [];

@@ -41,8 +41,6 @@ const Listing = ({listing}) => {
     }
   }, [location.pathname, tourView, userListingsOnly]);
 
-  console.log("LISTING", listing.preview_image);
-
   const listingCard =
   <div className="listing-card">
   <div className="listing-img-container">

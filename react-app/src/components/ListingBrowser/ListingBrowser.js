@@ -24,10 +24,6 @@ const ListingBrowser = () => {
   const userTours = Object.values(useSelector(state => state.userTours));
   const history = useHistory();
 
-  console.log("USEROWNEDLISTINGS", userListings);
-  console.log("USERLISTINGS", userListings);
-  console.log("USERTOURS", userTours);
-
   useEffect(() => {
     dispatch(listingActions.loadAllListings());
     dispatch(userListingActions.getUserOwnedListings());
