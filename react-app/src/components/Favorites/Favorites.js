@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import emptyHeart from '../../assets/empty_heart.svg';
 import fullHeart from '../../assets/full_heart.svg';
 import * as favoriteActions from '../../store/favorites';
+import './Favorites.css';
 
 const Favorites = ({ listing, user }) => {
   const dispatch = useDispatch();
@@ -33,13 +34,13 @@ const Favorites = ({ listing, user }) => {
       listing_id: listing.id
     };
 
-    const res = await dispatch(favoriteActions.addUserFavorite(listing.id, favoriteData)).then(() => setLiked(true)).then(() => dispatch(favoriteActions.loadAllUserFavorites()));
+    await dispatch(favoriteActions.addUserFavorite(listing.id, favoriteData)).then(() => setLiked(true)).then(() => dispatch(favoriteActions.loadAllUserFavorites()));
   }
 
   const unsaveListingHandler = async (e) => {
     e.preventDefault();
 
-    const res = await dispatch(favoriteActions.deleteUserFavorite(currentFavoriteInfo.id)).then(() => setLiked(false)).then(() => dispatch(favoriteActions.loadAllUserFavorites()));
+    await dispatch(favoriteActions.deleteUserFavorite(currentFavoriteInfo.id)).then(() => setLiked(false)).then(() => dispatch(favoriteActions.loadAllUserFavorites()));
   }
 
 
@@ -47,14 +48,18 @@ const Favorites = ({ listing, user }) => {
     <>
     {
       liked ? (
-        <button className="fav-listing-btn" onClick={unsaveListingHandler}>
-          <img className="fav-img" src={fullHeart} alt="unsave option"/>
-          <span>Saved</span>
-        </button>) : (
-          <button className="fav-listing-btn" onClick={saveListingHandler}>
-            <img className="fav-img" src={emptyHeart} alt="save option"/>
-            <span>Save</span>
-          </button>)
+        <div className="fav-container">
+          <button className="fav-listing-btn" onClick={unsaveListingHandler}>
+            <img className="fav-img" src={fullHeart} alt="unsave option"/>
+            <span className="fav-btn-text">Saved</span>
+          </button>
+          </div>) : (
+          <div className="fav-container">
+            <button className="fav-listing-btn" onClick={saveListingHandler}>
+              <img className="fav-img" src={emptyHeart} alt="save option"/>
+              <span className="fav-btn-text">Save</span>
+            </button>
+          </div>)
     }
     </>
   )

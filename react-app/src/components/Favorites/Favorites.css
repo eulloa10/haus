@@ -1,0 +1,16 @@
+.fav-container {
+  margin-top: 2vh;
+}
+
+.fav-listing-btn {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+}
+
+.fav-btn-text {
+  font-size: 1.25em;
+}
