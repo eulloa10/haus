@@ -7,6 +7,7 @@ import tourReducer from './tour';
 import tourListingReducer from './tour_listing';
 import userTourReducer from './userTours';
 import favoritesReducer from './favorites';
+import userImageReducer from './userImages';
 
 const rootReducer = combineReducers({
   session,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   tours: tourReducer,
   userTours: userTourReducer,
   tourListings: tourListingReducer,
-  favorites: favoritesReducer
+  favorites: favoritesReducer,
+  userImages: userImageReducer
 });
 
 

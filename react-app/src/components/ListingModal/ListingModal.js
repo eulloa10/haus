@@ -9,6 +9,8 @@ import Scheduler from '../Scheduler/Scheduler';
 import Favorites from '../Favorites';
 import * as listingActions from '../../store/listing';
 import * as userTourActions from '../../store/userTours';
+import UploadPicture from '../UploadPicture';
+import ImageBrowser from '../ImageBrowser';
 
 
 const ListingModal = ({ listing }) => {
@@ -39,7 +41,6 @@ const ListingModal = ({ listing }) => {
     const res = await dispatch(listingActions.deleteUserListing(listing.id));
 
     history.push('/me/listings')
-
   }
 
   const closeModal = () => {
@@ -49,7 +50,8 @@ const ListingModal = ({ listing }) => {
   return (
     <div className="listing-modal">
       <div className="modal-listing-img-container">
-        <img className="modal-listing-img" src={listing.preview_image} alt='home'/>
+        {/* <img className="modal-listing-img" src={listing.preview_image} alt='home'/> */}
+        <ImageBrowser listing={listing} user={user}/>
       </div>
       <div className="listing-info-container">
         <div className="listing-options">

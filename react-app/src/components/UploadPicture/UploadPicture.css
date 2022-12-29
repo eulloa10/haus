@@ -1,0 +1,17 @@
+.add-listing-img-form {
+  width: 55vw;
+  height: 10vh;
+}
+
+.choose-file-input {
+  background-color: white;
+}
+
+input[type=file]::file-selector-button {
+  background:  blue;
+  border-radius: 4px;
+  height: 3em;
+  width: 10em;
+  color: #fff;
+  cursor: pointer;
+}

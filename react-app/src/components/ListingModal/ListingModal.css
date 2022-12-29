@@ -25,11 +25,12 @@
 .modal-listing-img-container {
   grid-column: span 2;
   grid-auto-rows: auto;
+  overflow: scroll;
 }
 
 .modal-listing-img {
   object-fit: cover;
-  width: 98%;
+  width: 55vw;
   max-height: 75%;
 }
 

@@ -4,6 +4,7 @@ import {  useHistory } from 'react-router-dom';
 import './EditListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import * as listingActions from '../../store/listing';
+import UploadPicture from '../UploadPicture';
 
 const EditListingForm = ({listing, onClose}) => {
   const dispatch = useDispatch();
@@ -303,7 +304,19 @@ const EditListingForm = ({listing, onClose}) => {
             required={true}
           />
         </div>
-        <div className='field-container'>
+        {/* <div className='field-container'>
+          <label className='field-edit-label' htmlFor='previewImage'>Preview Image</label>
+          <input
+            name='previewImage'
+            type='url'
+            placeholder={listing.preview_image}
+            value={previewImage}
+            onChange={updatePreviewImage}
+            className='edit-listing-input'
+            required={true}
+          />
+        </div> */}
+         <div className='field-container'>
           <label className='field-edit-label' htmlFor='previewImage'>Preview Image</label>
           <input
             name='previewImage'

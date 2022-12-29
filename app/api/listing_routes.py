@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request, Response
 from flask_login import login_required, current_user
 from app.models import Listing, Offer, Favorite, Tour, Image, db
 from app.forms import ListingForm, OfferForm, FavoriteForm, TourForm, ImageForm
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 import json
 
 
@@ -115,26 +117,57 @@ def create_tour(listing_id):
       return Response(json.dumps({"Error": "Cannot schedule tour for own property."}), status=403)
 
 
+# @listing_routes.route('/<int:listing_id>/images', methods=['POST'])
+# @login_required
+# def add_image(listing_id):
+#     form = ImageForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+
+#     if listing:
+#         if form.validate_on_submit():
+#             image = Image(
+#             listing_id = listing_id,
+#             user_id = current_user.id,
+#             img_url = form.data['img_url'],
+#             )
+#             db.session.add(image)
+#             db.session.commit()
+#             return image.to_dict()
+#     else:
+#       return Response(json.dumps({"Error": "Must own listing to add image."}), status=403)
+
 @listing_routes.route('/<int:listing_id>/images', methods=['POST'])
 @login_required
-def add_image(listing_id):
-    form = ImageForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+def upload_image(listing_id):
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
 
-    listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+    image = request.files["image"]
 
-    if listing:
-        if form.validate_on_submit():
-            image = Image(
-            listing_id = listing_id,
-            user_id = current_user.id,
-            img_url = form.data['img_url'],
-            )
-            db.session.add(image)
-            db.session.commit()
-            return image.to_dict()
-    else:
-      return Response(json.dumps({"Error": "Must own listing to add image."}), status=403)
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    new_image = Image(user_id=current_user.id, img_url=url, listing_id=listing_id)
+    db.session.add(new_image)
+    db.session.commit()
+    # return {"url": url}
+    return new_image.to_dict()
+
+
 
 @me_listing_routes.route('/listings')
 @login_required

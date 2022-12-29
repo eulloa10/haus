@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1vw;
+  gap: 0.5vw;
 }
 
 .fav-btn-text {

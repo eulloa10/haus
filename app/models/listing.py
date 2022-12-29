@@ -51,5 +51,6 @@ class Listing(db.Model):
             'price': self.price,
             'preview_image': self.preview_image,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'images': [image.to_dict() for image in self.images]
         }
