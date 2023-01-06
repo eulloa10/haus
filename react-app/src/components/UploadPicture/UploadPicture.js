@@ -1,12 +1,21 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import * as userListingActions from '../../store/userListing';
+import * as imageActions from '../../store/images';
 import './UploadPicture.css';
 
 
 const UploadPicture = ({listingId}) => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
+    const dispatch = useDispatch();
+    const userListings = useSelector(state => state.session.userListings);
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
+
+    useEffect(() => {
+        dispatch(userListingActions.getUserOwnedListings());
+    }, [dispatch]);
 
 
     const handleSubmit = async (e) => {
@@ -16,23 +25,26 @@ const UploadPicture = ({listingId}) => {
 
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
-        setImageLoading(true);
+        // setImageLoading(true);
 
-        const res = await fetch(`/api/listings/${listingId}/images`, {
-            method: "POST",
-            body: formData,
-        });
-        if (res.ok) {
-            await res.json();
-            setImageLoading(false);
-            // history.push("/images");
-        }
-        else {
-            setImageLoading(false);
-            // a real app would probably use more advanced
-            // error handling
-            console.log("error");
-        }
+        // const res = await fetch(`/api/listings/${listingId}/images`, {
+        //     method: "POST",
+        //     body: formData,
+        // });
+        // if (res.ok) {
+        //     await res.json();
+        //     setImageLoading(false);
+        //     // history.push("/images");
+        // }
+        // else {
+        //     setImageLoading(false);
+        //     // a real app would probably use more advanced
+        //     // error handling
+        //     console.log("error");
+        // }
+        dispatch(imageActions.addListingImage(listingId, formData)).then(() => dispatch(imageActions.loadAllListingImages(listingId)));
+
+        // dispatch(userListingActions.getUserOwnedListings());
     }
 
     const updateImage = (e) => {
@@ -45,19 +57,19 @@ const UploadPicture = ({listingId}) => {
     // }
 
     return (
-        <>
-        <h2>Add new listing images</h2>
-        <form className="add-listing-img-form" onSubmit={handleSubmit}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={updateImage}
-              className='choose-file-input'
-            />
-            <button type="submit">Submit</button>
-            {(imageLoading)&& <p>Loading...</p>}
-        </form>
-        </>
+        <div className="add-img-container">
+            <h3 className="add-listing-img-header">Add listing image</h3>
+            <form className="add-listing-img-form" onSubmit={handleSubmit}>
+                <input
+                type="file"
+                accept="image/*"
+                onChange={updateImage}
+                className='choose-file-input'
+                />
+                <button className="submit-listing-img-btn" type="submit">Submit</button>
+                {(imageLoading)&& <p>Loading...</p>}
+            </form>
+        </div>
     )
 }
 

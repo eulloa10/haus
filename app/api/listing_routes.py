@@ -15,6 +15,11 @@ def get_all_listings():
     listings = Listing.query.all()
     return {'listings': [listing.to_dict() for listing in listings]}
 
+@listing_routes.route('/<int:listingId>/images', methods=['GET'])
+def get_all_listing_images(listingId):
+    images = Image.query.filter(Image.listing_id == listingId).all()
+    return {'images': [image.to_dict() for image in images]}
+
 @listing_routes.route('/', methods=['POST'])
 @login_required
 def create_a_listing():
