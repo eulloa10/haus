@@ -42,7 +42,8 @@ const UploadPicture = ({listingId}) => {
         //     // error handling
         //     console.log("error");
         // }
-        dispatch(imageActions.addListingImage(listingId, formData)).then(() => dispatch(imageActions.loadAllListingImages(listingId)));
+        setImageLoading(true);
+        dispatch(imageActions.addListingImage(listingId, formData)).then(() => setImageLoading(false)).then(() => dispatch(imageActions.loadAllListingImages(listingId)));
 
         // dispatch(userListingActions.getUserOwnedListings());
     }
@@ -66,8 +67,7 @@ const UploadPicture = ({listingId}) => {
                 onChange={updateImage}
                 className='choose-file-input'
                 />
-                <button className="submit-listing-img-btn" type="submit">Submit</button>
-                {(imageLoading)&& <p>Loading...</p>}
+                {(imageLoading) ? (<p className="submit-listing-img-btn">Loading...</p>) : (<button className="submit-listing-img-btn" type="submit">Submit</button>)}
             </form>
         </div>
     )

@@ -13,7 +13,7 @@ const addImage = (image) => ({
   image
 })
 
-const deleteUserImage = (imageId) => ({
+const deleteImage = (imageId) => ({
   type: DELETE_IMAGE,
   imageId
 })
@@ -47,14 +47,13 @@ export const addListingImage = (listingId, image) => async (dispatch) => {
 }
 
 
-
-export const deleteSingleUserImage = (imageId) => async (dispatch) => {
+export const deleteSingleImage = (imageId) => async (dispatch) => {
   const res = await fetch(`/api/images/${imageId}`, {
     method: 'DELETE'
   })
 
   if (res.ok) {
-		dispatch(deleteUserImage(imageId));
+		dispatch(deleteImage(imageId));
 	}
 
   return res;
@@ -70,9 +69,9 @@ const userImageReducer = (state = initialState, action) => {
         newState[image.id] = image;
       });
       return newState;
-    // case DELETE_USER_IMAGE:
-    //   delete newState[action.imageId];
-    //   return newState;
+    case DELETE_IMAGE:
+      delete newState[action.imageId];
+      return newState;
     case RESET_IMAGES:
       return initialState
     default:

@@ -13,18 +13,23 @@ const ImageBrowser = ({ listing, user }) => {
   const [ownedByCurrUser, setOwnedByCurrUser] = useState(false)
 
   useEffect(() => {
-    if (user.id && listing.owner_id === user.id) {
+    if ( user && user.id && listing.owner_id === user.id) {
       setOwnedByCurrUser(true);
     }
     dispatch(imageActions.resetImages());
     dispatch(imageActions.loadAllListingImages(listing.id));
 
-  }, [dispatch, listing.owner_id, user.id, listing.id]);
+  }, [dispatch, listing.owner_id, listing.id, user]);
 
   // console.log("LISTING", listing);
   // console.log("LISTINGIMAGES", listingImages)
 
   // console.log("LISTINGIMAGES2", listing.preview_image)
+
+  const handleDelete = async (e, imageId) => {
+    e.preventDefault();
+    dispatch(imageActions.deleteSingleImage(imageId)).then(() => dispatch(imageActions.loadAllListingImages(listing.id)));
+  }
 
   return (
     <>
@@ -32,10 +37,10 @@ const ImageBrowser = ({ listing, user }) => {
       ownedByCurrUser ? (<div>
       <UploadPicture listingId={listing.id}/>
       <img className="modal-listing-img" src={listing.preview_image} alt="preview"/>
-      { listingImages && listingImages.length &&
+      { listingImages && listingImages.length > 0 &&
         (listingImages.map(image => (
           <>
-          <button key={image.id+1}>DELETE</button>
+          <button key={image.id+1} onClick={(e) => handleDelete(e, image.id)}>DELETE</button>
           <img className="modal-listing-img" key={image.id} src={image.img_url} alt='listing'/>
           </>))
         )
@@ -43,7 +48,7 @@ const ImageBrowser = ({ listing, user }) => {
     </div>) : (
       <div>
         <img className="modal-listing-img" src={listing.preview_image} alt="preview"/>
-        { listingImages && listingImages.length &&
+        { listingImages && listingImages.length > 0 &&
           (listingImages.map(image => (
             <>
             <img className="modal-listing-img" key={image.id} src={image.img_url} alt='listing'/>
