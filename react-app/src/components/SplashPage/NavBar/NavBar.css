@@ -4,17 +4,7 @@
 
 .house-letter-logo {
   height: 7vh;
-
 }
-/* .splash-nav-all {
-  display: flex;
-  justify-content: flex-end;
-  column-gap: 20px;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  padding-inline-start: 0px;
-  width: 100vw;
-} */
 
 .splash-nav-all {
   display: flex;

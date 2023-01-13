@@ -7,3 +7,8 @@
   background-color: white;
   border: none;
 }
+
+.img-browser-container {
+  overflow-x: hidden;
+  width: 54vw;
+}

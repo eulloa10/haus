@@ -11,6 +11,7 @@ import * as listingActions from '../../store/listing';
 import * as userTourActions from '../../store/userTours';
 import UploadPicture from '../UploadPicture';
 import ImageBrowser from '../ImageBrowser';
+import OfferBrowser from '../OfferBrowser/OfferBrowser';
 
 
 const ListingModal = ({ listing }) => {
@@ -31,10 +32,6 @@ const ListingModal = ({ listing }) => {
       setIsOwned(true);
     }
   }, [listing, location, user]);
-
-  // useEffect(() => {
-  //    dispatch(userTourActions.loadAllTours());
-  // }, [dispatch])
 
   const deleteHandler = async (e) => {
     e.preventDefault();
@@ -123,6 +120,7 @@ const ListingModal = ({ listing }) => {
           <div className="modal-address-description">
             {listing.description}
           </div>
+        {/* <OfferBrowser listing={listing} user={user}/> */}
         <Scheduler listing={listing} userTours={userTours} isOwned={isOwned} user={user}/>
         </div>
         {showModal && (

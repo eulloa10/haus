@@ -29,9 +29,10 @@
 }
 
 .modal-listing-img {
-  object-fit: cover;
+  object-fit: fill;
   width: 55vw;
-  max-height: 75%;
+  height: 70vh;
+  /* max-height: 75%; */
 }
 
 .listing-info-container {

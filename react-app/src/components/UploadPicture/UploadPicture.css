@@ -1,21 +1,21 @@
 .add-img-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .add-listing-img-header {
-  align-self: center;
+  align-self: flex-start;
   margin-bottom: 0.5em;
 }
 
 
 .add-listing-img-form {
-  width: 40vw;
-  height: 10vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .choose-file-input {
@@ -23,6 +23,7 @@
   border: 1px solid black;
   border-radius: 3px;
   padding: 0.5em;
+  width: 25vw;
 }
 
 input[type=file]::file-selector-button {
@@ -36,7 +37,7 @@ input[type=file]::file-selector-button {
 }
 
 .submit-listing-img-btn {
-  align-self: center;
+  align-self: flex-start;
   background-color: #1277e1;
   color: white;
   font-weight: bold;
@@ -45,7 +46,37 @@ input[type=file]::file-selector-button {
   border-radius: 3px;
   cursor: pointer;
   padding: 0.25em;
-  width: 20vw;
+  width: 10vw;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+
+.upload-listing-img-btn {
+  color: #1277e1;
+  border: 3px #1277e1 solid;
+  border-radius: 8px;
+  width: 10vw;
+  margin: 0.5em;
+  padding: 0.25em;
+}
+
+.listing-img-preview {
+  display: flex;
+  margin-left: 2em;
+  width: 50vw;
+  height: 65vh;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+}
+
+.preview-container {
+  width: 55vw;
+  height: 75vh;
+}
+
+.preview-header {
+  font-size: 1em;
+  margin-left: 2em;
+  font-weight: bolder;
 }

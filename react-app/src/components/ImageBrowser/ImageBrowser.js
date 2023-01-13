@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
-import addImage from'../../assets/add_image.png';
 import UploadPicture from '../UploadPicture';
 import * as imageActions from '../../store/images';
-import './ImageBrowser.css'
+import './ImageBrowser.css';
 
 const ImageBrowser = ({ listing, user }) => {
   const dispatch = useDispatch();
-  // const listingImages = listing.images;
   const listingImages = Object.values(useSelector(state => state.images));
   const [ownedByCurrUser, setOwnedByCurrUser] = useState(false)
 
@@ -21,18 +19,13 @@ const ImageBrowser = ({ listing, user }) => {
 
   }, [dispatch, listing.owner_id, listing.id, user]);
 
-  // console.log("LISTING", listing);
-  // console.log("LISTINGIMAGES", listingImages)
-
-  // console.log("LISTINGIMAGES2", listing.preview_image)
-
   const handleDelete = async (e, imageId) => {
     e.preventDefault();
     dispatch(imageActions.deleteSingleImage(imageId)).then(() => dispatch(imageActions.loadAllListingImages(listing.id)));
   }
 
   return (
-    <>
+    <div className="img-browser-container">
     {
       ownedByCurrUser ? (<div>
       <UploadPicture listingId={listing.id}/>
@@ -58,7 +51,7 @@ const ImageBrowser = ({ listing, user }) => {
       </div>
     )
     }
-     </>
+     </div>
   )
 }
 
