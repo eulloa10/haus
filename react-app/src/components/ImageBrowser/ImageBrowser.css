@@ -9,6 +9,22 @@
 }
 
 .img-browser-container {
-  overflow-x: hidden;
   width: 54vw;
+}
+
+.delete-img-btn {
+  position: relative;
+  top: 7vh;
+  left: 50vw;
+  background-color: #1277e1 ;
+  border: 1px solid white;
+  border-radius: 6px;
+  height: 2.5em;
+  width: 2.5em;
+  color: white;
+}
+
+.trash-icon {
+  height: 1.5em;
+  width: 1.5em;
 }

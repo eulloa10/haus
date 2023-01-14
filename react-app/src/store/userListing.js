@@ -1,11 +1,17 @@
 // constants
 const GET_USER_LISTINGS = 'userListing/GET_USER_LISTINGS';
+const REMOVE_USER_LISTING = 'userListing/REMOVE_USER_LISTING';
 const RESET_USER_LISTINGS = 'userListing/RESET_USER_LISTINGS';
 
 const getUserListings = (userListings) => ({
   type: GET_USER_LISTINGS,
   userListings
 });
+
+export const removeUserListing = (listingId) => ({
+  type: REMOVE_USER_LISTING,
+  listingId
+})
 
 export const getUserOwnedListings = () => async (dispatch) => {
   const res = await fetch('/api/me/listings');
@@ -31,6 +37,9 @@ const userListingReducer = (state = initialState, action) => {
       action.userListings.forEach((listing) => {
         newState[listing.id] = listing;
       });
+      return newState;
+    case REMOVE_USER_LISTING:
+      delete newState[action.listingId]
       return newState;
     case RESET_USER_LISTINGS:
       return initialState

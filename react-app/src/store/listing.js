@@ -44,6 +44,17 @@ export const loadAllListings = () => async (dispatch) => {
   }
 }
 
+export const loadSingleListing = (listingId) => async (dispatch) =>  {
+  const res = await fetch(`/api/listings/${listingId}`)
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(getListing(data.user_listing))
+  } else {
+    throw res;
+  }
+}
+
 export const addUserListing = (listingData) => async (dispatch) => {
   const res = await fetch('/api/listings/', {
     method: 'POST',
@@ -92,6 +103,9 @@ const listingReducer = (state = initialState, action) => {
         newState[listing.id] = listing;
       });
       return newState;
+    // case GET_LISTING:
+    //   newState[action.listing.id] = action.listing;
+    //   return newState;
     case ADD_LISTING:
       newState[action.listing.id] = action.listing;
       return newState;

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {  useDispatch } from 'react-redux'
 import {  useHistory } from 'react-router-dom';
 import './EditListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import * as listingActions from '../../store/listing';
 import UploadPicture from '../UploadPicture';
+import * as userListingActions from '../../store/userListing';
 
 const EditListingForm = ({listing, onClose}) => {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ const EditListingForm = ({listing, onClose}) => {
   let [previewImage, setPreviewImage] = useState(listing.preview_image);
   const [showModal, setShowModal] = useState(true);
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch(userListingActions.getUserOwnedListings());
+  }, [dispatch, listing]);
 
   const editListingHandler = async (e) => {
     address = address.trim();

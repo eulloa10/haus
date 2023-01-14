@@ -5,6 +5,7 @@ import './CreateListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import ListingBrowser from '../ListingBrowser';
 import * as listingActions from '../../store/listing';
+import * as userListingActions from '../../store/userListing';
 
 
 const CreateListingForm = ({onClose}) => {
@@ -57,7 +58,7 @@ const CreateListingForm = ({onClose}) => {
       preview_image: previewImage
     };
 
-    const res = await dispatch(listingActions.addUserListing(newListingData))
+    const res = await dispatch(listingActions.addUserListing(newListingData)).then(() => dispatch(userListingActions.getUserOwnedListings()))
       .then(() => {onClose()}).catch(async (res) => {
         const data = await res.json();
         // if (data.errors) setErrors({...data.errors});

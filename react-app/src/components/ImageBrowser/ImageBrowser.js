@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import UploadPicture from '../UploadPicture';
 import * as imageActions from '../../store/images';
 import './ImageBrowser.css';
+import trashCan from '../../assets/trash_can.svg';
 
 const ImageBrowser = ({ listing, user }) => {
   const dispatch = useDispatch();
@@ -33,8 +34,8 @@ const ImageBrowser = ({ listing, user }) => {
       { listingImages && listingImages.length > 0 &&
         (listingImages.map(image => (
           <>
-          <button key={image.id+1} onClick={(e) => handleDelete(e, image.id)}>DELETE</button>
-          <img className="modal-listing-img" key={image.id} src={image.img_url} alt='listing'/>
+          <button className="delete-img-btn" key={image.id+1} onClick={(e) => handleDelete(e, image.id)}><img className="trash-icon" src={trashCan} alt="delete"/></button>
+          <img className="modal-listing-img delete-img" key={image.id} src={image.img_url} alt='listing'/>
           </>))
         )
       }

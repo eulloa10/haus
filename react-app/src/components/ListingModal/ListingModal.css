@@ -25,7 +25,8 @@
 .modal-listing-img-container {
   grid-column: span 2;
   grid-auto-rows: auto;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .modal-listing-img {

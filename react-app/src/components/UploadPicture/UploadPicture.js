@@ -48,7 +48,7 @@ const UploadPicture = ({listingId}) => {
 
     return (
         <div className="add-img-container">
-            <label className="upload-listing-img-btn" for="add-listing-img-btn">{selectImgButton}</label>
+            <label className="upload-listing-img-btn" htmlFor="add-listing-img-btn">{selectImgButton}</label>
             <form className="add-listing-img-form" onSubmit={handleSubmit}>
                 <input
                 type="file"

@@ -8,6 +8,7 @@ import EditListingModal from '../EditListingModal';
 import Scheduler from '../Scheduler/Scheduler';
 import Favorites from '../Favorites';
 import * as listingActions from '../../store/listing';
+import * as userListingActions from '../../store/userListing';
 import * as userTourActions from '../../store/userTours';
 import UploadPicture from '../UploadPicture';
 import ImageBrowser from '../ImageBrowser';
@@ -25,6 +26,7 @@ const ListingModal = ({ listing }) => {
 
   useEffect(() => {
     dispatch(userTourActions.loadAllTours());
+    dispatch(listingActions.loadAllListings());
  }, [dispatch])
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const ListingModal = ({ listing }) => {
 
   const deleteHandler = async (e) => {
     e.preventDefault();
-    const res = await dispatch(listingActions.deleteUserListing(listing.id));
+    const res = await dispatch(listingActions.deleteUserListing(listing.id)).then(() => dispatch(userListingActions.removeUserListing(listing.id)));
 
     history.push('/me/listings')
   }

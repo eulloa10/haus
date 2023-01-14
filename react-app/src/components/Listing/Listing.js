@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, NavLink, useLocation } from 'react-router-dom';
 import './Listing.css';
 import { Modal } from '../../context/Modal';
 import ListingModal from '../ListingModal/ListingModal';
 import OfferBrowser from '../OfferBrowser/OfferBrowser';
+import * as listingActions from '../../store/listing';
 
 const Listing = ({listing}) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [userListingsOnly, setUserListingsOnly] = useState(false);
   const [tourView, setTourView] = useState(false);
