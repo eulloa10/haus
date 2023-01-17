@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(2, 49vw);
   grid-column-gap: 2vw;
-  margin-top: 12vh;
+  margin-top: 11vh;
   /* border: 2px purple solid; */
   width: 98.5vw;
 }
@@ -13,7 +13,7 @@
   display: grid;
   grid-column-start: 1;
   width: 50vw;
-  height: 88vh;
+  height: 89vh;
   /* border: 2px black solid; */
 }
 
