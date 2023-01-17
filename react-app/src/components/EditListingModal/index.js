@@ -1,11 +1,8 @@
-// import EditListingModal from "./EditListingModal"
-
-// export default EditListingModal;
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import EditListingForm from './EditListingModal';
+import EditListingForm from './EditListingForm';
 import { Link }  from 'react-router-dom';
 import EditLogo from '../../assets/edit.png';
 // import './CreateListingModal.css';
@@ -13,14 +10,14 @@ import EditLogo from '../../assets/edit.png';
 function EditListingModal({listing}) {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
-  const listings = useSelector(state => state.listings);
+  // const listings = useSelector(state => state.listings);
 
 
-  useEffect(() => {
-    return () => {
-      setShowModal(false)
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     setShowModal(false)
+  //   };
+  // }, []);
 
   const openModal = (e) => {
     e.preventDefault();

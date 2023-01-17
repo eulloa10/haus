@@ -27,10 +27,6 @@ const EditListingForm = ({listing, onClose}) => {
   const [showModal, setShowModal] = useState(true);
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(userListingActions.getUserOwnedListings());
-  }, [dispatch, listing]);
-
   const editListingHandler = async (e) => {
     address = address.trim();
     city = city.trim();
@@ -59,16 +55,12 @@ const EditListingForm = ({listing, onClose}) => {
       preview_image: previewImage
     };
 
-    const res = await dispatch(listingActions.editUserListing(listing.id, updatedListingData)).then(() => {onClose()}).catch(async (res) => {
+    const res = await dispatch(userListingActions.editSingleUserListing(listing.id, updatedListingData)).catch(async (res) => {
         const data = await res.json();
         // if (data.errors) setErrors({...data.errors});
       });
 
-
     if (res) {
-      // history.goBack();
-      // setShowModal(false);
-      // history.push(`${match.url}/${listing.id}`)
       onClose();
     }
   }
@@ -309,18 +301,6 @@ const EditListingForm = ({listing, onClose}) => {
             required={true}
           />
         </div>
-        {/* <div className='field-container'>
-          <label className='field-edit-label' htmlFor='previewImage'>Preview Image</label>
-          <input
-            name='previewImage'
-            type='url'
-            placeholder={listing.preview_image}
-            value={previewImage}
-            onChange={updatePreviewImage}
-            className='edit-listing-input'
-            required={true}
-          />
-        </div> */}
          <div className='field-container'>
           <label className='field-edit-label' htmlFor='previewImage'>Preview Image</label>
           <input

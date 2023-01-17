@@ -15,7 +15,7 @@ import ImageBrowser from '../ImageBrowser';
 import OfferBrowser from '../OfferBrowser/OfferBrowser';
 
 
-const ListingModal = ({ listing }) => {
+const ListingModal = ({ listing, onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [isOwned, setIsOwned] = useState(false);
@@ -26,7 +26,8 @@ const ListingModal = ({ listing }) => {
 
   useEffect(() => {
     dispatch(userTourActions.loadAllTours());
-    dispatch(listingActions.loadAllListings());
+    dispatch(userListingActions.getUserOwnedListings());
+    // dispatch(listingActions.loadAllListings());
  }, [dispatch])
 
   useEffect(() => {
@@ -39,17 +40,14 @@ const ListingModal = ({ listing }) => {
     e.preventDefault();
     const res = await dispatch(listingActions.deleteUserListing(listing.id)).then(() => dispatch(userListingActions.removeUserListing(listing.id)));
 
-    history.push('/me/listings')
-  }
-
-  const closeModal = () => {
-    setShowModal(false);
+    if (res) {
+      onClose();
+    }
   }
 
   return (
     <div className="listing-modal">
       <div className="modal-listing-img-container">
-        {/* <img className="modal-listing-img" src={listing.preview_image} alt='home'/> */}
         <ImageBrowser listing={listing} user={user}/>
       </div>
       <div className="listing-info-container">
@@ -126,8 +124,8 @@ const ListingModal = ({ listing }) => {
         <Scheduler listing={listing} userTours={userTours} isOwned={isOwned} user={user}/>
         </div>
         {showModal && (
-        <Modal onClose={closeModal}>
-          <EditListingModal onClose={closeModal} listing={listing}/>
+        <Modal onClose={onClose}>
+          <EditListingModal onClose={onClose} listing={listing}/>
         </Modal>
       )}
     </div>

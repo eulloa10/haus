@@ -10,9 +10,16 @@ import * as listingActions from '../../store/listing';
 const Listing = ({listing}) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+
+  // true if user viewing only their own listings
   const [userListingsOnly, setUserListingsOnly] = useState(false);
+
+  // true if user viewing only listings they have scheduled tours for
   const [tourView, setTourView] = useState(false);
+
+  // true if user viewing all listings
   const [regularView, setRegularView] = useState(false);
+
   const history = useHistory();
   const location = useLocation();
 
@@ -115,7 +122,7 @@ const Listing = ({listing}) => {
       }
       </>
       {showModal && (
-        <Modal onClose={closeModal} children= {<ListingModal listing={listing}/>}>
+        <Modal onClose={closeModal} children= {<ListingModal onClose={closeModal} listing={listing}/>}>
         </Modal>
       )}
     </>
