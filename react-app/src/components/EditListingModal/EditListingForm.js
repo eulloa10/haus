@@ -7,7 +7,7 @@ import * as listingActions from '../../store/listing';
 import UploadPicture from '../UploadPicture';
 import * as userListingActions from '../../store/userListing';
 
-const EditListingForm = ({listing, onClose}) => {
+const EditListingForm = ({ listing, onClose }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   let [address, setAddress] = useState(listing.address);
@@ -55,14 +55,14 @@ const EditListingForm = ({listing, onClose}) => {
       preview_image: previewImage
     };
 
-    const res = await dispatch(userListingActions.editSingleUserListing(listing.id, updatedListingData)).catch(async (res) => {
+    const res = await dispatch(userListingActions.editSingleUserListing(listing.id, updatedListingData)).then(() => dispatch(listingActions.loadAllListings())).then(() => onClose()).catch(async (res) => {
         const data = await res.json();
         // if (data.errors) setErrors({...data.errors});
       });
 
-    if (res) {
-      onClose();
-    }
+    // if (res) {
+    //   onClose();
+    // }
   }
 
   const updateAddress = (e) => {

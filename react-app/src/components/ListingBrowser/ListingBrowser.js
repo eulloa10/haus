@@ -17,6 +17,7 @@ const ListingBrowser = () => {
   const [selectedListing, setSelectedListing] = useState();
   const [tourView, setTourView] = useState(false);
   const [regularView, setRegularView] = useState(false);
+  const [favoriteView, setFavoriteView] = useState(false);
   const location = useLocation();
   const user = useSelector(state => state.session.user);
   const listings = Object.values(useSelector(state => state.listings));
@@ -41,7 +42,13 @@ const ListingBrowser = () => {
       setTourView(false);
     }
 
-    if (tourView === false && userListingsOnly === false) {
+    if (location.pathname.includes('/me/favorites')) {
+      setFavoriteView(true);
+    } else {
+      setFavoriteView(false);
+    }
+
+    if (tourView === false && userListingsOnly === false && favoriteView === false) {
       setRegularView(true);
     } else {
       setRegularView(false);
@@ -49,7 +56,7 @@ const ListingBrowser = () => {
 
     setLoaded(true);
 
-  }, [dispatch, location.pathname, userListingsOnly, history, tourView, regularView]);
+  }, [dispatch, location.pathname, userListingsOnly, history, tourView, regularView, favoriteView]);
 
   const userTourView = (<div className='listing-container'>
           <div className="map-container">
