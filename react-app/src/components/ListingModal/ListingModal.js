@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import './ListingModal.css';
 import DeleteLogo from '../../assets/Hide.svg';
 import { Modal } from '../../context/Modal';
@@ -13,6 +13,8 @@ import * as userTourActions from '../../store/userTours';
 import UploadPicture from '../UploadPicture';
 import ImageBrowser from '../ImageBrowser';
 import OfferBrowser from '../OfferBrowser/OfferBrowser';
+import HouseLogo from '../../assets/house_letter.png';
+import redDot from '../../assets/red_circle.png';
 
 
 const ListingModal = ({ listing, onClose }) => {
@@ -52,17 +54,23 @@ const ListingModal = ({ listing, onClose }) => {
       </div>
       <div className="listing-info-container">
         <div className="listing-options">
+          <div className="listing-logo-container">
+            <img className="listing-logo-img" src={HouseLogo} alt='Haus Logo'/>
+            <span className="listing-logo-name">
+              Haus
+            </span>
+          </div>
           {
             isOwned && (
-              <>
-              <div className="edit-listing listing-option-btn">
-                <EditListingModal listing={listing}/>
+              <div className="listing-actions">
+                <div>
+                  <EditListingModal listing={listing}/>
+                </div>
+                <button className="delete-listing-btn" onClick={deleteHandler}>
+                  {/* <img className="delete-listing-btn-img" src={DeleteLogo} alt="delete"/> */}
+                  <span className='delete-listing-btn-text'>DELETE</span>
+                </button>
               </div>
-              <button className="delete-listing listing-option-btn" onClick={deleteHandler}>
-                <img className="listing-options-img" src={DeleteLogo} alt="delete"/>
-                Delete
-              </button>
-              </>
             )
         }
         {
@@ -116,12 +124,31 @@ const ListingModal = ({ listing, onClose }) => {
               {listing.zip_code}
             </li>
           </ul>
-          <h3 className="modal-address-description-header">Overview</h3>
+          <div className="sale-status-container">
+            <img className="sale-status-img" src={redDot} alt="sale status indicator"/>
+            {isOwned ? (<span className="sale-status-description">For sale - listed by you</span>) : <span className="sale-status-description">For sale</span>}
+          </div>
+          <div className="listing-addl-info-container">
+          <div className="listing-info-nav-container">
+            <ul className="listing-info-nav">
+              <a href="#overview" className="listing-info-nav-item">
+                Overview
+              </a>
+              <a href="#tours" className="listing-info-nav-item">
+                Tours
+              </a>
+              <a href="#offers" className="listing-info-nav-item">
+                Offers
+              </a>
+            </ul>
+          </div>
+        </div>
+          <h3 id="overview" className="modal-address-description-header">Overview</h3>
           <div className="modal-address-description">
             {listing.description}
           </div>
         {/* <OfferBrowser listing={listing} user={user}/> */}
-        <Scheduler listing={listing} userTours={userTours} isOwned={isOwned} user={user}/>
+        <Scheduler id="tours" listing={listing} userTours={userTours} isOwned={isOwned} user={user}/>
         </div>
         {showModal && (
         <Modal onClose={onClose}>

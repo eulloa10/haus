@@ -33,9 +33,9 @@ function EditListingModal({listing}) {
 
   return (
     <>
-      <NavLink to={`/me/listings/${listing.id}/edit`} onClick={openModal} className="edit-listing listing-option-btn">
-                  <img className="listing-options-img" src={EditLogo} alt="edit"/>
-                  <span>Edit</span>
+      <NavLink to={`/me/listings/${listing.id}/edit`} onClick={openModal} className="edit-btn">
+                  <img className="edit-option-img" src={EditLogo} alt="edit"/>
+                  <span className="edit-option-text">Edit</span>
       </NavLink>
       {showModal && (
         <>

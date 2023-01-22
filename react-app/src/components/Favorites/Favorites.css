@@ -1,6 +1,9 @@
-.fav-container {
+/* .fav-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   margin-top: 2vh;
-}
+} */
 
 .fav-listing-btn {
   background: none;
@@ -13,4 +16,12 @@
 
 .fav-btn-text {
   font-size: 1.25em;
+  color: #1277e1;
+  margin-right: .25em;
+}
+
+.fav-img {
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: .25em;
 }
