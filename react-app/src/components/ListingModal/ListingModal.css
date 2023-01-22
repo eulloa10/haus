@@ -52,11 +52,6 @@
   height: 8vh;
   border-bottom: 1px #e6e6e6 solid;
   margin-bottom: 1.5em;
-  /* margin-bottom: 3%;
-  padding-right: 3%;
-  padding-bottom: 1%;
-  padding-top: 1%; */
-  /* border: 2px blue solid; */
 }
 
 .listing-actions {
@@ -143,6 +138,7 @@
 .modal-address-description-header {
   margin-left: 3%;
   font-weight: 900;
+  margin-bottom: 0.5em;
 }
 
 .listing-specs {
@@ -306,6 +302,7 @@
   margin-block: 0;
   margin-left: 3%;
   margin-top: 1em;
+  border-bottom: 1px #e6e6e6 solid;
 }
 
 .listing-detail-item {
