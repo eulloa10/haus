@@ -161,10 +161,6 @@ const ListingModal = ({ listing, onClose }) => {
             <img className="listing-detail-item-img" src={priceSqft} alt="price sqft icon"/>
             <span>${Math.round(listing.price/listing.sqft)} price/sqft</span>
           </li>
-          <li className="listing-detail-item">
-
-          </li>
-
         </ul>
           <h3 id="overview" className="modal-address-description-header">Overview</h3>
           <div className="modal-address-description">
