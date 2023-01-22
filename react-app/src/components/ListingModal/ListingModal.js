@@ -15,6 +15,8 @@ import ImageBrowser from '../ImageBrowser';
 import OfferBrowser from '../OfferBrowser/OfferBrowser';
 import HouseLogo from '../../assets/house_letter.png';
 import redDot from '../../assets/red_circle.png';
+import homeType from '../../assets/home_type.svg';
+import priceSqft from '../../assets/price_sqft.svg';
 
 
 const ListingModal = ({ listing, onClose }) => {
@@ -128,21 +130,42 @@ const ListingModal = ({ listing, onClose }) => {
             <img className="sale-status-img" src={redDot} alt="sale status indicator"/>
             {isOwned ? (<span className="sale-status-description">For sale - listed by you</span>) : <span className="sale-status-description">For sale</span>}
           </div>
+          {
+            !isOwned && (<button className="tour-sched-btn">
+              Request a tour
+            </button>)
+          }
           <div className="listing-addl-info-container">
           <div className="listing-info-nav-container">
             <ul className="listing-info-nav">
               <a href="#overview" className="listing-info-nav-item">
                 Overview
               </a>
-              <a href="#tours" className="listing-info-nav-item">
-                Tours
-              </a>
+              {
+                !isOwned && (<a href="#tours" className="listing-info-nav-item">
+                  Tours
+                </a>)
+              }
               <a href="#offers" className="listing-info-nav-item">
                 Offers
               </a>
             </ul>
           </div>
         </div>
+        <ul className="listing-detail-icons-container">
+          <li className="listing-detail-item">
+            <img className="listing-detail-item-img" src={homeType} alt="home type icon"/>
+            <span>{listing.type}</span>
+          </li>
+          <li className="listing-detail-item pricesqft">
+            <img className="listing-detail-item-img" src={priceSqft} alt="price sqft icon"/>
+            <span>${Math.round(listing.price/listing.sqft)} price/sqft</span>
+          </li>
+          <li className="listing-detail-item">
+
+          </li>
+
+        </ul>
           <h3 id="overview" className="modal-address-description-header">Overview</h3>
           <div className="modal-address-description">
             {listing.description}

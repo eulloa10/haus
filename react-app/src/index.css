@@ -1,4 +1,9 @@
 /* TODO Add site wide styles */
+* {
+  padding-inline: 0;
+  margin-block: 0;
+}
+
 html, body {
   margin: 0px;
   padding: 0px;
