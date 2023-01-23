@@ -1,0 +1,74 @@
+.scheduler-tabler {
+  border: 1px solid black;
+  margin-bottom: 20px;
+  padding-right: 1%;
+  padding-left: 5%;
+}
+
+.scheduler-row, .scheduler-cell {
+  border: 1px solid black;
+}
+
+.close-modal-btn {
+  background-color: white;
+  border: none;
+  font-size: 1.25em;
+  height: 5vh;
+  width: 3vw;
+  margin-right: .5em;
+  border-radius: 50%;
+}
+
+.close-modal-btn:hover {
+  background: #e6e6e6;
+}
+
+.modal-sched-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px #e6e6e6 solid;
+  height: 8vh;
+  width: 30vw;
+}
+
+.tour-scheduler-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 85vh;
+  width: 30vw;
+}
+
+.scheduled-tour-detail {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: bolder;
+}
+
+.schedule-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25em;
+  font-weight: 900;
+  width:27vw;
+  height: 8vh;
+  margin-left: 2em;
+}
+
+.schedule-form {
+  margin-bottom: 4em;
+}
+
+.select-time-heading {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.schedule-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

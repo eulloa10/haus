@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import './ListingModal.css';
-import DeleteLogo from '../../assets/Hide.svg';
 import { Modal } from '../../context/Modal';
 import EditListingModal from '../EditListingModal';
-import Scheduler from '../Scheduler/Scheduler';
 import Favorites from '../Favorites';
 import * as listingActions from '../../store/listing';
 import * as userListingActions from '../../store/userListing';
 import * as userTourActions from '../../store/userTours';
-import UploadPicture from '../UploadPicture';
 import ImageBrowser from '../ImageBrowser';
 import OfferBrowser from '../OfferBrowser/OfferBrowser';
 import HouseLogo from '../../assets/house_letter.png';
 import redDot from '../../assets/red_circle.png';
 import homeType from '../../assets/home_type.svg';
 import priceSqft from '../../assets/price_sqft.svg';
+import TourSchedulerModal from '../TourScheduler';
 
 
 const ListingModal = ({ listing, onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [isOwned, setIsOwned] = useState(false);
+  const [hasTour, setHasTour] = useState(false);
+  const [currentTourInfo, setCurrentTourInfo] = useState(null);
   const user = useSelector(state => state.session.user);
   const userTours = Object.values(useSelector(state => state.userTours));
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +31,6 @@ const ListingModal = ({ listing, onClose }) => {
   useEffect(() => {
     dispatch(userTourActions.loadAllTours());
     dispatch(userListingActions.getUserOwnedListings());
-    // dispatch(listingActions.loadAllListings());
  }, [dispatch])
 
   useEffect(() => {
@@ -39,6 +38,18 @@ const ListingModal = ({ listing, onClose }) => {
       setIsOwned(true);
     }
   }, [listing, location, user]);
+
+  useEffect(() => {
+    for (let key in userTours) {
+      if (userTours[key].listing_id === listing.id) {
+        setHasTour(true);
+        setCurrentTourInfo(userTours[key]);
+        break;
+      }
+    }
+  }, [listing.id, userTours]);
+
+  console.log("CURRENTTOURINFO", currentTourInfo)
 
   const deleteHandler = async (e) => {
     e.preventDefault();
@@ -69,7 +80,6 @@ const ListingModal = ({ listing, onClose }) => {
                   <EditListingModal listing={listing}/>
                 </div>
                 <button className="delete-listing-btn" onClick={deleteHandler}>
-                  {/* <img className="delete-listing-btn-img" src={DeleteLogo} alt="delete"/> */}
                   <span className='delete-listing-btn-text'>DELETE</span>
                 </button>
               </div>
@@ -131,9 +141,7 @@ const ListingModal = ({ listing, onClose }) => {
             {isOwned ? (<span className="sale-status-description">For sale - listed by you</span>) : <span className="sale-status-description">For sale</span>}
           </div>
           {
-            !isOwned && (<button className="tour-sched-btn">
-              Request a tour
-            </button>)
+            !isOwned && <TourSchedulerModal listing={listing} userTours={userTours} isOwned={isOwned} user={user} hasTour={hasTour} currentTourInfo={currentTourInfo} setHasTour={setHasTour}/>
           }
           <div className="listing-addl-info-container">
           <div className="listing-info-nav-container">
@@ -166,8 +174,16 @@ const ListingModal = ({ listing, onClose }) => {
           <div className="modal-address-description">
             {listing.description}
           </div>
-        {/* <OfferBrowser listing={listing} user={user}/> */}
-        <Scheduler id="tours" listing={listing} userTours={userTours} isOwned={isOwned} user={user}/>
+        <div className="tour-info-container">
+          <h3 className="tour-info-heading">Tours Scheduled</h3>
+          {!isOwned && hasTour && (
+          <span>
+            {currentTourInfo.tour_start_date}
+          </span>)
+          }
+          {!isOwned && !hasTour && (<span>No Tour Scheduled</span>)
+          }
+        </div>
         </div>
         {showModal && (
         <Modal onClose={onClose}>
