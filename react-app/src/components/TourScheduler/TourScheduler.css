@@ -58,6 +58,30 @@
   margin-left: 2em;
 }
 
+.tour-sched-btn {
+  margin-left: 3%;
+  height: 5vh;
+  width: 20vw;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  background-color: #1277e1;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tour-adjustment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .schedule-form {
   margin-bottom: 4em;
 }
@@ -71,4 +95,72 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.calendar {
+  background: #1276e127;
+  color: black;
+  border: 2px #1277e1 solid;
+  border-radius: 3px;
+  width: 25vw;
+  height: 5vh;
+  margin-bottom: 1em;
+}
+
+.time-selector {
+  background: white;
+  color: black;
+  border: 1px black solid;
+  border-radius: 3px;
+  width: 25.5vw;
+  height: 5vh;
+}
+
+.time-selector:hover {
+  border: 1px #1277e1 solid;
+}
+
+.time-selector:focus {
+  outline: 4px #1292e1c9  solid;
+}
+
+.tour-submit-btn {
+  margin-top: 2em;
+  background-color: #1277e1;
+  color: white;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  height: 6vh;
+  width: 25.5vw;
+}
+
+.tour-modal-preview-img {
+  margin-left: 5%;
+  height: 35vh;
+  width: 27vw;
+  border-radius: 4px;
+}
+
+.scheduled-tour-info {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  font-weight: bolder;
+}
+
+.tour-description-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  margin-bottom: 1em;
+  width: 30vw;
+  height: 8vh;
+  border-bottom: 1px #e6e6e6 solid;
+}
+
+.tour-btn-details {
+  font-size: 0.8em;
+  font-weight: 100;
 }

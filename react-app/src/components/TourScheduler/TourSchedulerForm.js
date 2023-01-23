@@ -33,7 +33,12 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
   let minDate = minCalOption.getDate();
   let minMonth = minCalOption.getMonth() + 1;
   let minYear = minCalOption.getFullYear();
+
+  if (minMonth < 10) minMonth = `0${minMonth}`;
+
   let minDateString = `${minYear}-${minMonth}-${minDate}`
+
+  console.log("MINDATE", minDateString);
 
   // let today = new Date();
   // const time = today.toLocaleString("en-US", {
@@ -76,7 +81,7 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
 
   const scheduleForm =
     (<form className="schedule-form">
-      <h4 className="select-time-heading">Select a preferred date</h4>
+      <h4 className="select-time-heading">Select a preferred time</h4>
       <div>
         <input
           name="tourDate"
@@ -89,8 +94,7 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
         />
       </div>
       <div className="time-submit">
-      {tourDate && (<>
-        <h4>Select a time</h4>
+      <>
         <span>
           <select id="time" name="time" required onChange={(e) => setTourTime(e.target.value)} defaultValue="9am" className="time-selector">
             <option>9am</option>
@@ -106,9 +110,8 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
           </select>
         </span>
       </>
-      )}
       { tourDate && tourTime &&
-          (<button className="tour-submit-btn" type="submit" onClick={hasTour ? rescheduleTourHandler : bookAppointmentHandler}>Schedule</button>)
+          (<button className="tour-submit-btn" type="submit" onClick={hasTour ? rescheduleTourHandler : bookAppointmentHandler}>Request this time</button>)
       }
     </div>
     </form>);
@@ -116,14 +119,18 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
   return (
     <>
       { user && !isOwned && hasTour && !reschedule && (
-        <>
-        <h3 className="modal-address-description-header">Tour Scheduled</h3>
+        <div className="tour-adjustment-container">
+        <h3 className="tour-description-header">Tour Details</h3>
         <ul className="tour-summary">
           <li className="scheduled-tour-detail">
             <div className="scheduled-tour-info">
-              <span>{currentTourInfo.tour_start_date}</span>
+              <span>
+                {currentTourInfo.tour_start_date.split(" ").slice(0,4).join(" ")}
+              </span>
               <span>@</span>
-              <span> {currentTourInfo.tour_time_slot}</span>
+              <span>
+                {currentTourInfo.tour_time_slot}
+              </span>
             </div>
           </li>
         </ul>
@@ -131,7 +138,7 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
           <button className="reschedule-tour-btn" onClick={rescheduleButtonHandler}>Reschedule</button>
           <button className="cancel-tour-btn" onClick={cancelTourHandler}>Cancel tour</button>
         </div>
-        </>
+        </div>
       )}
       { user && !isOwned && !hasTour &&
         (
@@ -145,6 +152,7 @@ const TourSchedulerForm = ({ listing, userTours, isOwned, user, hasTour, current
           <div className="schedule-form-container">
           {scheduleForm}
           </div>
+          <img className="tour-modal-preview-img" src={listing.preview_image} alt="listing preview"/>
         </div>
         )
       }

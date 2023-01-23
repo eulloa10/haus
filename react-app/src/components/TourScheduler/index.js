@@ -4,6 +4,11 @@ import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import TourSchedulerForm from './TourSchedulerForm';
 
+// const formatTourDate = (dateString) => {
+//   dateString.split(" ");
+
+// }
+
 
 const TourSchedulerModal = ({ listing, userTours, isOwned, user, hasTour, currentTourInfo, setHasTour }) => {
   const history = useHistory();
@@ -20,9 +25,17 @@ const TourSchedulerModal = ({ listing, userTours, isOwned, user, hasTour, curren
 
   return (
     <>
-      <button className="tour-sched-btn" onClick={openModal}>
-        Request a tour
-      </button>
+      {
+        hasTour ? (<button className="tour-sched-btn" onClick={openModal}>
+        <span>Manage Tour:</span>
+        <span className="tour-btn-details">
+        {currentTourInfo.tour_start_date.split(" ").slice(0,4).join(" ")} @ {currentTourInfo.tour_time_slot}
+        </span>
+      </button>) : (<button className="tour-sched-btn" onClick={openModal}>
+          Request a Tour
+        </button>)
+      }
+
       {showModal && (
         <>
           <Modal onClose={closeModal}>

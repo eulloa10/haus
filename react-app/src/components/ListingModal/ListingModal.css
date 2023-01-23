@@ -135,12 +135,6 @@
   margin-right: 3%;
 }
 
-.modal-address-description-header {
-  margin-left: 3%;
-  font-weight: 900;
-  margin-bottom: 0.5em;
-}
-
 .listing-specs {
   width: 35vw;
   margin-bottom: 0.5em;
@@ -156,16 +150,7 @@
   align-items:flex-start;
 }
 
-.tour-submit-btn {
-  margin-top: 2em;
-  background-color: #1277e1;
-  color: white;
-  font-size: 1em;
-  border: none;
-  border-radius: 4px;
-  height: 4vh;
-  width: 8vw;
-}
+
 
 .reschedule-tour-btn {
   margin-top: 1em;
@@ -190,26 +175,6 @@
   border: none;
   border-radius: 4px;
   height: 4vh;
-  width: 10vw;
-}
-
-.scheduled-tour-info {
-  font-weight: bolder;
-}
-
-.calendar {
-  background: white;
-  color: black;
-  border: 1px black solid;
-  border-radius: 3px;
-  width: 10vw;
-}
-
-.time-selector {
-  background: white;
-  color: black;
-  border: 1px black solid;
-  border-radius: 3px;
   width: 10vw;
 }
 
@@ -266,19 +231,6 @@
 
 .listing-info-nav-item:hover {
   color: #1277e1;
-}
-
-.tour-sched-btn {
-  margin-left: 3%;
-  height: 5vh;
-  width: 20vw;
-  margin-top: 0.5em;
-  margin-bottom: 1em;
-  background-color: #1277e1;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-size: 1em;
 }
 
 .listing-detail-icons-container {
