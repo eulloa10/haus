@@ -34,6 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+[Live Link](https://house-me.onrender.com/)
 
 [![Harmonious-Voices](/screenshots/haus_splash.png "Hause")](https://house-me.onrender.com)
 
