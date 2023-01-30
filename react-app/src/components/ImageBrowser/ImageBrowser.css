@@ -2,7 +2,6 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fill, 45%);
 }
 
@@ -16,23 +15,27 @@
   border: none;
 }
 
-/* .img-browser-container {
-  width: 54vw;
-} */
-
 .delete-img-btn {
-  position: relative;
-  top: 10%;
-  left: 92%;
   background-color: #1277e1 ;
   border: 1px solid white;
   border-radius: 6px;
+  color: white;
   height: 2.5em;
   width: 2.5em;
-  color: white;
 }
 
 .trash-icon {
-  height: 1.5em;
-  width: 1.5em;
+  height: 100%;
+  width: 100%;
+  padding: .25em;
+}
+
+.image-trash-layered {
+  position: relative;
+}
+
+.image-trash-layered .delete-img-btn {
+  position: absolute;
+  top: 3%;
+  right: 3%;
 }

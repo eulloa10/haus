@@ -27,19 +27,15 @@ const ImageBrowser = ({ listing, user }) => {
 
   return (
     <div className="img-browser-container">
-      {/* { ownedByCurrUser && (<div>
-        <UploadPicture listingId={listing.id}/>
-      </div>)
-      } */}
     {
       ownedByCurrUser ? (<div>
       <img className="modal-listing-img" src={listing.preview_image} alt="preview"/>
       { listingImages && listingImages.length > 0 &&
         (listingImages.map(image => (
-          <>
-          <button className="delete-img-btn" key={image.id+1} onClick={(e) => handleDelete(e, image.id)}><img className="trash-icon" src={trashCan} alt="delete"/></button>
-          <img className="modal-listing-img delete-img" key={image.id} src={image.img_url} alt='listing'/>
-          </>))
+          <div className="image-trash-layered">
+            <button className="delete-img-btn" key={image.id+1} onClick={(e) => handleDelete(e, image.id)}><img className="trash-icon" src={trashCan} alt="delete"/></button>
+            <img className="modal-listing-img delete-img" key={image.id} src={image.img_url} alt='listing'/>
+          </div>))
         )
       }
     </div>) : (
