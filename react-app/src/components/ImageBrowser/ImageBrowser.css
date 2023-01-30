@@ -1,3 +1,10 @@
+.img-browser-container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 50%);
+}
+
 .add-listing-img {
   width: 20vw;
   height: 30vh;
@@ -8,14 +15,14 @@
   border: none;
 }
 
-.img-browser-container {
+/* .img-browser-container {
   width: 54vw;
-}
+} */
 
 .delete-img-btn {
   position: relative;
-  top: 7vh;
-  left: 50vw;
+  top: 10%;
+  left: 92%;
   background-color: #1277e1 ;
   border: 1px solid white;
   border-radius: 6px;

@@ -80,6 +80,9 @@ const ListingBrowser = () => {
         <Map />
       </div>
       <div className='listing-box-container'>
+      <div className="listing-browser-header-container">
+        <h2>Real Estate & Homes For Sale</h2>
+      </div>
         {
           listings.map(listing => (
             <div className="listing" key={listing.id}>

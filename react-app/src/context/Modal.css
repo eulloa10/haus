@@ -7,6 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
 }
 
 #modal-background {
@@ -19,7 +22,8 @@
 }
 
 #modal-content {
-  position: absolute;
+  position: fixed;
   background-color:white;
-  border-radius: 8px;
+  height: 100%;
+  width: 65%;
 }
