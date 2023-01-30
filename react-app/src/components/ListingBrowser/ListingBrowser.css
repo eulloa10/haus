@@ -1,32 +1,32 @@
 .listing-container {
-  width: auto;
   display: grid;
-  grid-template-columns: repeat(2, 49vw);
-  grid-column-gap: 2vw;
-  margin-top: 11vh;
-  /* border: 2px purple solid; */
-  width: 98.5vw;
+  grid-template-columns: 55% 45%;
+  grid-column-gap: 0.25%;
+  margin-top: 5%;
+  width: auto;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .map-container {
   position: fixed;
   display: grid;
   grid-column-start: 1;
-  width: 50vw;
-  height: 89vh;
-  /* border: 2px black solid; */
+  width: 55%;
+  height: 100%;
 }
 
 .listing-box-container {
   display: grid;
   grid-column-start: 2;
-  grid-template-columns: repeat(2, 1fr);
-  /* grid-auto-rows: minmax(270px, auto);
-  grid-auto-columns: minmax(100px, auto); */
-  grid-gap: 0.5em;
-  /* border: 2px red solid; */
-  width: 47.5vw;
+  grid-auto-rows: 30%;
+  grid-template-columns: repeat(2, 50%);
+  height: 90%;
+  width: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
+  justify-items: center;
+  align-items: baseline;
 }
 
 .listing-box-container-user {
@@ -40,20 +40,9 @@
 }
 
 .listing {
-  /* border: black 1px solid; */
   box-shadow: 2px 2px 2px 1px #e6e6e6;
-  border-radius:4px;
+  border-radius: 6px;
   border: 1px #e6e6e6 solid;
-  width: 23vw;
+  width: 95%;
+  height: 95%;
 }
-
-/* .add-listing {
-  position: absolute;
-  top: 3vh;
-  right: 15vw;
-  background: #1277e1;
-  border-radius: 4px;
-  color: white;
-  font-size: 1em;
-  padding: 0.5em;
-} */

@@ -13,8 +13,8 @@ const Map = () => {
   const [mapKey, setMapKey] = useState();
 
   const containerStyle = {
-    width: '50vw',
-    height: '89vh'
+    width: '100%',
+    height: '90%'
   };
 
   const center = {
