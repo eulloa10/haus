@@ -54,16 +54,10 @@
  display: flex;
  justify-content: center;
  align-items: center;
- height: 8vh;
+ height: 100%;
  padding: 0;
 }
 
 .edit-option-img {
-  height: 1em;
-  width: 1em;
-  margin-right: .25em;
-}
-.edit-option-text {
-  color: #1277e1;
-  font-size: 1em;
+  height: 90%;
 }

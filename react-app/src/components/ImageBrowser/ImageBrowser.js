@@ -27,9 +27,12 @@ const ImageBrowser = ({ listing, user }) => {
 
   return (
     <div className="img-browser-container">
+      {/* { ownedByCurrUser && (<div>
+        <UploadPicture listingId={listing.id}/>
+      </div>)
+      } */}
     {
       ownedByCurrUser ? (<div>
-      <UploadPicture listingId={listing.id}/>
       <img className="modal-listing-img" src={listing.preview_image} alt="preview"/>
       { listingImages && listingImages.length > 0 &&
         (listingImages.map(image => (

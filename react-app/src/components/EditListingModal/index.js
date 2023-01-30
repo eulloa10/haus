@@ -10,14 +10,6 @@ import EditLogo from '../../assets/edit.png';
 function EditListingModal({listing}) {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
-  // const listings = useSelector(state => state.listings);
-
-
-  // useEffect(() => {
-  //   return () => {
-  //     setShowModal(false)
-  //   };
-  // }, []);
 
   const openModal = (e) => {
     e.preventDefault();
@@ -35,7 +27,6 @@ function EditListingModal({listing}) {
     <>
       <NavLink to={`/me/listings/${listing.id}/edit`} onClick={openModal} className="edit-btn">
                   <img className="edit-option-img" src={EditLogo} alt="edit"/>
-                  <span className="edit-option-text">Edit</span>
       </NavLink>
       {showModal && (
         <>

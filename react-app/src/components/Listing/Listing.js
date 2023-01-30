@@ -121,8 +121,15 @@ const Listing = ({listing}) => {
         )
       }
       </>
-      {showModal && (
+      {/* {showModal && (
         <Modal onClose={closeModal} children= {<ListingModal onClose={closeModal} listing={listing}/>}>
+        </Modal>
+      )} */}
+        {showModal && (
+        <Modal onClose={closeModal}>
+          <div className="listing-modal-container">
+            <ListingModal onClose={closeModal} listing={listing}/>
+          </div>
         </Modal>
       )}
     </>

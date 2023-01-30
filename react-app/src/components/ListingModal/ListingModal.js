@@ -14,7 +14,9 @@ import HouseLogo from '../../assets/house_letter.png';
 import redDot from '../../assets/red_circle.png';
 import homeType from '../../assets/home_type.svg';
 import priceSqft from '../../assets/price_sqft.svg';
+import trashListing from '../../assets/trash_can_listing.svg';
 import TourSchedulerModal from '../TourScheduler';
+import ImageUploadModal from '../ImageUpload';
 
 
 const ListingModal = ({ listing, onClose }) => {
@@ -76,11 +78,10 @@ const ListingModal = ({ listing, onClose }) => {
           {
             isOwned && (
               <div className="listing-actions">
-                <div>
-                  <EditListingModal listing={listing}/>
-                </div>
+                <ImageUploadModal listingId={listing.id} isOwned={isOwned}/>
+                <EditListingModal listing={listing}/>
                 <button className="delete-listing-btn" onClick={deleteHandler}>
-                  <span className='delete-listing-btn-text'>DELETE</span>
+                  <img className="trash-listing-img" src={trashListing} alt="delete listing" />
                 </button>
               </div>
             )
