@@ -65,13 +65,13 @@ const Listing = ({listing}) => {
     </h3>
     <ul className="listing-details-list">
       <li className="listing-detail">
-        {listing.beds} bds |
+        <span className="bold-listing-nums">{listing.beds}</span> bds |
       </li>
       <li className="listing-detail">
-        {listing.baths} ba |
+        <span className="bold-listing-nums">{listing.baths}</span> ba |
       </li>
       <li className="listing-detail">
-        {listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} sqft
+        <span className="bold-listing-nums">{listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span> sqft
       </li>
       <li className="listing-detail">
         - {listing.type} for sale

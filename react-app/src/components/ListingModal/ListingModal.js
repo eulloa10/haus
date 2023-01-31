@@ -94,52 +94,50 @@ const ListingModal = ({ listing, onClose }) => {
           )
         }
         </div>
-        <div className="listing-specs">
-          <span className="listing-modal-price">
-            ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </span>
-          <span className="modal-spec">
-            {listing.beds}
-          </span>
-          <span>
-            bd
-          </span>
-          <span className="modal-divider">
-            |
-          </span>
-          <span className="modal-spec">
-            {listing.baths}
-          </span>
-          <span>
-            ba
-          </span>
-          <span className="modal-divider">
-            |
-          </span>
-          <span className="modal-spec">
-            {listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </span>
-          <span>
-            sqft
-          </span>
-        </div>
-          <ul className="modal-address-list">
-            <li className="modal-address">
-              {listing.address},
-            </li>
-            <li className="modal-address">
-              {listing.city},
-            </li>
-            <li className="modal-address">
-              {listing.state}
-            </li>
-            <li>
-              {listing.zip_code}
-            </li>
-          </ul>
-          <div className="sale-status-container">
-            <img className="sale-status-img" src={redDot} alt="sale status indicator"/>
-            {isOwned ? (<span className="sale-status-description">For sale - listed by you</span>) : <span className="sale-status-description">For sale</span>}
+        <div className="listing-top-container">
+          <div className="listing-specs">
+            <span className="listing-modal-price">
+              ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </span>
+            <div className="bed-bath-sqft-container">
+              <span className="modal-spec divider-adj">
+                {listing.beds}
+              </span>
+              <span className="modal-divider">
+                bd
+              </span>
+              <span className="modal-spec">
+                {listing.baths}
+              </span>
+              <span className="modal-divider">
+                ba
+              </span>
+              <span className="modal-spec">
+                {listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
+              <span>
+                sqft
+              </span>
+            </div>
+          </div>
+            <ul className="modal-address-list">
+              <li>
+                {listing.address},
+              </li>
+              <li className="modal-address-spacing">
+                {listing.city},
+              </li>
+              <li className="modal-address-spacing">
+                {listing.state}
+              </li>
+              <li className="modal-address-spacing">
+                {listing.zip_code}
+              </li>
+            </ul>
+            <div className="sale-status-container">
+              <img className="sale-status-img" src={redDot} alt="sale status indicator"/>
+              {isOwned ? (<span className="sale-status-description">For sale - listed by you</span>) : <span className="sale-status-description">For sale</span>}
+            </div>
           </div>
           {
             user && !isOwned && <TourSchedulerModal listing={listing} userTours={userTours} isOwned={isOwned} user={user} hasTour={hasTour} currentTourInfo={currentTourInfo} setHasTour={setHasTour}/>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
-import UploadPicture from '../UploadPicture';
 import * as imageActions from '../../store/images';
 import './OfferBrowser.css';
 

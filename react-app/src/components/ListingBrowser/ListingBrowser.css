@@ -55,4 +55,10 @@
   height: 100%;
   width: 99%;
   padding-left: 1%;
+  padding-top: 1%;
+}
+
+.listing-browser-header {
+  font-size: 1.4em;
+  font-weight: 600;
 }

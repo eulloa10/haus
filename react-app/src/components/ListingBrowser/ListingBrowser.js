@@ -81,7 +81,7 @@ const ListingBrowser = () => {
       </div>
       <div className='listing-box-container'>
       <div className="listing-browser-header-container">
-        <h2>Real Estate & Homes For Sale</h2>
+        <h1 className="listing-browser-header">Real Estate & Homes For Sale</h1>
       </div>
         {
           listings.map(listing => (

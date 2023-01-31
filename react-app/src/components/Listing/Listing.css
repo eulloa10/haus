@@ -31,7 +31,7 @@
 
 .listing-price {
   font-size: 1.4em;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .listing-details-list {
@@ -63,4 +63,8 @@
 .listing-detail, .listing-address-detail {
   font-size: 1em;
   margin-right: 0.25em;
+}
+
+.bold-listing-nums {
+  font-weight: 600;
 }

@@ -4,7 +4,6 @@ import {  useHistory } from 'react-router-dom';
 import './EditListingModal.css';
 import ListingModal from '../ListingModal/ListingModal';
 import * as listingActions from '../../store/listing';
-import UploadPicture from '../UploadPicture';
 import * as userListingActions from '../../store/userListing';
 
 const EditListingForm = ({ listing, onClose }) => {
