@@ -143,30 +143,32 @@ const ListingModal = ({ listing, onClose }) => {
             user && !isOwned && <TourSchedulerModal listing={listing} userTours={userTours} isOwned={isOwned} user={user} hasTour={hasTour} currentTourInfo={currentTourInfo} setHasTour={setHasTour}/>
           }
           <div className="listing-addl-info-container">
-          <div className="listing-info-nav-container">
-            <ul className="listing-info-nav">
-              <a href="#overview" className="listing-info-nav-item">
-                Overview
-              </a>
-              {
-                !isOwned && (<a href="#tours" className="listing-info-nav-item">
-                  Tours
-                </a>)
-              }
-              <a href="#offers" className="listing-info-nav-item">
-                Offers
-              </a>
-            </ul>
-          </div>
+            <span className="listing-scroll-spacing">
+            </span>
+            <div className="listing-info-nav-container">
+              <ul className="listing-info-nav">
+                <a href="#overview" className="listing-info-nav-item">
+                  Overview
+                </a>
+                {
+                  !isOwned && (<a href="#tours" className="listing-info-nav-item">
+                    Tours
+                  </a>)
+                }
+                <a href="#offers" className="listing-info-nav-item">
+                  Offers
+                </a>
+              </ul>
+            </div>
         </div>
         <ul className="listing-detail-icons-container">
           <li className="listing-detail-item">
             <img className="listing-detail-item-img" src={homeType} alt="home type icon"/>
-            <span>{listing.type}</span>
+            <span className="listing-detail-item-text">{listing.type}</span>
           </li>
-          <li className="listing-detail-item pricesqft">
-            <img className="listing-detail-item-img" src={priceSqft} alt="price sqft icon"/>
-            <span>${Math.round(listing.price/listing.sqft)} price/sqft</span>
+          <li className="listing-detail-item">
+            <img className="listing-detail-item-img pricesqft" src={priceSqft} alt="price sqft icon"/>
+            <span className="listing-detail-item-text">${Math.round(listing.price/listing.sqft)} price/sqft</span>
           </li>
         </ul>
           <h3 id="overview" className="modal-address-description-header">Overview</h3>
