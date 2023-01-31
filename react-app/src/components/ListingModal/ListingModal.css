@@ -301,3 +301,29 @@
 .listing-scroll-spacing {
   height: 100%;
 }
+
+.listing-bottom-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+  width: 100%;
+}
+
+.overview-container {
+  width: 100%;
+}
+
+.bottom-header-text {
+  height: 20%;
+  width: 100%;
+  padding: 5% 5% 5% 0;
+}
+
+.overview-description {
+  width: 100%;
+  padding: 5% 5% 5% 0;
+}
+
+.tour-container-info {
+  width: 100%;
+}

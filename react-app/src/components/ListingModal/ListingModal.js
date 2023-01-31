@@ -171,19 +171,31 @@ const ListingModal = ({ listing, onClose }) => {
             <span className="listing-detail-item-text">${Math.round(listing.price/listing.sqft)} price/sqft</span>
           </li>
         </ul>
-          <h3 id="overview" className="modal-address-description-header">Overview</h3>
-          <div className="modal-address-description">
-            {listing.description}
+        <div className="listing-bottom-container">
+          <div className="overview-container">
+            <h2 id="overview" className="bottom-header-text">Overview</h2>
+            <div className="overview-description">
+              {listing.description}
+            </div>
           </div>
-        <div className="tour-info-container">
-          <h3 className="tour-info-heading">Tours Scheduled</h3>
-          {!isOwned && hasTour && (
-          <span>
-            {currentTourInfo.tour_start_date}
-          </span>)
-          }
-          {!isOwned && !hasTour && (<span>No Tour Scheduled</span>)
-          }
+          <div className="tour-container">
+            <h2 id="tours" className="bottom-header-text">Tours Scheduled</h2>
+            <div className="tour-container-info">
+              {!isOwned && hasTour && (
+              <span>
+                {currentTourInfo.tour_start_date}
+              </span>)
+              }
+              {!isOwned && !hasTour && (<span>No Tour Scheduled</span>)
+              }
+            </div>
+          </div>
+          <div className="offers-container">
+            <h2 id="offers" className="bottom-header-text">Offers</h2>
+            <div className="offer-container-info">
+              Offer component goes here
+            </div>
+          </div>
         </div>
         </div>
         {showModal && (
