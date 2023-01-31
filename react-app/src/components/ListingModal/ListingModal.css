@@ -7,6 +7,7 @@
 
 .listing-top-container {
   height: 20%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 6%;
@@ -28,7 +29,6 @@
 .listing-modal-price {
   font-size: 2.25rem;
   height: 100%;
-  /* width: 50%; */
   font-weight: bolder;
 }
 
@@ -51,10 +51,6 @@
   border-right: 1px solid rgb(198, 198, 198);
 }
 
-/* .divider-adj {
-  padding-left
-} */
-
 .modal-listing-img-container {
   grid-column: 1 / 4;
   overflow-y: scroll;
@@ -70,12 +66,9 @@
 
 .listing-info-container {
   grid-column-start: span 2;
-  /* object-fit: cover; */
   width: 100%;
   height: 100%;
   border-left: 1px #e6e6e6 solid;
-  overflow-y: auto;
-  /* overflow-x: hidden; */
 }
 
 .listing-options {
@@ -326,4 +319,10 @@
 
 .tour-container-info {
   width: 100%;
+}
+
+.subsection-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 }

@@ -142,6 +142,7 @@ const ListingModal = ({ listing, onClose }) => {
           {
             user && !isOwned && <TourSchedulerModal listing={listing} userTours={userTours} isOwned={isOwned} user={user} hasTour={hasTour} currentTourInfo={currentTourInfo} setHasTour={setHasTour}/>
           }
+          <div className="subsection-container">
           <div className="listing-addl-info-container">
             <span className="listing-scroll-spacing">
             </span>
@@ -196,6 +197,7 @@ const ListingModal = ({ listing, onClose }) => {
               Offer component goes here
             </div>
           </div>
+        </div>
         </div>
         </div>
         {showModal && (
