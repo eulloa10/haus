@@ -247,6 +247,9 @@
   align-items: center;
   padding-left: 2%;
   overflow-x: auto;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 .listing-info-nav-item:hover {
