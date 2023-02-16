@@ -194,7 +194,7 @@ const ListingModal = ({ listing, onClose }) => {
           <div className="offers-container">
             <h2 id="offers" className="bottom-header-text">Offers</h2>
             <div className="offer-container-info">
-              No offers available
+              Offer component goes here
             </div>
           </div>
         </div>
