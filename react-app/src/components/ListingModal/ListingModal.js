@@ -68,6 +68,7 @@ const ListingModal = ({ listing, onClose }) => {
         <ImageBrowser listing={listing} user={user}/>
       </div>
       <div className="listing-info-container">
+        <div className="top-section-container">
         <div className="listing-options">
           <div className="listing-logo-container">
             <img className="listing-logo-img" src={HouseLogo} alt='Haus Logo'/>
@@ -138,10 +139,11 @@ const ListingModal = ({ listing, onClose }) => {
               <img className="sale-status-img" src={redDot} alt="sale status indicator"/>
               {isOwned ? (<span className="sale-status-description">For sale - listed by you</span>) : <span className="sale-status-description">For sale</span>}
             </div>
+            {
+              user && !isOwned && <TourSchedulerModal listing={listing} userTours={userTours} isOwned={isOwned} user={user} hasTour={hasTour} currentTourInfo={currentTourInfo} setHasTour={setHasTour}/>
+            }
           </div>
-          {
-            user && !isOwned && <TourSchedulerModal listing={listing} userTours={userTours} isOwned={isOwned} user={user} hasTour={hasTour} currentTourInfo={currentTourInfo} setHasTour={setHasTour}/>
-          }
+        </div>
           <div className="subsection-container">
           <div className="listing-addl-info-container">
             <span className="listing-scroll-spacing">
@@ -174,7 +176,9 @@ const ListingModal = ({ listing, onClose }) => {
         </ul>
         <div className="listing-bottom-container">
           <div className="overview-container">
-            <h2 id="overview" className="bottom-header-text">Overview</h2>
+            <h2 id="overview" className="bottom-header-text">
+              Overview
+            </h2>
             <div className="overview-description">
               {listing.description}
             </div>
@@ -194,7 +198,7 @@ const ListingModal = ({ listing, onClose }) => {
           <div className="offers-container">
             <h2 id="offers" className="bottom-header-text">Offers</h2>
             <div className="offer-container-info">
-              Offer component goes here
+              Offers not available.
             </div>
           </div>
         </div>
