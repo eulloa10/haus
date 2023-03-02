@@ -28,7 +28,7 @@ const ImageUploadForm = ({listingId, onClose}) => {
 
         setImageLoading(true);
 
-        dispatch(imageActions.addListingImage(listingId, formData)).then(() => setImageLoading(false)).then(() => dispatch(imageActions.loadAllListingImages(listingId))).then(() => setShowImgPreview(false)).then(URL.revokeObjectURL(tempImgUrl)).then(() => setShowSubmit(false)).then(() => setSelectImgButton("+ Select image")).then(() => {onClose()});
+        dispatch(imageActions.addListingImage(listingId, formData)).then(() => setImageLoading(false)).then(URL.revokeObjectURL(tempImgUrl)).then(() => setShowSubmit(false)).then(() => setSelectImgButton("+ Select image")).then(() => {onClose()});
 
         e.target[0].value = ''
     }

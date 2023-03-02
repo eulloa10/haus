@@ -6,4 +6,4 @@ from app.models import Image
 class ImageForm(FlaskForm):
     listing_id = IntegerField('listing_id')
     user_id = IntegerField('user_id')
-    img_url = StringField('img_url', validators=[DataRequired()])
+    img_url = StringField('img_url')

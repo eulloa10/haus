@@ -69,6 +69,9 @@ const userImageReducer = (state = initialState, action) => {
         newState[image.id] = image;
       });
       return newState;
+    case ADD_IMAGE:
+      newState[action.image.id] = action.image;
+      return newState;
     case DELETE_IMAGE:
       delete newState[action.imageId];
       return newState;

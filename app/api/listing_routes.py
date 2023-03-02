@@ -122,37 +122,19 @@ def create_tour(listing_id):
       return Response(json.dumps({"Error": "Cannot schedule tour for own property."}), status=403)
 
 
-# @listing_routes.route('/<int:listing_id>/images', methods=['POST'])
-# @login_required
-# def add_image(listing_id):
-#     form = ImageForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-
-#     listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
-
-#     if listing:
-#         if form.validate_on_submit():
-#             image = Image(
-#             listing_id = listing_id,
-#             user_id = current_user.id,
-#             img_url = form.data['img_url'],
-#             )
-#             db.session.add(image)
-#             db.session.commit()
-#             return image.to_dict()
-#     else:
-#       return Response(json.dumps({"Error": "Must own listing to add image."}), status=403)
-
 @listing_routes.route('/<int:listing_id>/images', methods=['POST'])
 @login_required
 def upload_image(listing_id):
+    form = ImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     if "image" not in request.files:
-        return {"errors": "image required"}, 400
+        return {"error": "image required"}, 400
 
     image = request.files["image"]
 
     if not allowed_file(image.filename):
-        return {"errors": "file type not permitted"}, 400
+        return {"error": "file type not permitted"}, 400
 
     image.filename = get_unique_filename(image.filename)
 
@@ -165,12 +147,29 @@ def upload_image(listing_id):
         return upload, 400
 
     url = upload["url"]
-    # flask_login allows us to get the current user from the request
-    new_image = Image(user_id=current_user.id, img_url=url, listing_id=listing_id)
-    db.session.add(new_image)
-    db.session.commit()
-    # return {"url": url}
-    return new_image.to_dict()
+
+    listing = Listing.query.get(listing_id)
+
+
+    try:
+        if form.validate_on_submit():
+            if listing.owner_id == current_user.id:
+                new_image = Image(
+                    listing_id = listing_id,
+                    user_id = current_user.id,
+                    img_url = url
+                )
+                db.session.add(new_image)
+                db.session.commit()
+                return new_image.to_dict()
+            else:
+                return {
+                    "error": "must be listing owner to add image"
+                }
+    except:
+        return {
+                "error": "image could not be uploaded"
+                }
 
 
 
