@@ -26,6 +26,8 @@ const ImageUploadForm = ({listingId, onClose}) => {
 
         setImageLoading(true);
 
+        // TODO: Add error handling for incorrect image types or unsuccesful upload attempts
+
         dispatch(imageActions.addListingImage(listingId, formData)).then(URL.revokeObjectURL(tempImgUrl)).then(() => {onClose()});
 
         e.target[0].value = ''
