@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import * as userListingActions from '../../store/userListing';
 import * as imageActions from '../../store/images';
-import newImage from '../../assets/new_image_btn.png';
-import imagePlaceholder from '../../assets/imageTemp.png';
 
 
 const ImageUploadForm = ({listingId, onClose}) => {
@@ -20,15 +18,15 @@ const ImageUploadForm = ({listingId, onClose}) => {
         dispatch(userListingActions.getUserOwnedListings());
     }, [dispatch]);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const formData = new FormData();
         formData.append("image", image);
 
         setImageLoading(true);
 
-        dispatch(imageActions.addListingImage(listingId, formData)).then(() => setImageLoading(false)).then(URL.revokeObjectURL(tempImgUrl)).then(() => setShowSubmit(false)).then(() => setSelectImgButton("+ Select image")).then(() => {onClose()});
+        dispatch(imageActions.addListingImage(listingId, formData)).then(URL.revokeObjectURL(tempImgUrl)).then(() => {onClose()});
 
         e.target[0].value = ''
     }
@@ -38,22 +36,18 @@ const ImageUploadForm = ({listingId, onClose}) => {
         setImage(file);
         setTempImgUrl(URL.createObjectURL(e.target.files[0]))
         setShowImgPreview(true);
-        setSelectImgButton("+ Select new image")
+        setSelectImgButton("+ Change image")
         setShowSubmit(true);
     }
-
-    // const clearImage = (e) => {
-    //     setImage(null);
-    // }
 
     return (
         <div className="add-img-container">
             <h2 className="add-img-header">Add listing images</h2>
             <label className="upload-listing-img-btn" htmlFor="add-listing-img-btn">{selectImgButton}</label>
             <div className="preview-container">
-                    {
-                        tempImgUrl ? (<img className="listing-img-preview" src={tempImgUrl} alt='preview'/>) : (<span className="img-preview-announcement">Select an image to display preview</span>)
-                    }
+                {
+                    tempImgUrl ? (<img className="listing-img-preview" src={tempImgUrl} alt='preview'/>) : (<span className="img-preview-announcement">Select an image to display preview</span>)
+                }
             </div>
             <form className="add-listing-img-form" onSubmit={handleSubmit}>
                 <input
@@ -66,7 +60,6 @@ const ImageUploadForm = ({listingId, onClose}) => {
                 />
                 {imageLoading ? showImgPreview && (<p className="submit-listing-img-btn">Uploading...</p>) : showImgPreview && (<button className="submit-listing-img-btn" type="submit">Upload</button>)}
             </form>
-
         </div>
     )
 }
