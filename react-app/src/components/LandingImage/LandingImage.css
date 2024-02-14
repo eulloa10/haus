@@ -13,3 +13,22 @@
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
+/* For iPad Mini and iPad (portrait) */
+@media (max-device-width: 768px) {
+  .splash-img-container {
+    height: 25vh;
+  }
+}
+
+/* For iPad Air (portrait) */
+@media (min-device-width: 769px) and (max-device-width: 820px) {
+  .splash-img-container {
+    height: 25vh;
+  }
+}
+
+/* For iPad Mini (landscape) */
+@media (min-device-width: 769px) and (max-device-width: 1024px) {
+
+}

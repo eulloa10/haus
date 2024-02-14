@@ -7,12 +7,28 @@
   height: 6vh;
   width: 100%;
   border-top: 1px solid rgb(233, 233, 233);
-  overflow-x: hidden;
-  overflow-y: hidden;
+}
+
+.footer-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 5%;
 }
 
 .footer-icon {
-  height: 2em;
-  width: 2em;
-  margin-left: 1em;
+  height: 80%;
+  width: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .footer-icon-container {
+    width: 10%;
+  }
+
+  .footer-icon {
+    height: 100%;
+    width: 50%;
+  }
 }

@@ -16,8 +16,6 @@
   height: 10vh;
   border-bottom: 0.5px  rgb(233, 233, 233) solid;
   z-index: 1;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .splash-nav-auth-links, .splash-nav-other-links {
@@ -100,4 +98,10 @@
 
 .demo-option {
   cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .nav-bar-link {
+    font-size: 1.5em;
+  }
 }

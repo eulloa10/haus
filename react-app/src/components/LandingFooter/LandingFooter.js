@@ -6,10 +6,10 @@ import './LandingFooter.css';
 
 const LandingFooter = () => {
   return (<div className="footer-container">
-            <a href="https://github.com/eulloa10/houseme-project">
+            <a href="https://github.com/eulloa10/houseme-project" className="footer-icon-container">
               <img className="footer-icon" src={Github} alt="github icon"/>
             </a>
-            <a href="https://www.linkedin.com/in/edgarulloa/">
+            <a href="https://www.linkedin.com/in/edgarulloa/" className="footer-icon-container">
               <img className="footer-icon" src={LinkedIn} alt="linkedin icon"/>
             </a>
           </div>)
