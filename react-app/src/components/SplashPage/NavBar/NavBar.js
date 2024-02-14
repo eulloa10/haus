@@ -46,9 +46,6 @@ const NavBar = () => {
            </li>
           ) : (
             <li className="splash-nav sell-link">
-            {/* <NavLink to='/listings' exact={true} activeClassName='active' onClick={() => setShowModal(true)}>
-              Sell
-            </NavLink> */}
             <LoginFormModal sellNavRedirect={true}/>
             </li>
           )

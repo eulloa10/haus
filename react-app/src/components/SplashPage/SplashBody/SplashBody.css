@@ -1,91 +1,30 @@
 .splash-body {
-  margin-top: 5%;
-  margin-bottom: 7%;
-}
-
-
-.splash-home-front {
-  width: 100%;
-  height: 55vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 10vh;
+  height: 80vh;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .splash-cards {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  margin-top: 5vw;
+  height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
-.card-header {
-  font-size: 20px;
-}
-
-.buy-home-card, .schedule-tour-card, .place-sell-card {
+.option-card-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border: 1px rgb(243, 243, 243) solid;
-  box-shadow: 2px 3px 1px 1.5px lightgray;
+  justify-content: center;
+  border: rgb(188, 188, 188) 0.5px solid;
   border-radius: 4px;
-  height: 70vh;
-  width: 28vw;
-
-}
-
-.home-card-desc, .tour-card-desc, .sell-card-desc {
-  margin: 10%;
-}
-
-.browse-homes-card-btn, .tour-card-btn, .sell-card-btn {
-  height: 5vh;
-  background-color: white;
-  color: #1277e1;
-  font-weight: bold;
-  font-size: 1em;
-  border: 1px solid #1277e1;
-  border-radius: 3px;
-  margin-top: 1vw;
-}
-
-.browse-homes-card-btn:hover, .tour-card-btn:hover, .sell-card-btn:hover {
-  background-color: #1277e1;
-  color: white;
-}
-
-
-.schedule-tour-card, .place-sell-card {
-  cursor: pointer;
-}
-
-.about-me-footer {
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid rgb(233, 233, 233)
-}
-
-.about-me-links {
-  margin-left: 1em;
-  margin-top: 0.5em;
-}
-
-.footer-icon {
-  height: 2em;
-  width: 2em;
-}
-
-.linked-link {
-  margin-left: 1em;
-}
-
-.github-link {
-  margin-right: 1em;
-}
-
-.splash-card-img {
-  height: 25vh;
-  width: 20vw;
-  margin: 0;
-  padding: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
+  height: 80%;
+  width: 30%;
+  overflow-x: hidden;
 }

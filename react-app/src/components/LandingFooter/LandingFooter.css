@@ -1,0 +1,17 @@
+.footer-container {
+  position: relative;
+  top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6vh;
+  width: 100vw;
+  border-top: 1px solid rgb(233, 233, 233);
+  overflow-x: hidden;
+}
+
+.footer-icon {
+  height: 2em;
+  width: 2em;
+  margin-left: 1em;
+}

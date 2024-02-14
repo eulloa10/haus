@@ -11,6 +11,7 @@ import SplashBody from './components/SplashPage/SplashBody/SplashBody';
 import ListingBrowser from './components/ListingBrowser';
 import UserListingOptions from './components/UserListingOptions/UserListingOptions';
 import TourBrowser from './components/TourBrowser';
+import LandingPage from './components/LandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,10 +30,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path='/' exact={true} >
-          <SplashBody />
+          <LandingPage />
         </Route>
         <Route path='/login' exact={true}>
           <LoginFormModal showModal={true}/>

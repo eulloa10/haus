@@ -4,8 +4,9 @@ import LoginForm from './LoginForm';
 import { Link, NavLink }  from 'react-router-dom';
 import SellHome from '../../assets/haus_sell_home.png';
 import TourHome from '../../assets/haus_tour_home.png';
+import LandingCard from '../LandingCard/LandingCard';
 
-  function LoginFormModal({sellNavRedirect, sellCardRedirect, tourCardRedirect, }) {
+  function LoginFormModal({sellNavRedirect, sellCardRedirect, tourCardRedirect,}) {
   const [showModal, setShowModal] = useState(false);
 
   const sellHomeNavOption =
@@ -14,23 +15,31 @@ import TourHome from '../../assets/haus_tour_home.png';
   </NavLink>)
 
   const sellHomeCardOption =
-  (<div onClick={() => setShowModal(true)}>
-    <div className="place-sell-card">
+    (
+    // <LandingCard
+    //   onClick={() => setShowModal(true)}
+    //   to="/me/listings"
+    //   header="Sell a home"
+    //   description="Ready to sell? Take advantage of our network and expertise."
+    //   image={SellHome}
+    //   buttonText="Sell a home"
+    //   />
+
+
+  <div className="option-card-container" onClick={() => setShowModal(true)}>
       <img className="splash-card-img" src={SellHome} alt="sell"/>
       <h4 className="card-header">Sell a home</h4>
       <p className="sell-card-desc">Ready to sell? Take advantage of our network and expertise.</p>
       <button className="sell-card-btn">Sell a home</button>
-    </div>
-  </div>)
+  </div>
+  )
 
   const tourHomeCardOption =
-  (<div onClick={() => setShowModal(true)}>
-    <div className="schedule-tour-card">
+  (<div className="option-card-container" onClick={() => setShowModal(true)}>
       <img className="splash-card-img" src={TourHome} alt="tour"/>
       <h4 className="card-header">Tour a home</h4>
       <p className="tour-card-desc">See a home you like? Schedule a tour now with one of our agents. </p>
       <button className="tour-card-btn">Find a home to tour</button>
-    </div>
   </div>)
 
 
