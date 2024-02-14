@@ -4,8 +4,9 @@
   position: relative;
   top: 10vh;
   height: 80vh;
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .splash-cards {
