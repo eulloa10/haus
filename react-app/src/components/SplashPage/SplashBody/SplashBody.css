@@ -27,9 +27,41 @@
   overflow-x: hidden;
 }
 
+/* For mobile and smaller devices (portrait) */
+@media only screen and (max-device-width: 767px) and (orientation: portrait) {
+  .splash-body {
+    height: 100vh;
+  }
+  .splash-cards {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+  }
 
-/* For iPad Mini */
-@media (max-device-width: 768px) {
+  .option-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 31%;
+    width: 70%;
+  }
+}
+
+/* For mobile and smaller devices (landscape) */
+@media only screen and (max-device-width: 932px) and (orientation: landscape) {
+  .splash-body {
+    height: 60vh;
+  }
+  .option-card-container {
+    height: 90%;
+    width: 30%;
+  }
+}
+
+/* For iPad Mini (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 819px) and (orientation: portrait) {
   .splash-body {
     height: 100vh;
   }
@@ -50,11 +82,23 @@
   }
 }
 
+/* For iPad Mini (landscape) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1179px) and (orientation: landscape) {
+  .splash-body {
+    height: 60vh;
+  }
+  .option-card-container {
+    height: 85%;
+    width: 30%;
+  }
+}
+
 /* For iPad Air (portrait) */
-@media (min-device-width: 769px) and (max-device-width: 820px) {
+@media only screen and (min-device-width: 820px) and (max-device-width: 820px) and (orientation: portrait) {
   .splash-body {
     height: 100vh;
   }
+
   .splash-cards {
     flex-direction: column;
     align-items: center;
@@ -72,42 +116,47 @@
   }
 }
 
-/* For iPad Mini (landscape) */
-@media (min-device-width: 769px) and (max-device-width: 1024px) {
-
+/* For iPad Air (landscape) */
+@media only screen and (min-device-width: 1180px) and (orientation: landscape) {
+  .splash-body {
+    height: 60vh;
+  }
+  .option-card-container {
+    height: 85%;
+    width: 30%;
+  }
 }
 
-/* Additional media query for larger iPad Pro (landscape) */
-@media (min-width: 1025px) {
-  /* Your CSS styles for larger tablets, like iPad Pro, in landscape mode */
+/* For iPad Pro (portrait) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .splash-body {
+    height: 100vh;
+  }
+
+  .splash-cards {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+  }
+
+  .option-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 70%;
+  }
 }
 
-/* Media query for iPhone 6/7/8 and similar-sized devices */
-@media (min-width: 321px) and (max-width: 375px) {
-  /* Your CSS styles for iPhone 6/7/8 and similar-sized devices */
-}
-
-/* Media query for iPhone 6/7/8 Plus and similar-sized devices */
-@media (min-width: 376px) and (max-width: 414px) {
-  /* Your CSS styles for iPhone 6/7/8 Plus and similar-sized devices */
-}
-
-/* Media query for iPhone X/XS/11 Pro and similar-sized devices */
-@media (min-width: 375px) and (max-width: 414px) and (min-resolution: 2dppx) {
-  /* Your CSS styles for iPhone X/XS/11 Pro and similar-sized devices */
-}
-
-/* Media query for iPhone XR/11 and similar-sized devices */
-@media (min-width: 414px) and (max-width: 896px) {
-  /* Your CSS styles for iPhone XR/11 and similar-sized devices */
-}
-
-/* Media query for common Android smartphones */
-@media (max-width: 480px) {
-  /* Your CSS styles for common Android smartphones */
-}
-
-/* Media query for larger Android devices (e.g., tablets) */
-@media (min-width: 481px) and (max-width: 1024px) {
-  /* Your CSS styles for larger Android devices */
+/* For iPad Pro (landscape) */
+@media only screen and (min-device-width: 1366px) and (orientation: landscape) {
+  .splash-body {
+    height: 60vh;
+  }
+  .option-card-container {
+    height: 85%;
+    width: 30%;
+  }
 }

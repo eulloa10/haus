@@ -14,10 +14,6 @@
   width: 65%;
 }
 
-/* .splash-card-header {
-  font-size: 1.25em;
-} */
-
 .splash-card-desc {
   display:flex;
   flex-direction: column;
@@ -47,8 +43,50 @@
   color: white;
 }
 
+/* For mobile and smaller devices (portrait) */
+@media only screen and (max-device-width: 767px) and (orientation: portrait) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 45%;
+    width: 55%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.5em;
+  }
+
+  .splash-card-btn {
+    width: 50%;
+    font-size: 1.5em;
+  }
+}
+
+/* For mobile and smaller devices (landscape) */
+@media only screen and (max-device-width: 932px) and (orientation: landscape) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: .75em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1em;
+  }
+}
+
 /* For iPad Mini (portrait) */
-@media (max-device-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 819px) {
   .splash-card-contents {
     padding: 3%;
   }
@@ -67,9 +105,29 @@
   }
 }
 
+/* For iPad Mini (landscape) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1179px) and (orientation: landscape) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.25em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1.25em;
+  }
+}
 
 /* For iPad Air (portrait) */
-@media (min-device-width: 769px) and (max-device-width: 820px) {
+@media only screen and (min-device-width: 820px) and (max-device-width: 820px) {
   .splash-card-contents {
     padding: 3%;
   }
@@ -88,18 +146,189 @@
   }
 }
 
+/* For iPad Air (landscape) */
+@media only screen and (min-device-width: 1180px) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: 1em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Pro (portrait) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 40%;
+    width: 45%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.25em;
+  }
+
+  .splash-card-btn {
+    width: 40%;
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Pro (landscape) */
+@media only screen and (min-device-width: 1366px) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: 1em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Mini (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 819px) and (orientation: portrait) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    width: 45%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.25em;
+  }
+
+  .splash-card-btn {
+    width: 50%;
+    font-size: 1.5em;
+  }
+}
+
 /* For iPad Mini (landscape) */
-@media (min-device-width: 769px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1179px) and (orientation: landscape) {
+  .splash-card-contents {
+    padding: 3%;
+  }
 
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.25em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1.25em;
+  }
 }
 
+/* For iPad Air (portrait) */
+@media only screen and (min-device-width: 820px) and (max-device-width: 1023px) and (orientation: portrait) {
+  .splash-card-contents {
+    padding: 3%;
+  }
 
-/* For iPad Mini and iPad (landscape) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  /* Your CSS styles for tablets in landscape mode */
+  .splash-card-img {
+    width: 45%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.25em;
+  }
+
+  .splash-card-btn {
+    width: 40%;
+    font-size: 1.25em;
+  }
 }
 
-/* Additional media query for larger iPad Pro (landscape) */
-@media (min-width: 1025px) {
-  /* Your CSS styles for larger tablets, like iPad Pro, in landscape mode */
+/* For iPad Air (landscape) */
+@media only screen and (min-device-width: 1180px) and (orientation: landscape) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: 1em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Pro (portrait) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 40%;
+    width: 45%;
+  }
+
+  .splash-card-desc {
+    font-size: 1.25em;
+  }
+
+  .splash-card-btn {
+    width: 40%;
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Pro (landscape) */
+@media only screen and (min-device-width: 1366px) and (orientation: landscape) {
+  .splash-card-contents {
+    padding: 3%;
+  }
+
+  .splash-card-img {
+    height: 35%;
+    width: 60%;
+  }
+
+  .splash-card-desc {
+    font-size: 1em;
+  }
+
+  .splash-card-btn {
+    width: 75%;
+    font-size: 1.25em;
+  }
 }

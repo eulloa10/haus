@@ -100,7 +100,59 @@
   cursor: pointer;
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
+/* For mobile and smaller devices (portrait) */
+@media only screen and (max-device-width: 767px) and (orientation: portrait) {
+  .nav-bar-link {
+    font-size: 1.5em;
+  }
+
+  .house-letter-logo {
+    height: 4vh;
+  }
+}
+
+/* For mobile and smaller devices (landscape) */
+@media only screen and (max-device-width: 932px) and (orientation: landscape) {
+  .nav-bar-link {
+    font-size: 1.25em;
+  }
+
+  .house-letter-logo {
+    height: 10vh;
+  }
+}
+
+/* For iPad Mini (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 819px) and (orientation: portrait) {
+  .nav-bar-link {
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Mini (landscape) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1179px) and (orientation: landscape) {
+}
+
+/* For iPad Air (portrait) */
+@media only screen and (min-device-width: 820px) and (max-device-width: 820px) and (orientation: portrait) {
+  .nav-bar-link {
+    font-size: 1.25em;
+  }
+}
+
+/* For iPad Air (landscape) */
+@media only screen and (min-device-width: 1180px) and (orientation: landscape) {
+}
+
+/* For iPad Pro (portrait) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .nav-bar-link {
+    font-size: 1.5em;
+  }
+}
+
+/* For iPad Pro (landscape) */
+@media only screen and (min-device-width: 1366px) and (orientation: landscape) {
   .nav-bar-link {
     font-size: 1.5em;
   }
