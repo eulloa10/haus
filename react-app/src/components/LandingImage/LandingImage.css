@@ -29,14 +29,14 @@
 }
 
 /* For iPad Mini (portrait) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 819px) and (orientation: portrait) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 768) and (orientation: portrait) {
   .splash-img-container {
     height: 30vh;
   }
 }
 
 /* For iPad Mini (landscape) */
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1179px) and (orientation: landscape) {
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024) and (orientation: landscape) {
   .splash-img-container {
     height: 40vh;
   }
@@ -64,8 +64,8 @@
 }
 
 /* For iPad Pro (landscape) */
-@media only screen and (min-device-width: 1366px) and (orientation: landscape) {
+/* @media only screen and (min-device-width: 1366px) and (min-device-width: 1366px) and (orientation: landscape) {
   .splash-img-container {
     height: 50vh;
   }
-}
+} */

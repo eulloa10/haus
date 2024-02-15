@@ -61,7 +61,7 @@
 }
 
 /* For iPad Mini (portrait) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 819px) and (orientation: portrait) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 768px) and (orientation: portrait) {
   .splash-body {
     height: 100vh;
   }
@@ -83,7 +83,7 @@
 }
 
 /* For iPad Mini (landscape) */
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1179px) and (orientation: landscape) {
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: landscape) {
   .splash-body {
     height: 60vh;
   }
@@ -117,7 +117,7 @@
 }
 
 /* For iPad Air (landscape) */
-@media only screen and (min-device-width: 1180px) and (orientation: landscape) {
+@media only screen and (min-device-width: 1180px)  and (max-device-width: 1180px) and (orientation: landscape) {
   .splash-body {
     height: 60vh;
   }
@@ -151,7 +151,7 @@
 }
 
 /* For iPad Pro (landscape) */
-@media only screen and (min-device-width: 1366px) and (orientation: landscape) {
+/* @media only screen and (min-device-width: 1366px) and (min-device-width: 1366px) and (orientation: landscape) {
   .splash-body {
     height: 60vh;
   }
@@ -159,4 +159,4 @@
     height: 85%;
     width: 30%;
   }
-}
+} */

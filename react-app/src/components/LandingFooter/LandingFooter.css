@@ -107,7 +107,7 @@
 }
 
 /* For iPad Pro (landscape) */
-@media only screen and (min-device-width: 1366px) and (orientation: landscape) {
+/* @media only screen and (min-device-width: 1366px) and (min-device-width: 1366px) and (orientation: landscape) {
   .footer-icon-container {
     width: 5%;
   }
@@ -116,4 +116,4 @@
     height: 60%;
     width: 50%;
   }
-}
+} */
