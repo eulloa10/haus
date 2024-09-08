@@ -5,9 +5,6 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
 # production
 /build
 
@@ -25,3 +22,21 @@ yarn-debug.log*
 yarn-error.log*
 
 api.http
+
+.idea/
+.vscode/
+.venv*/
+venv*/
+__pycache__/
+dist/
+.coverage*
+htmlcov/
+.tox/
+docs/_build/
+
+node_modules/
+*.tgz
+template/src/__tests__/__snapshots__/
+lerna-debug.log
+/.changelog
+.npm/
