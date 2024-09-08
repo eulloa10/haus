@@ -1,8 +1,8 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user
 
 import os
 
@@ -35,8 +35,6 @@ def getMapKey():
     Returns Google Maps Api Key
     """
     return {"map_api_key": os.environ.get('MAPS_API_KEY')}
-    # return {'errors': ['Unauthorized']}
-
 
 @auth_routes.route('/login', methods=['POST'])
 def login():
