@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from flask_login import login_required, current_user
-from app.models import db, Favorite, Listing
-from app.forms import FavoriteForm
+from app.models import db, Favorite
 import json
 
 favorite_routes = Blueprint('favorites', __name__)
@@ -18,7 +17,6 @@ def get_all_user_favorites():
     favorite_listings = Favorite.query.filter(Favorite.user_id == current_user.id)
     return {'user_favorite_listings': [favorite.to_dict() for favorite in favorite_listings]}
 
-
 @me_favorite_routes.route('/favorites/<int:favorite_id>')
 @login_required
 def get_a_user_favorite(favorite_id):
@@ -28,7 +26,6 @@ def get_a_user_favorite(favorite_id):
     return {'favorite_listing': [favorite.to_dict() for favorite in favorite_listing]}
   else:
     return Response(json.dumps({'Error': 'Record not found'}), status=404)
-
 
 @me_favorite_routes.route('/favorites/<int:favorite_id>', methods=['DELETE'])
 @login_required
