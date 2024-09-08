@@ -1,24 +1,28 @@
-from flask import Blueprint, jsonify, request, Response
+import json
+
+from flask import Blueprint, request, Response
 from flask_login import login_required, current_user
 from app.models import Listing, Offer, Favorite, Tour, Image, db
 from app.forms import ListingForm, OfferForm, FavoriteForm, TourForm, ImageForm
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
-import json
 
 
 listing_routes = Blueprint('listings', __name__)
 me_listing_routes = Blueprint('me_listings', __name__)
+
 
 @listing_routes.route('/', methods=['GET'])
 def get_all_listings():
     listings = Listing.query.all()
     return {'listings': [listing.to_dict() for listing in listings]}
 
+
 @listing_routes.route('/<int:listingId>/images', methods=['GET'])
 def get_all_listing_images(listingId):
     images = Image.query.filter(Image.listing_id == listingId).all()
     return {'images': [image.to_dict() for image in images]}
+
 
 @listing_routes.route('/', methods=['POST'])
 @login_required
@@ -67,27 +71,30 @@ def create_an_offer(listing_id):
         else:
             return {'Error:': 'Cannot submit offer on owned listing'}
 
+
 @listing_routes.route('/<int:listing_id>/favorites', methods=['POST'])
 @login_required
 def add_favorite(listing_id):
     form = FavoriteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+    listing = Listing.query.filter(Listing.id == listing_id).filter(
+        Listing.owner_id == current_user.id).all()
 
-    favorite = Favorite.query.filter(Favorite.listing_id == listing_id).filter(Favorite.user_id == current_user.id).all()
+    favorite = Favorite.query.filter(Favorite.listing_id == listing_id).filter(
+        Favorite.user_id == current_user.id).all()
 
     if not listing and not favorite:
         if form.validate_on_submit():
             favorite = Favorite(
-            user_id = current_user.id,
-            listing_id = listing_id,
+                user_id=current_user.id,
+                listing_id=listing_id,
             )
             db.session.add(favorite)
             db.session.commit()
             return favorite.to_dict()
     else:
-      return Response(json.dumps({"Error": "Cannot favorite this listing. Listing is either your own or has already been favorited."}), status=403)
+        return Response(json.dumps({"Error": "Cannot favorite this listing. Listing is either your own or   has already been favorited."}), status=403)
 
 
 @listing_routes.route('/<int:listing_id>/tours/', methods=['POST'])
@@ -96,30 +103,22 @@ def create_tour(listing_id):
     form = TourForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # TODO:
-    '''
-    1. get all tours for current listing
-    2. make sure selected time doesn't overlap
-    3. make sure selected time is in future
-    4. make sure selected time is within certain range
-    '''
-
-    listing = Listing.query.filter(Listing.id == listing_id).filter(Listing.owner_id == current_user.id).all()
+    listing = Listing.query.filter(Listing.id == listing_id).filter(
+        Listing.owner_id == current_user.id).all()
 
     if not listing:
-        print("-----------_ENTERED TOUR ROUTE 4")
         if form.validate_on_submit():
             tour = Tour(
-            user_id = current_user.id,
-            listing_id = listing_id,
-            tour_start_date=form.data['tour_start_date'],
-            tour_time_slot=form.data['tour_time_slot']
+                user_id=current_user.id,
+                listing_id=listing_id,
+                tour_start_date=form.data['tour_start_date'],
+                tour_time_slot=form.data['tour_time_slot']
             )
             db.session.add(tour)
             db.session.commit()
             return tour.to_dict()
     else:
-      return Response(json.dumps({"Error": "Cannot schedule tour for own property."}), status=403)
+        return Response(json.dumps({"Error": "Cannot schedule tour for own property."}), status=403)
 
 
 @listing_routes.route('/<int:listing_id>/images', methods=['POST'])
@@ -150,14 +149,13 @@ def upload_image(listing_id):
 
     listing = Listing.query.get(listing_id)
 
-
     try:
         if form.validate_on_submit():
             if listing.owner_id == current_user.id:
                 new_image = Image(
-                    listing_id = listing_id,
-                    user_id = current_user.id,
-                    img_url = url
+                    listing_id=listing_id,
+                    user_id=current_user.id,
+                    img_url=url
                 )
                 db.session.add(new_image)
                 db.session.commit()
@@ -168,9 +166,8 @@ def upload_image(listing_id):
                 }
     except:
         return {
-                "error": "image could not be uploaded"
-                }
-
+            "error": "image could not be uploaded"
+        }
 
 
 @me_listing_routes.route('/listings')
@@ -182,7 +179,8 @@ def get_all_user_listings():
 
 @listing_routes.route('/<int:listing_id>')
 def get_a_listing(listing_id):
-    user_listing = Listing.query.filter(Listing.owner_id == current_user.id).filter(Listing.id == listing_id)
+    user_listing = Listing.query.filter(
+        Listing.owner_id == current_user.id).filter(Listing.id == listing_id)
     return {'user_listing': [listing.to_dict() for listing in user_listing]}
 
 
