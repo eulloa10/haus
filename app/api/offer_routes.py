@@ -1,10 +1,12 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Offer, db
 from app.forms import OfferForm
 
+
 offer_routes = Blueprint('offers', __name__)
 me_offer_routes = Blueprint('me_offers', __name__)
+
 
 @offer_routes.route('/')
 @login_required
