@@ -9,8 +9,6 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import SplashBody from './components/SplashPage/SplashBody/SplashBody';
 import ListingBrowser from './components/ListingBrowser';
-import UserListingOptions from './components/UserListingOptions/UserListingOptions';
-import TourBrowser from './components/TourBrowser';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
