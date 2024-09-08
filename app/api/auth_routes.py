@@ -30,12 +30,14 @@ def authenticate():
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
+
 @auth_routes.route('/maps')
 def get_map_key():
     """
     Returns Google Maps Api Key
     """
     return {"map_api_key": os.environ.get('MAPS_API_KEY')}
+
 
 @auth_routes.route('/login', methods=['POST'])
 def login():
