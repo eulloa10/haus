@@ -30,8 +30,3 @@ class Tour(db.Model):
             'updated_at': self.updated_at,
             'tour_listing': self.tour_listing.to_dict()
         }
-
-    # def listing_data(self):
-    #     return {
-    #         'tour_listing': self.tour_listing
-    #     }
