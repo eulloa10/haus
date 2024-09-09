@@ -1,6 +1,8 @@
+import * as React from 'react';
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import CssBaseline from '@mui/material/CssBaseline';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -33,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CssBaseline />
         {children}
       </body>
     </html>

@@ -25,3 +25,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.landing {
+  height: 100vh;
+}

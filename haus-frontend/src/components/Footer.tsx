@@ -1,10 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 
-export default function BoxBasic() {
+export default function Footer() {
   return (
-    <Box component="section" position="sticky" sx={{ p: 2, border: '1px dashed grey' }}>
-      This Box renders as an HTML section element.
+    <Box
+      component="footer"
+      sx={{
+        height: '4vh',
+        width: '100%',
+        backgroundColor: 'white',
+        borderTop: '1px solid #D3D3D3',
+        mt: 'auto'
+      }}
+    >
+      This is the footer.
     </Box>
   );
 }
