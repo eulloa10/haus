@@ -20,28 +20,28 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Landing() {
   return (
-    <Box sx={{ flexGrow: 1, marginTop: '8vh', height: '100vh', backgroundColor: 'white' }}>
-      <Grid container spacing={2} sx={{ height: '35%' }}>
+    <Box sx={{ flexGrow: '1', display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#fdfdfd', overflow: 'hidden' }}>
+      <Grid container sx={{ display: { xs: 'none', md: 'flex' }, flex: '0 0 40%'}}>
         <Grid size={{ xs: 12 }} sx={{ height: '100%'}}>
           <Item sx={{ height: '100%', position: 'relative'}}>
             <Image
-              src="/zillow-front-2.jpeg"
+              src="/landing-home-view.jpeg"
               layout="fill"
               objectFit="cover"
-              alt='Zillow front'
+              alt='View of home entrance'
             />
           </Item>
         </Grid>
       </Grid>
-      <Grid container spacing={4} sx={{ flexGrow: '1', height: '65%', width: '100%', display: 'flex', justifyContent: 'space-around', paddingLeft: '8%', paddingRight: '8%' }}>
-        <Grid size={{ xs: 12, md: 4 }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Item sx={{height: '80%', width: '65%'}}>xs=6 md=4</Item>
+      <Grid container spacing={1} sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'space-around', paddingLeft: '8%', paddingRight: '8%' }}>
+        <Grid className='landing-card-container' size={{ xs: 12, sm: 12,  md: 4 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Item className='landing-card' sx={{ height: '75%', width: '80%' }}>1</Item>
         </Grid>
-        <Grid size={{ xs: 12, md: 4 }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Item sx={{height: '80%', width: '65%'}}>xs=6 md=4</Item>
+        <Grid className='landing-card-container' size={{ xs: 12, sm: 12,  md: 4 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Item className='landing-card' sx={{ height: '75%', width: '80%' }}>2</Item>
         </Grid>
-        <Grid size={{ xs: 12, md: 4 }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Item sx={{height: '80%', width: '65%'}}>xs=6 md=4</Item>
+        <Grid className='landing-card-container' size={{ xs: 12, sm: 12,  md: 4 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Item className='landing-card' sx={{ height: '75%', width: '80%' }}>3</Item>
         </Grid>
       </Grid>
     </Box>

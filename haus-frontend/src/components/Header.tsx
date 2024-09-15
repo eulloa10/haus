@@ -16,7 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 const pageNavOptions = ['Buy', 'Sell'];
-const pageActions = ['Sign In', 'Sign Up']
+const pageActions = ['Sign In']
 const settings = ['Profile', 'My Listings', 'My Tours', 'Sign Out'];
 
 export default function Header() {
@@ -40,7 +40,7 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="fixed" sx={{ height: '8vh', backgroundColor: "white" }}>
+    <AppBar  sx={{ height: '10vh', backgroundColor: "#fdfdfd" }}>
       <Container maxWidth="xl" sx={{ height: '100%'}}>
         <Toolbar disableGutters sx={{ display: 'flex', height: "100%", justifyContent: 'space-between'}}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
@@ -81,7 +81,7 @@ export default function Header() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block', fontSize:'1rem' }}
               >
                 {page}
               </Button>
@@ -101,7 +101,7 @@ export default function Header() {
               <Button
                 key={action}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block', fontSize: '1rem' }}
               >
                 {action}
               </Button>
