@@ -7,7 +7,21 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export default function LandingCard({ card }) {
+interface CardDetails {
+  id: number;
+  Title: string;
+  Action: string;
+  Description: string;
+  Image: string;
+}
+
+interface LandingCardProps {
+  card: CardDetails;
+}
+
+export default function LandingCard(props: LandingCardProps) {
+  const { card } = props;
+
   return (
     <Card sx={{ height: '85%', width: '85%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center' }}>
       <CardMedia
@@ -15,8 +29,8 @@ export default function LandingCard({ card }) {
         sx={{
           height: '40%',
           width: '100%',
-          maxHeight: { xs: '150px', sm: '150px', md: '150px', lg: '250px' }, // Responsive height
-          maxWidth: { xs: '200px', sm: '250px', md: '300px', lg: '300px' },   // Responsive width
+          maxHeight: { xs: '150px', sm: '150px', md: '150px', lg: '250px' },
+          maxWidth: { xs: '200px', sm: '250px', md: '300px', lg: '300px' },
           objectFit: 'cover',
           objectPosition: 'center'
         }}
