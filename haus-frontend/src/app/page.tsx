@@ -1,6 +1,6 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Landing from '@/components/Landing';
+import Header from '@/components/landing/Header';
+import Footer from '@/components/landing/Footer';
+import Landing from '@/components/landing/Landing';
 import Box from '@mui/material/Box';
 
 export default function Home() {
