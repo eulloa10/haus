@@ -27,6 +27,7 @@ api.http
 .vscode/
 .venv*/
 venv*/
+haus-venv*/
 __pycache__/
 dist/
 .coverage*
